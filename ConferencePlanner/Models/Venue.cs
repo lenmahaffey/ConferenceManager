@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConferencePlanner.Models
 {
@@ -8,6 +9,7 @@ namespace ConferencePlanner.Models
         public int VenueID { get; set; }
 
         public ICollection<Room> Rooms { get; set; }
+        public IEnumerable<ConferenceVenues> ConferenceVenues { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the venue")]
         [StringLength(50)]

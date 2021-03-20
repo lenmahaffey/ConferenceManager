@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +11,8 @@ namespace ConferencePlanner.Models
         [Required]
         public int AttendeeID { get; set; }
 
-        public ICollection Conferences { get; set; }
+        public ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
+        public ICollection<PresentationAttendees> PresentationAttendees { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name")]
         [StringLength(20)]

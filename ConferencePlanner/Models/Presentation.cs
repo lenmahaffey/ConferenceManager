@@ -10,6 +10,7 @@ namespace ConferencePlanner.Models
         [Required]
         public int PresentationID { get; set; }
 
+        public ICollection<PresentationAttendees> PresentationAttendees { get; set; }
         [Required]
         public int ConferenceID { get; set; }
         public Conference Conference { get; set; }

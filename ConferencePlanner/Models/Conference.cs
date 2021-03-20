@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConferencePlanner.Models
 {
@@ -9,7 +10,8 @@ namespace ConferencePlanner.Models
         [Required]
         public int ConferenceID { get; set; }
 
-        public IEnumerable<Presentation> Presentations { get; set; }
+        public IEnumerable<ConferenceAttendees> ConferenceAttendees { get; set; }
+        public IEnumerable<ConferenceVenues> ConferenceVenues { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the conference")]
         [StringLength(50)]

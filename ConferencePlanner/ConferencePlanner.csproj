@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20210320042144_Inital.cs" />
+    <Compile Remove="Migrations\20210320042144_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210320044546_Inital.cs" />
+    <Compile Remove="Migrations\20210320044546_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210320044757_Inital.cs" />
+    <Compile Remove="Migrations\20210320044757_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210320052445_Inital.cs" />
+    <Compile Remove="Migrations\20210320052445_Inital.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
       <PrivateAssets>all</PrivateAssets>
@@ -12,10 +23,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.13" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
