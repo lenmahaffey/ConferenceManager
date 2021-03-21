@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Attendee>
+@{
+    ViewBag.Title = "Manage Attendees";
+}
+<h1>@ViewBag.Title</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Phone</td>
+            <td>Email</td>
+            <td>Date Registered</td>
+            <td>Presenter</td>
+            <td>Staff</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Attendee a in Model)
+        {
+        <tr>
+            <td>@a.FirstName</td>
+            <td>@a.LastName</td>
+            <td>@a.Phone</td>
+            <td>@a.Email</td>
+            <td>@a.DateRegistered</td>
+            <td>@(a.IsPresenter == true ? "yes" : "no") </td>
+            <td>@(a.IsStaff == true ? "yes" : "no") </td>
+            <td>
+                <a asp-action="EditAttendee"
+                   asp-route-id="@a.AttendeeID"
+                   class="btn btn-secondary">Edit</a>
+            </td>
+            <td>
+                <a asp-action="DeleteAttendee"
+                   asp-route-id="@a.AttendeeID"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -22,10 +22,10 @@ namespace ConferencePlanner.Services.Interfaces
 
         IEnumerable<Attendee> GetAllAttendeesForConference(int conferenceID);
         IEnumerable<Attendee> GetAllAttendeesForPresentation(int presentationID);
-        IEnumerable<Attendee> GetAllPresentationsForAttendee(int attendeeID);
-        IEnumerable<Attendee> GetAllConferencesForAttendee(int attendeeID);
+        IEnumerable<Presentation> GetAllPresentationsForAttendee(int attendeeID);
+        IEnumerable<Conference> GetAllConferencesForAttendee(int attendeeID);
         IEnumerable<Venue> GetAllVenuesForConference(int conferenceID);
-        IEnumerable<Venue> GetAllConferencesForVenue(int venueID);
+        IEnumerable<Conference> GetAllConferencesForVenue(int venueID);
         IEnumerable<Room> GetAllRoomsForVenue(int venueID);
 
         void AddAttendee(Attendee attendee);

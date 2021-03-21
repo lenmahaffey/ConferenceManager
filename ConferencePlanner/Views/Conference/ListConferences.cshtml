@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Conference>
+@{
+    ViewBag.Title = "Manage Conferences";
+}
+<h1>@ViewBag.Title</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Start Date</td>
+            <td>End Date</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Conference c in Model)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.Description</td>
+                <td>@c.StartDate.ToShortDateString()</td>
+                <td>@c.EndDate.ToShortDateString()</td>
+            <td>
+                <a asp-action="EditConference"
+                    asp-route-id="@c.ConferenceID"
+                    class="btn btn-secondary">Edit</a>
+            </td>
+            <td>
+                <a asp-action="DeleteConference"
+                    asp-route-id="@c.ConferenceID"
+                    class="btn btn-danger">Delete</a>
+            </td>
+            </tr>
+        }
+    </tbody>
+</table>

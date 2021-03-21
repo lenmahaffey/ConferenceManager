@@ -1,0 +1,15 @@
+﻿@model Attendee
+@{
+    ViewBag.Title = "Delete Attendee";
+}
+
+<div class="jumbotron alert-danger mt-4">
+    <h1>Confirm Deletion</h1>
+    <p>Are you sure you want to remove @Model.FirstName from the database?</p>
+    <form asp-action="DeleteAttendee" method="post">
+        <input type="hidden" asp-for="AttendeeID" />
+
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <a asp-action="ListAttendees" class="btn btn-primary">Cancel</a>
+    </form>
+</div>

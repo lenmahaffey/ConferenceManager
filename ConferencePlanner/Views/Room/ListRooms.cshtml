@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Room>
+@{
+    ViewBag.Title = "Manager Room";
+}
+<h1>@ViewBag.Title</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Venue</td>
+            <td>Max Theater</td>
+            <td>Max Schoolroom</td>
+            <td>Max Crescent Rounds</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Room r in Model)
+        {
+            <tr>
+                <td>@r.Name</td>
+                <td>@r.Venue.Name</td>
+                <td>@r.TheatreCapacity</td>
+                <td>@r.SchoolRoomCapacity</td>
+                <td>@r.CrescentRoundCpacity</td>
+                <td>
+                    <a asp-action="EditRoom"
+                        asp-route-id="@r.RoomID"
+                        class="btn btn-secondary">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="DeleteRoom"
+                        asp-route-id="@r.RoomID"
+                        class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

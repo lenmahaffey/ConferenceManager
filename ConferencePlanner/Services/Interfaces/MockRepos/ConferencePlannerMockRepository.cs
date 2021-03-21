@@ -164,10 +164,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                     State = "CO",
                     PostalCode = "80202",
                     Phone = "303-303-0000"
-                }
-            };
-            venues = new List<Venue>()
-            {
+                },
                 new Venue
                 {
                     VenueID = 11,
@@ -224,7 +221,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                 new Room
                 {
                     RoomID = 1014,
-                    VenueID = 12,
+                    VenueID = 11,
                     Name = "Red Rover",
                     TheatreCapacity = 100,
                     SchoolRoomCapacity = 50,
@@ -246,7 +243,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                     Name = "Professional Associations in the 21st century",
                     Description = "Hear our president discuss the role of professional organizations in the 21st century",
                     StartTime = DateTime.Now.AddDays(1),
-                    EndTime = DateTime.Now.AddHours(2)
+                    EndTime = DateTime.Now.AddHours(2).AddDays(1)
                 },
                 new Presentation
                 {
@@ -257,7 +254,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                     Name = "Member Services",
                     Description = "Join a discussion about the various services a professional organization can offer it's members",
                     StartTime = DateTime.Now.AddDays(2),
-                    EndTime = DateTime.Now.AddHours(2)
+                    EndTime = DateTime.Now.AddHours(2).AddDays(2)
                 },
                 new Presentation
                 {
@@ -265,21 +262,21 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                     ConferenceID = 1002,
                     AttendeeID = 104,
                     RoomID = 1011,
-                    Name = "Member Services",
-                    Description = "Join a discussion about the various services a professional organization can offer it's members",
+                    Name = "Paint Application in Aird Climates",
+                    Description = "Learn about the proper application of our tunnel paint in dry arid climates.",
                     StartTime = DateTime.Now.AddDays(2),
-                    EndTime = DateTime.Now.AddHours(2)
+                    EndTime = DateTime.Now.AddHours(2).AddDays(2)
                 },
                 new Presentation
                 {
                     PresentationID = 104,
-                    ConferenceID = 1001,
+                    ConferenceID = 1002,
                     AttendeeID = 105,
                     RoomID = 1013,
                     Name = "Acme Orbital",
                     Description = "Our rockets aren't just for hunting! Come hear about Acme's plans to land the first coyote on the moon",
                     StartTime = DateTime.Now.AddDays(2),
-                    EndTime = DateTime.Now.AddHours(2)
+                    EndTime = DateTime.Now.AddHours(2).AddDays(2)
                 },
             };
         }
@@ -498,12 +495,12 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             //return (IEnumerable<Attendee>)presentationAttendees.SelectMany(a => a).Where(key => key.Key == presentationID).ToList();
         }
 
-        public IEnumerable<Attendee> GetAllPresentationsForAttendee(int attendeeID)
+        public IEnumerable<Presentation> GetAllPresentationsForAttendee(int attendeeID)
         {
             throw new NotImplementedException();
             //return (IEnumerable<Attendee>)presentationAttendees.SelectMany(p => p).Where(v => v.Value == attendeeID).ToList();
         }
-        public IEnumerable<Attendee> GetAllConferencesForAttendee(int attendeeID)
+        public IEnumerable<Conference> GetAllConferencesForAttendee(int attendeeID)
         {
             throw new NotImplementedException();
             //return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(c => c).Where(v => v.Value == attendeeID).ToList();
@@ -550,7 +547,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             //return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(key => key.Key == conferenceID).ToList();
         }
 
-        public IEnumerable<Venue> GetAllConferencesForVenue(int venueID)
+        public IEnumerable<Conference> GetAllConferencesForVenue(int venueID)
         {
             throw new NotImplementedException();
             //return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(v => v.Value == venueID).ToList();
@@ -589,8 +586,10 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             foreach (Presentation presentation in presentations)
             {
                 //presentation.PresentationAttendees = (ICollection<PresentationAttendees>)GetAllAttendeesForPresentation(presentation.PresentationID);
-                presentation.Conference = conferences.FirstOrDefault(c => presentation.ConferenceID == c.ConferenceID);
-                presentation.Presenter = attendees.FirstOrDefault(a => presentation.AttendeeID == a.AttendeeID);
+                presentation.Conference = GetConference(presentation.ConferenceID);
+                presentation.Presenter = GetAttendee(presentation.AttendeeID);
+                GetRooms();
+                presentation.Room = GetRoom(presentation.RoomID);
             }
             return from p in presentations
                    orderby p.Name
@@ -606,7 +605,8 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
         {
             foreach (Venue venue in venues)
             {
-                //venue.Rooms = GetAllRoomsForVenue(venue.VenueID);
+                /*
+                venue.Rooms = GetAllRoomsForVenue(venue.VenueID);
                 foreach (var dict in conferenceVenues)
                 {
                     foreach (var pair in dict)
@@ -614,6 +614,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                         //venue.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllConferencesForVenue(pair.Key);
                     }
                 }
+                */
             }
             return from v in venues
                    orderby v.Name

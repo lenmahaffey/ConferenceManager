@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@{
+    string controller =
+        ViewContext.RouteData.Values["controller"].ToString();
+    string action =
+        ViewContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +23,27 @@
                     aria-label="ToggleNavigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        </nav>
+            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link @(controller == "Home" && action == "Index" ? "active" : "")"
+                       asp-controller="Home" asp-action="Index">Home</a>
+
+                    <a class="nav-item nav-link @(controller == "Conference" ? "active" : "")"
+                       asp-controller="Conference" asp-action="ListConferences">Conferences</a>
+
+                    <a class="nav-item nav-link @(controller == "Attendee" ? "active" : "")"
+                       asp-controller="Attendee" asp-action="ListAttendees">Attendees</a>
+
+                    <a class="nav-item nav-link @(controller == "Presentation" ? "active" : "")"
+                       asp-controller="Presentation" asp-action="ListPresentations">Presentations</a>
+
+                    <a class="nav-item nav-link @(controller == "Venue" ? "active" : "")"
+                       asp-controller="Venue" asp-action="ListVenues">Venues</a>
+
+                    <a class="nav-item nav-link @(controller == "Rooms" ? "active" : "")"
+                       asp-controller="Room" asp-action="ListRooms">Rooms</a>
+                </div>
+            </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
