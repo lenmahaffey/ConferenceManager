@@ -1,4 +1,6 @@
 using ConferencePlanner.DataLayer;
+using ConferencePlanner.Services.Interfaces;
+using ConferencePlanner.Services.Interfaces.MockRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +31,8 @@ namespace ConferencePlanner
             services.AddSession();
 
             services.AddControllersWithViews();
+
+            services.AddSingleton<IConferencePlannerData, ConferencePlannerMockRepository>();
 
             services.AddDbContext<ConferencePlannerContext>(options =>
                 options.UseSqlServer(

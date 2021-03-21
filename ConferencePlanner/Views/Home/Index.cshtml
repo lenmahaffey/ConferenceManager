@@ -1,7 +1,9 @@
-﻿@{
+﻿@model IEnumerable<Conference>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1>Empty Visual Studio Project for CSC237</h1>
-</div>
+@foreach (Conference conference in Model)
+{
+    <h1>@conference.Name</h1>
+}

@@ -40,6 +40,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             {
                 InitalizeVenues();
             }
+
             if (conferenceAttendees == null)
             {
                 InitalizeConferenceAttendees();
@@ -52,6 +53,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             {
                 InitalizePresentationAttendees();
             }
+
         }
         private void InitalizeConferences()
         {
@@ -377,9 +379,12 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
 
         public void AddAttendeeToConference(Conference conference, Attendee attendee)
         {
+            throw new NotImplementedException();
+            /*
             Dictionary<int, int> d = new Dictionary<int, int>();
             d.Add(conference.ConferenceID, attendee.AttendeeID);
             conferenceAttendees.Add(d);
+            */
         }
 
         public void AddConference(Conference conference)
@@ -404,9 +409,12 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
 
         public void AddVenueToConference(Conference conference, Venue venue)
         {
+            throw new NotImplementedException();
+            /*
             Dictionary<int, int> d = new Dictionary<int, int>();
             d.Add(conference.ConferenceID, venue.VenueID);
             conferenceVenues.Add(d);
+            */
         }
 
         public void DeleteAttendee(Attendee attendee)
@@ -466,11 +474,13 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
 
         public IEnumerable<Attendee> GetAttendees()
         {
+            /*
             foreach (Attendee attendee in attendees)
             {
                 attendee.ConferenceAttendees = (ICollection<ConferenceAttendees>)GetAllConferencesForAttendee(attendee.AttendeeID);
                 attendee.PresentationAttendees = (ICollection<PresentationAttendees>)GetAllPresentationsForAttendee(attendee.AttendeeID);
             }
+            */
             return from a in attendees
                    orderby a.LastName
                    select a;
@@ -478,21 +488,25 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
 
         public IEnumerable<Attendee> GetAllAttendeesForConference(int conferenceID)
         {
-            return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(a => a).Where(key => key.Key == conferenceID).ToList();
+            throw new NotImplementedException();
+            //return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(a => a).Where(key => key.Key == conferenceID).ToList();
         }
 
         public IEnumerable<Attendee> GetAllAttendeesForPresentation(int presentationID)
         {
-            return (IEnumerable<Attendee>)presentationAttendees.SelectMany(a => a).Where(key => key.Key == presentationID).ToList();
+            throw new NotImplementedException();
+            //return (IEnumerable<Attendee>)presentationAttendees.SelectMany(a => a).Where(key => key.Key == presentationID).ToList();
         }
 
         public IEnumerable<Attendee> GetAllPresentationsForAttendee(int attendeeID)
         {
-            return (IEnumerable<Attendee>)presentationAttendees.SelectMany(p => p).Where(v => v.Value == attendeeID).ToList();
+            throw new NotImplementedException();
+            //return (IEnumerable<Attendee>)presentationAttendees.SelectMany(p => p).Where(v => v.Value == attendeeID).ToList();
         }
         public IEnumerable<Attendee> GetAllConferencesForAttendee(int attendeeID)
         {
-            return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(c => c).Where(v => v.Value == attendeeID).ToList();
+            throw new NotImplementedException();
+            //return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(c => c).Where(v => v.Value == attendeeID).ToList();
         }
         public Conference GetConference(int id)
         {
@@ -509,7 +523,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                     {
                         if (pair.Key == conference.ConferenceID)
                         {
-                            conference.ConferenceAttendees = (IEnumerable<ConferenceAttendees>)GetAllAttendeesForConference(pair.Key);
+                            //conference.ConferenceAttendees = (IEnumerable<ConferenceAttendees>)GetAllAttendeesForConference(pair.Key);
                         }
                     }
                 }
@@ -520,7 +534,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                     {
                         if (pair.Key == conference.ConferenceID)
                         {
-                            conference.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllVenuesForConference(pair.Key);
+                            //conference.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllVenuesForConference(pair.Key);
                         }
                     }
                 }
@@ -532,12 +546,14 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
 
         public IEnumerable<Venue> GetAllVenuesForConference(int conferenceID)
         {
-            return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(key => key.Key == conferenceID).ToList();
+            throw new NotImplementedException();
+            //return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(key => key.Key == conferenceID).ToList();
         }
 
         public IEnumerable<Venue> GetAllConferencesForVenue(int venueID)
         {
-            return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(v => v.Value == venueID).ToList();
+            throw new NotImplementedException();
+            //return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(v => v.Value == venueID).ToList();
         }
 
         public Room GetRoom(int id)
@@ -572,7 +588,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
         {
             foreach (Presentation presentation in presentations)
             {
-                presentation.PresentationAttendees = (ICollection<PresentationAttendees>)GetAllAttendeesForPresentation(presentation.PresentationID);
+                //presentation.PresentationAttendees = (ICollection<PresentationAttendees>)GetAllAttendeesForPresentation(presentation.PresentationID);
                 presentation.Conference = conferences.FirstOrDefault(c => presentation.ConferenceID == c.ConferenceID);
                 presentation.Presenter = attendees.FirstOrDefault(a => presentation.AttendeeID == a.AttendeeID);
             }
@@ -590,12 +606,12 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
         {
             foreach (Venue venue in venues)
             {
-                venue.Rooms = GetAllRoomsForVenue(venue.VenueID);
+                //venue.Rooms = GetAllRoomsForVenue(venue.VenueID);
                 foreach (var dict in conferenceVenues)
                 {
                     foreach (var pair in dict)
                     {
-                        venue.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllConferencesForVenue(pair.Key);
+                        //venue.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllConferencesForVenue(pair.Key);
                     }
                 }
             }

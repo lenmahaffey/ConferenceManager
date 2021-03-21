@@ -1,4 +1,5 @@
 ﻿//using ConferencePlanner.Models;
+using ConferencePlanner.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,9 +12,16 @@ namespace ConferencePlanner.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IConferencePlannerData context;
+
+        public HomeController(IConferencePlannerData ctx)
+        {
+            context = ctx;
+        }
         public IActionResult Index()
         {
-            return View();
+            var conferences = context.GetConferences();
+            return View(conferences);
         }
     }
 }
