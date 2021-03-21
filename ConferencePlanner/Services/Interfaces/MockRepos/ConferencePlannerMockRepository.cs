@@ -603,5 +603,10 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
         {
             conferences[conferences.FindIndex(i => i.ConferenceID == conference.ConferenceID)] = conference;
         }
+
+        public void EditVenue(Venue venue)
+        {
+            venues[venues.FindIndex(i => i.VenueID == venue.VenueID)] = venue;
+        }
     }
 }
