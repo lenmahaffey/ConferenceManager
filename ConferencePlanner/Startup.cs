@@ -1,6 +1,6 @@
-using ConferencePlanner.DataLayer;
-using ConferencePlanner.Services.Interfaces;
-using ConferencePlanner.Services.Interfaces.MockRepos;
+using ConferenceManager.DataLayer;
+using ConferenceManager.Services.Interfaces;
+using ConferenceManager.Services.Interfaces.MockRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner
+namespace ConferenceManager
 {
     public class Startup
     {
@@ -32,11 +32,11 @@ namespace ConferencePlanner
 
             services.AddControllersWithViews();
 
-            services.AddSingleton<IConferencePlannerData, ConferencePlannerMockRepository>();
+            services.AddSingleton<IConferenceManagerData, ConferenceManagerMockRepository>();
 
-            services.AddDbContext<ConferencePlannerContext>(options =>
+            services.AddDbContext<ConferenceManagerContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("ConferencePlanner")));
+                    Configuration.GetConnectionString("ConferenceManager")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;

@@ -1,18 +1,18 @@
-﻿using ConferencePlanner.Models;
-using ConferencePlanner.Services.Interfaces;
+﻿using ConferenceManager.Models;
+using ConferenceManager.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.Controllers
+namespace ConferenceManager.Controllers
 {
     public class AttendeeController : Controller
     {
-        private readonly IConferencePlannerData context;
+        private readonly IConferenceManagerData context;
 
-        public AttendeeController(IConferencePlannerData ctx)
+        public AttendeeController(IConferenceManagerData ctx)
         {
             context = ctx;
         }

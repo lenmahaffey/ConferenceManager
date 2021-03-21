@@ -1,5 +1,5 @@
-﻿//using ConferencePlanner.Models;
-using ConferencePlanner.Services.Interfaces;
+﻿//using ConferenceManager.Models;
+using ConferenceManager.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,13 +8,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.Controllers
+namespace ConferenceManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IConferencePlannerData context;
+        private readonly IConferenceManagerData context;
 
-        public HomeController(IConferencePlannerData ctx)
+        public HomeController(IConferenceManagerData ctx)
         {
             context = ctx;
         }

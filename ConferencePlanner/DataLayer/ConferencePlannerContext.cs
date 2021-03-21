@@ -1,15 +1,15 @@
-﻿using ConferencePlanner.Models;
+﻿using ConferenceManager.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.DataLayer
+namespace ConferenceManager.DataLayer
 {
-    public class ConferencePlannerContext : DbContext
+    public class ConferenceManagerContext : DbContext
     {
-        public ConferencePlannerContext(DbContextOptions<ConferencePlannerContext> options)
+        public ConferenceManagerContext(DbContextOptions<ConferenceManagerContext> options)
             : base(options)
         {
 

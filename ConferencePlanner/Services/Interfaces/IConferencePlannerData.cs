@@ -1,12 +1,12 @@
-﻿using ConferencePlanner.Models;
+﻿using ConferenceManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.Services.Interfaces
+namespace ConferenceManager.Services.Interfaces
 {
-    public interface IConferencePlannerData
+    public interface IConferenceManagerData
     {
         IEnumerable<Attendee> GetAttendees();
         IEnumerable<Conference> GetConferences();

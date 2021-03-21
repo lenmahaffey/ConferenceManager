@@ -1,12 +1,12 @@
-﻿using ConferencePlanner.Models;
+﻿using ConferenceManager.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferencePlanner.Services.Interfaces.MockRepos
+namespace ConferenceManager.Services.Interfaces.MockRepos
 {
-    public class ConferencePlannerMockRepository : IConferencePlannerData
+    public class ConferenceManagerMockRepository : IConferenceManagerData
     {
         private List<Attendee> attendees;
         private List<Conference> conferences;
@@ -17,7 +17,7 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
         private List<Dictionary<int, int>> conferenceVenues;
         private List<Dictionary<int, int>> presentationAttendees;
 
-        public ConferencePlannerMockRepository()
+        public ConferenceManagerMockRepository()
         {
             if (attendees == null)
             {
