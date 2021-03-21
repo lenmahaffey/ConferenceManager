@@ -593,5 +593,15 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                 index++;
             }
         }
+
+        public void EditAttendee(Attendee attendee)
+        {
+            attendees[attendees.FindIndex(i => i.AttendeeID == attendee.AttendeeID)] = attendee;
+        }
+
+        public void EditConference(Conference conference)
+        {
+            conferences[conferences.FindIndex(i => i.ConferenceID == conference.ConferenceID)] = conference;
+        }
     }
 }

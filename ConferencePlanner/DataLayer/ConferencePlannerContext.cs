@@ -37,7 +37,7 @@ namespace ConferencePlanner.DataLayer
                 .WithMany(a => a.ConferenceAttendees)
                 .HasForeignKey(ca => ca.AttendeeID);
 
-            // ConferenceVenue linking table
+            //ConferenceVenue linking table
             modelBuilder.Entity<ConferenceVenues>()
                 .HasKey(ca => new { ca.ConferenceID, ca.VenueID });
 

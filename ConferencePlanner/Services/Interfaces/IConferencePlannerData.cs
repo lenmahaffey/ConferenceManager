@@ -29,5 +29,11 @@ namespace ConferencePlanner.Services.Interfaces
         void DeleteVenue(Venue venue);
 
         void DeleteRoom(Room room);
+
+        public void AddAttendee(Attendee attendee);
+        public void AddConference(Conference conference);
+        public void EditAttendee(Attendee attendee);
+        public void EditConference(Conference conference);
+
     }
 }

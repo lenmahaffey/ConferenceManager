@@ -22,17 +22,18 @@
                 <td>@c.Description</td>
                 <td>@c.StartDate.ToShortDateString()</td>
                 <td>@c.EndDate.ToShortDateString()</td>
-            <td>
-                <a asp-action="EditConference"
-                    asp-route-id="@c.ConferenceID"
-                    class="btn btn-secondary">Edit</a>
-            </td>
-            <td>
-                <a asp-action="DeleteConference"
-                    asp-route-id="@c.ConferenceID"
-                    class="btn btn-danger">Delete</a>
-            </td>
+                <td>
+                    <a asp-action="EditConference"
+                       asp-route-id="@c.ConferenceID"
+                       class="btn btn-secondary">Edit</a>
+                </td>
+                <td>
+                    <a asp-action="DeleteConference"
+                       asp-route-id="@c.ConferenceID"
+                       class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<a asp-action="AddConference" class="btn btn-secondary mb-3">Add Conference</a>

@@ -35,5 +35,32 @@ namespace ConferencePlanner.Controllers
             context.DeleteConference(conference);
             return RedirectToAction("ListConferences");
         }
+
+        [HttpGet]
+        public ViewResult EditConference(int id)
+        {
+            var a = context.GetConference(id);
+            return View(a);
+        }
+
+        [HttpGet]
+        public ViewResult AddConference()
+        {
+            return View(new Conference());
+        }
+
+        [HttpPost]
+        public IActionResult SaveConference(Conference conference)
+        {
+            if (conference.ConferenceID == 0)
+            {
+                context.AddConference(conference);
+            }
+            else
+            {
+                context.EditConference(conference);
+            }
+            return RedirectToAction("ListConferences");
+        }
     }
 }
