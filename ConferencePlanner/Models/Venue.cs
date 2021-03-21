@@ -7,8 +7,7 @@ namespace ConferencePlanner.Models
     public class Venue
     {
         public int VenueID { get; set; }
-
-        public ICollection<Room> Rooms { get; set; }
+        public IEnumerable<Room> Rooms { get; set; }
         public IEnumerable<ConferenceVenues> ConferenceVenues { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the venue")]
@@ -32,7 +31,7 @@ namespace ConferencePlanner.Models
 
         [Required(ErrorMessage = "Please enter the postal code")]
         [StringLength(20)]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         [Required(ErrorMessage = "Please enter the phone number")]
         [RegularExpression(@"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$",

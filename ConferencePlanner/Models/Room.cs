@@ -12,6 +12,7 @@ namespace ConferencePlanner.Models
 
         [Required]
         public int VenueID { get; set; }
+        public Venue Venue { get; set; }
 
         [NotMapped]
         public ICollection<Presentation> Presentations { get; set; }

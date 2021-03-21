@@ -16,6 +16,9 @@ namespace ConferencePlanner.Models
         public Conference Conference { get; set; }
 
         [Required]
+        public int AttendeeID { get; set; }
+        public Attendee Presenter { get; set; }
+        [Required]
         public int RoomID { get; set; }
         public Room Room { get; set; }
 
@@ -27,6 +30,9 @@ namespace ConferencePlanner.Models
 
         [Required(ErrorMessage = "Please enter the name of the presentation")]
         [StringLength(50)]
-        public int Name { get; set; }
+        public string Name { get; set; }
+
+        [StringLength(255)]
+        public string Description { get; set; }
     }
 }
