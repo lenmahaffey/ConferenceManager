@@ -1,14 +1,14 @@
-﻿@model Attendee
+﻿@model Conference
 @{
-    ViewBag.Title = "Delete Attendee";
+    ViewBag.Title = "Delete Conference";
 }
 
 <h1>@ViewBag.Title</h1>
 <div class="jumbotron alert-danger mt-4">
     <h1>Confirm Deletion</h1>
-    <p>Are you sure you want to remove @Model.FullName from the database?</p>
-    <form asp-action="DeleteAttendee" method="post">
-        <input type="hidden" asp-for="AttendeeID" />
+    <p>Are you sure you want to remove @Model.Name from the database?</p>
+    <form asp-action="DeleteConference" method="post">
+        <input type="hidden" asp-for="ConferenceID" />
 
         <button type="submit" class="btn btn-primary">Delete</button>
         <a asp-action="ListConferences" class="btn btn-primary">Cancel</a>

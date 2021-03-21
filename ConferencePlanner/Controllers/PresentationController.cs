@@ -1,4 +1,5 @@
-﻿using ConferencePlanner.Services.Interfaces;
+﻿using ConferencePlanner.Models;
+using ConferencePlanner.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,20 @@ namespace ConferencePlanner.Controllers
         {
             var p = context.GetPresentations();
             return View(p);
+        }
+
+        [HttpGet]
+        public ViewResult DeletePresentation(int id)
+        {
+            Presentation p = context.GetPresentation(id);
+            return View(p);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult DeletePresentation(Presentation presentation)
+        {
+            context.DeletePresentation(presentation);
+            return RedirectToAction("ListPresentations");
         }
     }
 }

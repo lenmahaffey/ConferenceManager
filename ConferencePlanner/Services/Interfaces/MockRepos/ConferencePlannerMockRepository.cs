@@ -369,104 +369,16 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             conferenceAttendees.Add(d);
         }
 
-        public void AddAttendee(Attendee attendee)
-        {
-            attendees.Add(attendee);
-        }
-
-        public void AddAttendeeToConference(Conference conference, Attendee attendee)
-        {
-            throw new NotImplementedException();
-            /*
-            Dictionary<int, int> d = new Dictionary<int, int>();
-            d.Add(conference.ConferenceID, attendee.AttendeeID);
-            conferenceAttendees.Add(d);
-            */
-        }
-
-        public void AddConference(Conference conference)
-        {
-            conferences.Add(conference);
-        }
-
-        public void AddPresentation(Presentation presentation)
-        {
-            presentations.Add(presentation);
-        }
-
-        public void AddRooms(Room room)
-        {
-            rooms.Add(room);
-        }
-
-        public void AddVenue(Venue venue)
-        {
-            venues.Add(venue);
-        }
-
-        public void AddVenueToConference(Conference conference, Venue venue)
-        {
-            throw new NotImplementedException();
-            /*
-            Dictionary<int, int> d = new Dictionary<int, int>();
-            d.Add(conference.ConferenceID, venue.VenueID);
-            conferenceVenues.Add(d);
-            */
-        }
-
-        public void DeleteAttendee(Attendee attendee)
-        {
-            attendees.Remove(attendee);
-        }
-
-        public void DeleteConference(Conference conference)
-        {
-            conferences.Remove(conference);
-        }
-
-        public void DeletePresentation(Presentation presentation)
-        {
-            presentations.Remove(presentation);
-        }
-
-        public void DeleteRooms(Room room)
-        {
-            rooms.Remove(room);
-        }
-
-        public void DeleteVenue(Venue venue)
-        {
-            venues.Remove(venue);
-        }
-
-        public void EditAttendee(Attendee attendee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditConference(Conference Conference)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditPresentation(Presentation presentation)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditRooms(Room rooms)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditVenue(Venue venue)
-        {
-            throw new NotImplementedException();
-        }
-
         public Attendee GetAttendee(int id)
         {
-            return attendees.FirstOrDefault(a => a.AttendeeID == id);
+            foreach (Attendee a in attendees)
+            {
+                if (a.AttendeeID == id)
+                {
+                    return a;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Attendee> GetAttendees()
@@ -483,28 +395,6 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                    select a;
         }
 
-        public IEnumerable<Attendee> GetAllAttendeesForConference(int conferenceID)
-        {
-            throw new NotImplementedException();
-            //return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(a => a).Where(key => key.Key == conferenceID).ToList();
-        }
-
-        public IEnumerable<Attendee> GetAllAttendeesForPresentation(int presentationID)
-        {
-            throw new NotImplementedException();
-            //return (IEnumerable<Attendee>)presentationAttendees.SelectMany(a => a).Where(key => key.Key == presentationID).ToList();
-        }
-
-        public IEnumerable<Presentation> GetAllPresentationsForAttendee(int attendeeID)
-        {
-            throw new NotImplementedException();
-            //return (IEnumerable<Attendee>)presentationAttendees.SelectMany(p => p).Where(v => v.Value == attendeeID).ToList();
-        }
-        public IEnumerable<Conference> GetAllConferencesForAttendee(int attendeeID)
-        {
-            throw new NotImplementedException();
-            //return (IEnumerable<Attendee>)conferenceAttendees.SelectMany(c => c).Where(v => v.Value == attendeeID).ToList();
-        }
         public Conference GetConference(int id)
         {
             return conferences.FirstOrDefault(c => c.ConferenceID == id);
@@ -541,21 +431,16 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                    select c;
         }
 
-        public IEnumerable<Venue> GetAllVenuesForConference(int conferenceID)
-        {
-            throw new NotImplementedException();
-            //return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(key => key.Key == conferenceID).ToList();
-        }
-
-        public IEnumerable<Conference> GetAllConferencesForVenue(int venueID)
-        {
-            throw new NotImplementedException();
-            //return (IEnumerable<Venue>)conferenceVenues.SelectMany(v => v).Where(v => v.Value == venueID).ToList();
-        }
-
         public Room GetRoom(int id)
         {
-            return rooms.FirstOrDefault(r => r.RoomID == id);
+            foreach (Room r in rooms)
+            {
+                if (r.RoomID == id)
+                {
+                    return r;
+                }
+            }
+            return null;
         }
 
         public IEnumerable<Room> GetRooms()
@@ -567,13 +452,6 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
             return from r in rooms
                    orderby r.Name
                    select r;
-        }
-
-        public IEnumerable<Room> GetAllRoomsForVenue(int venueID)
-        {
-            return from v in rooms
-                   where v.VenueID == venueID
-                   select v;
         }
 
         public Presentation GetPresentation(int id)
@@ -620,35 +498,100 @@ namespace ConferencePlanner.Services.Interfaces.MockRepos
                    orderby v.Name
                    select v;
         }
-
-        public void RemoveAttendeeFromConference(Conference conference, Attendee attendee)
+        public void AddAttendee(Attendee attendee)
         {
-            throw new NotImplementedException();
+            attendees.Add(attendee);
         }
 
-        public void RemovePresentationFromConference(Conference conference, Presentation presentation)
+        public void AddConference(Conference conference)
         {
-            throw new NotImplementedException();
+            conferences.Add(conference);
         }
 
-        public void RemoveVenueFromConference(Conference conference, Attendee attendee)
+        public void AddPresentation(Presentation presentation)
         {
-            throw new NotImplementedException();
+            presentations.Add(presentation);
         }
 
-        public void AddVenueToConference(Conference conference, Attendee attendee)
+        public void AddRooms(Room room)
         {
-            throw new NotImplementedException();
+            rooms.Add(room);
         }
 
-        public void AddAttendeeToPresentation(Presentation presentation, Attendee attendee)
+        public void AddVenue(Venue venue)
         {
-            throw new NotImplementedException();
+            venues.Add(venue);
         }
 
-        public void RemoveAttendeeFromPresentation(Presentation presentation, Attendee attendee)
+        public void DeleteAttendee(Attendee attendee)
         {
-            throw new NotImplementedException();
+            attendee = GetAttendee(attendee.AttendeeID);
+            int index = 0;
+            foreach (Attendee a in attendees)
+            {
+                if (a.AttendeeID == attendee.AttendeeID)
+                {
+                    attendees.RemoveAt(index);
+                    break;
+                }
+                index++;
+            }
+        }
+
+        public void DeleteConference(Conference conference)
+        {
+            int index = 0;
+            foreach (Conference c in conferences)
+            {
+                if (c.ConferenceID == conference.ConferenceID)
+                {
+                    conferences.RemoveAt(index);
+                    break;
+                }
+                index++;
+            }
+        }
+
+        public void DeletePresentation(Presentation presentation)
+        {
+            int index = 0;
+            foreach (Presentation p in presentations)
+            {
+                if (p.PresentationID == presentation.PresentationID)
+                {
+                    presentations.RemoveAt(index);
+                    break;
+                }
+                index++;
+            }
+        }
+
+        public void DeleteVenue(Venue venue)
+        {
+            int index = 0;
+            foreach (Venue v in venues)
+            {
+                if (v.VenueID == venue.VenueID)
+                {
+                    venues.RemoveAt(index);
+                    break;
+                }
+                index++;
+            }
+        }
+
+        public void DeleteRoom(Room room)
+        {
+            int index = 0;
+            foreach (Room r in rooms)
+            {
+                if (r.RoomID == room.RoomID)
+                {
+                    rooms.RemoveAt(index);
+                    break;
+                }
+                index++;
+            }
         }
     }
 }

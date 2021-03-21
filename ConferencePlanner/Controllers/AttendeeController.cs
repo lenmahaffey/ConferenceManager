@@ -16,7 +16,7 @@ namespace ConferencePlanner.Controllers
         {
             context = ctx;
         }
-        [Route("[controller]s")]
+
         public ViewResult ListAttendees()
         {
             IEnumerable<Attendee> a = context.GetAttendees();

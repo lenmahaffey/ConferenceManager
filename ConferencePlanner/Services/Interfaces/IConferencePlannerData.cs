@@ -20,39 +20,14 @@ namespace ConferencePlanner.Services.Interfaces
         Room GetRoom(int id);
         Venue GetVenue(int id);
 
-        IEnumerable<Attendee> GetAllAttendeesForConference(int conferenceID);
-        IEnumerable<Attendee> GetAllAttendeesForPresentation(int presentationID);
-        IEnumerable<Presentation> GetAllPresentationsForAttendee(int attendeeID);
-        IEnumerable<Conference> GetAllConferencesForAttendee(int attendeeID);
-        IEnumerable<Venue> GetAllVenuesForConference(int conferenceID);
-        IEnumerable<Conference> GetAllConferencesForVenue(int venueID);
-        IEnumerable<Room> GetAllRoomsForVenue(int venueID);
-
-        void AddAttendee(Attendee attendee);
-        void EditAttendee(Attendee attendee);
         void DeleteAttendee(Attendee attendee);
 
-        void AddConference(Conference Conference);
-        void EditConference(Conference Conference);
         void DeleteConference(Conference Conference);
 
-        void AddPresentation(Presentation Presentation);
-        void EditPresentation(Presentation Presentation);
         void DeletePresentation(Presentation Presentation);
 
-        void AddRooms(Room Rooms);
-        void EditRooms(Room Rooms);
-        void DeleteRooms(Room Rooms);
+        void DeleteVenue(Venue venue);
 
-        void AddVenue(Venue Venue);
-        void EditVenue(Venue Venue);
-        void DeleteVenue(Venue Venue);
-
-        void AddAttendeeToConference(Conference conference, Attendee attendee);
-        void RemoveAttendeeFromConference(Conference conference, Attendee attendee);
-        void AddVenueToConference(Conference conference, Attendee attendee);
-        void RemoveVenueFromConference(Conference conference, Attendee attendee);
-        void AddAttendeeToPresentation(Presentation presentation, Attendee attendee);
-        void RemoveAttendeeFromPresentation(Presentation presentation, Attendee attendee);
+        void DeleteRoom(Room room);
     }
 }

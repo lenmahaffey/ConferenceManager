@@ -7,7 +7,6 @@
     <thead>
         <tr>
             <td>Conference</td>
-            <td>Room</td>
             <td>Name</td>
             <td>Description</td>
             <td>Presenter</td>
@@ -22,7 +21,6 @@
         {
             <tr>
                 <td>@p.Conference.Name</td>
-                <td>@p.Room.Venue.Name  @p.Room.Name</td>
                 <td>@p.Name</td>
                 <td>@p.Description</td>
                 <td>@p.Presenter.FirstName @p.Presenter.LastName</td>
@@ -30,12 +28,12 @@
                 <td>@p.EndTime.ToShortDateString() <br /> @p.EndTime.ToShortTimeString()</td>
                 <td>
                     <a asp-action="EditPresentation"
-                        asp-route-id="@p.ConferenceID"
+                        asp-route-id="@p.PresentationID"
                         class="btn btn-secondary">Edit</a>
                 </td>
                 <td>
                     <a asp-action="DeletePresentation"
-                        asp-route-id="@p.ConferenceID"
+                        asp-route-id="@p.PresentationID"
                         class="btn btn-danger">Delete</a>
                 </td>
             </tr>

@@ -44,7 +44,7 @@ namespace ConferencePlanner.Models
         {
             get
             {
-                return FullName;
+                return FirstName + " " + LastName;
             }
         }
     }
