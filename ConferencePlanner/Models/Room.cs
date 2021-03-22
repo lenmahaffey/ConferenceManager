@@ -14,7 +14,6 @@ namespace ConferenceManager.Models
         public int VenueID { get; set; }
         public Venue Venue { get; set; }
 
-        [NotMapped]
         public ICollection<Presentation> Presentations { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the room")]
@@ -23,6 +22,6 @@ namespace ConferenceManager.Models
 
         public int? TheatreCapacity { get; set; }
         public int? SchoolRoomCapacity { get; set; }
-        public int? CrescentRoundCpacity { get; set; }
+        public int? CrescentRoundCapacity { get; set; }
     }
 }

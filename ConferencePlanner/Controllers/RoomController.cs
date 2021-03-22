@@ -1,5 +1,6 @@
 ﻿using ConferenceManager.Models;
 using ConferenceManager.Services.Interfaces;
+using ConferenceManager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,45 @@ namespace ConferenceManager.Controllers
         public RedirectToActionResult DeleteRoom(Room room)
         {
             context.DeleteRoom(room);
+            return RedirectToAction("ListRooms");
+        }
+
+        [HttpGet]
+        public ViewResult EditRoom(int id)
+        {
+            Room r = context.GetRoom(id);
+            var model = new RoomViewModel
+            {
+                Room = r,
+                Venue = context.GetVenue(r.VenueID),
+                Venues = context.GetVenues()
+            };
+            return View(model);
+        }
+
+        [HttpGet]
+        public ViewResult AddRoom()
+        {
+            var model = new RoomViewModel
+            {
+                Room = new Room(),
+                Venue = new Venue(),
+                Venues = context.GetVenues()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult SaveRoom(Room Room)
+        {
+            if (Room.RoomID == 0)
+            {
+                context.AddRoom(Room);
+            }
+            else
+            {
+                context.EditRoom(Room);
+            }
             return RedirectToAction("ListRooms");
         }
     }

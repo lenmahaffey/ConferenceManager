@@ -1,0 +1,73 @@
+﻿@model RoomViewModel
+
+@{
+    ViewBag.Title = "Edit Room";
+}
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h1>@ViewBag.Title</h1>
+
+<form asp-action="SaveRoom" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Room.Name">Name</label>
+            <input asp-for="Room.Name" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Room.Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Room.VenueID">Venue</label>
+            <select asp-for="Room.VenueID"
+                    asp-items="@(new SelectList(Model.Venues,
+                    "VenueID", "Name", Model.Venue.VenueID))"
+                    class="form-control">
+                <option value="@Model.Venue">@Model.Venue.Name</option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Room.Venue" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Room.TheatreCapacity">Theater Max Capacity</label>
+            <input asp-for="Room.TheatreCapacity" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Room.TheatreCapacity" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Room.SchoolRoomCapacity">Schoolroom Max Capacity</label>
+            <input asp-for="Room.SchoolRoomCapacity" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Room.SchoolRoomCapacity" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Room.CrescentRoundCapacity">Crescent Round Max Capacity</label>
+            <input asp-for="Room.CrescentRoundCapacity" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Room.CrescentRoundCapacity" class="text-danger"></span>
+        </div>
+    </div>
+    <input type="hidden" asp-for="Room.RoomID" />
+    <button type="submit" class="btn btn-secondary">Save</button>
+    <a asp-action="ListRooms" class="btn btn-danger">Cancel</a>
+</form>

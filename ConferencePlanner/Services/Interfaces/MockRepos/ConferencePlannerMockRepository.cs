@@ -1,5 +1,6 @@
 ﻿using ConferenceManager.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,9 +14,9 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         private List<Presentation> presentations;
         private List<Room> rooms;
         private List<Venue> venues;
-        private List<Dictionary<int, int>> conferenceAttendees;
-        private List<Dictionary<int, int>> conferenceVenues;
-        private List<Dictionary<int, int>> presentationAttendees;
+        private List<KeyValuePair<int,int>> conferenceAttendees;
+        private List<KeyValuePair<int, int>> conferenceVenues;
+        private List<KeyValuePair<int, int>> presentationAttendees;
 
         public ConferenceManagerMockRepository()
         {
@@ -55,6 +56,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             }
 
         }
+
         private void InitalizeConferences()
         {
             conferences = new List<Conference>()
@@ -189,7 +191,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                     Name = "101",
                     TheatreCapacity = 100,
                     SchoolRoomCapacity = 50,
-                    CrescentRoundCpacity = 65
+                    CrescentRoundCapacity = 65
                 },
                 new Room
                 {
@@ -198,7 +200,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                     Name = "201",
                     TheatreCapacity = 100,
                     SchoolRoomCapacity = 50,
-                    CrescentRoundCpacity = 65
+                    CrescentRoundCapacity = 65
                 },
                 new Room
                 {
@@ -207,7 +209,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                     Name = "Mile High Ballroom",
                     TheatreCapacity = 1000,
                     SchoolRoomCapacity = 500,
-                    CrescentRoundCpacity = 650
+                    CrescentRoundCapacity = 650
                 },
                 new Room
                 {
@@ -216,7 +218,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                     Name = "Marco Polo Ballroom",
                     TheatreCapacity = 500,
                     SchoolRoomCapacity = 250,
-                    CrescentRoundCpacity = 350
+                    CrescentRoundCapacity = 350
                 },
                 new Room
                 {
@@ -225,7 +227,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                     Name = "Red Rover",
                     TheatreCapacity = 100,
                     SchoolRoomCapacity = 50,
-                    CrescentRoundCpacity = 65
+                    CrescentRoundCapacity = 65
                 },
             };
         }
@@ -283,90 +285,111 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         private void InitalizePresentationAttendees()
         {
-            presentationAttendees = new List<Dictionary<int, int>>();
+            presentationAttendees = new List<KeyValuePair<int, int>>();
 
-            Dictionary<int, int> d = new Dictionary<int,int>();
-            d.Add(101, 101);
+            KeyValuePair<int, int> d = new KeyValuePair<int,int>(101, 101);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(101, 102);
+            d = new KeyValuePair<int, int>(101, 102);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(101, 103);
+            d = new KeyValuePair<int, int>(101, 103);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(103, 101);
+            d = new KeyValuePair<int, int>(103, 101);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(103, 103);
+            d = new KeyValuePair<int, int>(103, 103);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(104, 104);
+            d = new KeyValuePair<int, int>(104, 104);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(104, 105);
+            d = new KeyValuePair<int, int>(104, 105);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(105, 104);
+            d = new KeyValuePair<int, int>(105, 104);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(105, 105);
+            d = new KeyValuePair<int, int>(105, 105);
             presentationAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(105, 106);
+            d = new KeyValuePair<int, int>(105, 106);
             presentationAttendees.Add(d);
-
         }
 
         private void InitalizeConferenceVenues()
         {
-            conferenceVenues = new List<Dictionary<int, int>>();
+            conferenceVenues = new List<KeyValuePair<int, int>>();
 
-            Dictionary<int, int> d = new Dictionary<int, int>();
-            d.Add(1001, 10);
+            KeyValuePair<int, int> d = new KeyValuePair<int, int>(1001, 10);
             conferenceVenues.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(1002, 11);
+            d = new KeyValuePair<int, int>(1002, 11);
             conferenceVenues.Add(d);
         }
 
         private void InitalizeConferenceAttendees()
         {
-            conferenceAttendees = new List<Dictionary<int, int>>();
+            conferenceAttendees = new List<KeyValuePair<int, int>>();
 
-            Dictionary<int, int> d = new Dictionary<int, int>();
-            d.Add(1001, 101);
+            KeyValuePair<int, int> d = new KeyValuePair<int, int>(1001, 101);
             conferenceAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(1001, 102);
+            d = new KeyValuePair<int, int>(1001, 102);
             conferenceAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(1001, 103);
+            d = new KeyValuePair<int, int>(1001, 103);
             conferenceAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(1002, 104);
+            d = new KeyValuePair<int, int>(1002, 104);
             conferenceAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(1003, 105);
+            d = new KeyValuePair<int, int>(1003, 105);
             conferenceAttendees.Add(d);
 
-            d = new Dictionary<int, int>();
-            d.Add(1004, 106);
+            d = new KeyValuePair<int, int>(1004, 106);
             conferenceAttendees.Add(d);
+        }
+
+        public IEnumerable GetAllAttendeesForConference(int conferenceID)
+        {
+            List<ConferenceAttendees> list = new List<ConferenceAttendees>();
+            foreach (var pair in conferenceAttendees)
+            {
+                if (pair.Key == conferenceID)
+                {
+                    ConferenceAttendees data = new ConferenceAttendees
+                    {
+                        ConferenceID = pair.Key,
+                        AttendeeID = pair.Value,
+                        Conference = GetConference(pair.Key),
+                        Attendee = GetAttendee(pair.Value)
+                    };
+                }
+            }
+            return list;
+        }
+
+        public IEnumerable GetAllConferencesForAttendee(int attendeeID)
+        {
+            List<ConferenceAttendees> list = new List<ConferenceAttendees>();
+
+            foreach (var pair in conferenceAttendees)
+            {
+                if (pair.Value == attendeeID)
+                {
+                    ConferenceAttendees data = new ConferenceAttendees
+                    {
+                        ConferenceID = pair.Key,
+                        AttendeeID = pair.Value,
+                        Conference = GetConference(pair.Key),
+                        Attendee = GetAttendee(pair.Value)
+                    };
+                }
+            }
+
+            return list;
         }
 
         public Attendee GetAttendee(int id)
@@ -375,6 +398,24 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             {
                 if (a.AttendeeID == id)
                 {
+                    foreach (var pair in conferenceAttendees)
+                    {
+                        if(pair.Value == a.AttendeeID)
+                        {
+                            if (a.ConferenceAttendees == null)
+                            {
+                                a.ConferenceAttendees = new List<ConferenceAttendees>();
+                            }
+
+                            a.ConferenceAttendees.Add(new ConferenceAttendees
+                            {
+                                AttendeeID = a.AttendeeID,
+                                Attendee = a,
+                                ConferenceID = pair.Key,
+                                Conference = GetConference(pair.Key)
+                            });
+                        }
+                    }
                     return a;
                 }
             }
@@ -402,30 +443,30 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         public IEnumerable<Conference> GetConferences()
         {
-            foreach (Conference conference in conferences)
-            {
-                foreach (var dict in conferenceAttendees)
-                {
-                    foreach (var pair in dict)
-                    {
-                        if (pair.Key == conference.ConferenceID)
-                        {
-                            //conference.ConferenceAttendees = (IEnumerable<ConferenceAttendees>)GetAllAttendeesForConference(pair.Key);
-                        }
-                    }
-                }
+            //foreach (Conference conference in conferences)
+            //{
+            //    foreach (var dict in conferenceAttendees)
+            //    {
+            //        foreach (var pair in dict)
+            //        {
+            //            if (pair.Key == conference.ConferenceID)
+            //            {
+            //                //conference.ConferenceAttendees = (IEnumerable<ConferenceAttendees>)GetAllAttendeesForConference(pair.Key);
+            //            }
+            //        }
+            //    }
 
-                foreach (var dict in conferenceVenues)
-                {
-                    foreach (var pair in dict)
-                    {
-                        if (pair.Key == conference.ConferenceID)
-                        {
-                            //conference.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllVenuesForConference(pair.Key);
-                        }
-                    }
-                }
-            }
+            //    foreach (var dict in conferenceVenues)
+            //    {
+            //        foreach (var pair in dict)
+            //        {
+            //            if (pair.Key == conference.ConferenceID)
+            //            {
+            //                //conference.ConferenceVenues = (IEnumerable<ConferenceVenues>)GetAllVenuesForConference(pair.Key);
+            //            }
+            //        }
+            //    }
+            //}
             return from c in conferences
                    orderby c.Name
                    select c;
@@ -498,6 +539,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                    orderby v.Name
                    select v;
         }
+
         public void AddAttendee(Attendee attendee)
         {
             attendees.Add(attendee);
@@ -513,7 +555,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             presentations.Add(presentation);
         }
 
-        public void AddRooms(Room room)
+        public void AddRoom(Room room)
         {
             rooms.Add(room);
         }
@@ -607,6 +649,11 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         public void EditVenue(Venue venue)
         {
             venues[venues.FindIndex(i => i.VenueID == venue.VenueID)] = venue;
+        }
+
+        public void EditRoom(Room Room)
+        {
+            rooms[rooms.FindIndex(i => i.RoomID == Room.RoomID)] = Room;
         }
     }
 }
