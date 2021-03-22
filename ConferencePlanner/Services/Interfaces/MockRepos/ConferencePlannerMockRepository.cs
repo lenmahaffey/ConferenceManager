@@ -506,7 +506,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             {
                 //presentation.PresentationAttendees = (ICollection<PresentationAttendees>)GetAllAttendeesForPresentation(presentation.PresentationID);
                 presentation.Conference = GetConference(presentation.ConferenceID);
-                presentation.Presenter = GetAttendee(presentation.AttendeeID);
+                presentation.Attendee = GetAttendee(presentation.AttendeeID);
                 GetRooms();
                 presentation.Room = GetRoom(presentation.RoomID);
             }
@@ -654,6 +654,10 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         public void EditRoom(Room Room)
         {
             rooms[rooms.FindIndex(i => i.RoomID == Room.RoomID)] = Room;
+        }
+        public void EditPresentation(Presentation presentation)
+        {
+            presentations[presentations.FindIndex(i => i.PresentationID == presentation.PresentationID)] = presentation;
         }
     }
 }

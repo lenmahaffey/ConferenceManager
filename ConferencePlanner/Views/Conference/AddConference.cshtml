@@ -1,7 +1,7 @@
 ﻿@model Conference
 
 @{
-    ViewBag.Title = "Edit Conference";
+    ViewBag.Title = "Add Conference";
 }
 
 @section scripts{
@@ -54,5 +54,5 @@
     </div>
     <input type="hidden" asp-for="ConferenceID" />
     <button type="submit" class="btn btn-secondary">Save</button>
-    <a asp-action="ListAttendees" class="btn btn-danger">Cancel</a>
+    <a asp-action="ListConferences" class="btn btn-danger">Cancel</a>
 </form>

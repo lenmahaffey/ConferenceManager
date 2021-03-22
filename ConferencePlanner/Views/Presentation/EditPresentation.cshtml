@@ -1,0 +1,85 @@
+﻿@model PresentationViewModel
+
+@{
+    ViewBag.Title = "Edit Presentation";
+}
+
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h1>@ViewBag.Title</h1>
+
+<form asp-action="SavePresentation" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Presentation.Name">Name</label>
+            <input asp-for="Presentation.Name" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Presentation.Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Presentation.Description">Description</label>
+            <textarea asp-for="Presentation.Description" class="form-control"></textarea>
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Presentation.Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Presentation.StartTime">Start Time</label>
+            <input asp-for="Presentation.StartTime" class="form-control" />
+        </div>
+        <div class="col-sm-3">
+            <span asp-validation-for="Presentation.StartTime" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Presentation.AttendeeID">Presenter</label>
+            <select asp-for="Presentation.AttendeeID"
+                    asp-items="@(new SelectList(Model.Attendees,
+                    "AttendeeID", "FullName", Model.Attendee.AttendeeID))"
+                    class="form-control">
+                <option value="@Model.Attendee.AttendeeID">@Model.Attendee.FullName</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-6">
+            <label asp-for="Presentation.ConferenceID">Conference</label>
+            <select asp-for="Presentation.ConferenceID"
+                    asp-items="@(new SelectList(Model.Conferences,
+                    "ConferenceID", "Name", Model.Conference.ConferenceID))"
+                    class="form-control">
+                <option value="@Model.Conference.ConferenceID">@Model.Conference.Name</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row form-group">
+            <div class="col-sm-6">
+                <label asp-for="Presentation.Room"></label>
+                <select asp-for="Presentation.Room"
+                        asp-items="@(new SelectList(Model.Rooms,
+                        "RoomID", "Name", Model.Room.RoomID))"
+                        class="form-control">
+                    <option value="@Model.Room">@Model.Room.Name</option>
+                </select>
+            </div>
+        </div>
+
+    <input type="hidden" asp-for="Presentation.PresentationID" />
+    <button type="submit" class="btn btn-secondary">Save</button>
+    <a asp-action="ListPresentations" class="btn btn-danger">Cancel</a>
+</form>

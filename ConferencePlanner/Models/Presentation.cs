@@ -17,7 +17,7 @@ namespace ConferenceManager.Models
 
         [Required]
         public int AttendeeID { get; set; }
-        public Attendee Presenter { get; set; }
+        public Attendee Attendee { get; set; } // for presenter
         [Required]
         public int RoomID { get; set; }
         public Room Room { get; set; }

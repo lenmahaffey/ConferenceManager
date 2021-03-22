@@ -20,8 +20,7 @@ namespace ConferenceManager.Controllers
         }
         public IActionResult Index()
         {
-            var conferences = context.GetConferences();
-            return View(conferences);
+            return View();
         }
     }
 }

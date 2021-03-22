@@ -30,10 +30,12 @@ namespace ConferenceManager.Services.Interfaces
         public void AddConference(Conference conference);
         public void AddVenue(Venue venue);
         public void AddRoom(Room room);
+        public void AddPresentation(Presentation presentation);
 
         public void EditAttendee(Attendee attendee);
         public void EditConference(Conference conference);
         public void EditVenue(Venue venue);
         public void EditRoom(Room Room);
+        public void EditPresentation(Presentation presentation);
     }
 }
