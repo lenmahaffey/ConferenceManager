@@ -1,10 +1,11 @@
-﻿using ConferenceManager.Models;
+﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ConferenceManager.Services.Interfaces.MockRepos
+namespace ConferenceManager.Services.DataAccess.MockRepositories
 {
     public class ConferenceManagerMockRepository : IConferenceManagerData
     {

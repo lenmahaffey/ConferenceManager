@@ -1,5 +1,5 @@
 ﻿using ConferenceManager.DataLayer.Configurations;
-using ConferenceManager.Models;
+using ConferenceManager.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConferenceManager.DataLayer
@@ -8,7 +8,7 @@ namespace ConferenceManager.DataLayer
     {
         public ConferenceManagerContext(DbContextOptions<ConferenceManagerContext> options)
             : base(options)
-        {}
+        { }
         public DbSet<Attendee> Attendees { get; set; }
         public DbSet<Conference> Conferences { get; set; }
         public DbSet<Presentation> Presentations { get; set; }

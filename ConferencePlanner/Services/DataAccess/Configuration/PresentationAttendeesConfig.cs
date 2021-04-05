@@ -1,12 +1,12 @@
-﻿using ConferenceManager.Models;
+﻿using ConferenceManager.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ConferenceManager.DataLayer.Configurations
 {
-    public class PresentationAttendeesConfig : IEntityTypeConfiguration<EventAttendees>
+    public class PresentationAttendeesConfig : IEntityTypeConfiguration<PresentationAttendees>
     {
-        public void Configure(EntityTypeBuilder<EventAttendees> builder)
+        public void Configure(EntityTypeBuilder<PresentationAttendees> builder)
         {
             builder.HasKey(pa => new { pa.PresentationID, pa.AttendeeID });
 

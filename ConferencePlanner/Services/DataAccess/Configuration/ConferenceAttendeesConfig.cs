@@ -1,4 +1,4 @@
-﻿using ConferenceManager.Models;
+﻿using ConferenceManager.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

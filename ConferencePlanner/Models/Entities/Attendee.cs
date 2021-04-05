@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ConferenceManager.Models
+namespace ConferenceManager.Models.Entities
 {
     public class Attendee
     {
         [Required]
         public int ID { get; set; }
         public ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
-        public ICollection<EventAttendees> EventAttendees { get; set; }
+        public ICollection<PresentationAttendees> EventAttendees { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name")]
         [StringLength(20)]

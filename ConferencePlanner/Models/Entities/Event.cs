@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ConferenceManager.Models.Entities
 {
-   abstract public class Event
+    abstract public class Event
     {
         [Required]
         public int ID { get; set; }
-        public ICollection<EventAttendees> EventAttendees { get; set; }
+        public ICollection<PresentationAttendees> EventAttendees { get; set; }
 
         [Required]
         public int ConferenceID { get; set; }

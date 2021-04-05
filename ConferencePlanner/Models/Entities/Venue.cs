@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ConferenceManager.Models
+namespace ConferenceManager.Models.Entities
 {
     public class Venue
     {

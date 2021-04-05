@@ -1,6 +1,6 @@
-﻿namespace ConferenceManager.Models
+﻿namespace ConferenceManager.Models.Entities
 {
-    public class EventAttendees
+    public class PresentationAttendees
     {
         public int PresentationID { get; set; }
         public int AttendeeID { get; set; }

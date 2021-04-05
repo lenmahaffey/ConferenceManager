@@ -1,4 +1,4 @@
-﻿namespace ConferenceManager.Models
+﻿namespace ConferenceManager.Models.Entities
 {
     public class ConferenceVenues
     {
