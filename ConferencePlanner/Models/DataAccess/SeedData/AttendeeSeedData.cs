@@ -10,7 +10,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
         {
             builder.HasData(new Attendee
             {
-                AttendeeID = 101,
+                ID = 101,
                 FirstName = "Steve",
                 LastName = "Johnson",
                 Phone = "303-303-3030",
@@ -21,7 +21,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             },
             new Attendee
             {
-                AttendeeID = 102,
+                ID = 102,
                 FirstName = "Dave",
                 LastName = "Jackson",
                 Phone = "303-303-3031",
@@ -32,7 +32,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             },
             new Attendee
             {
-                AttendeeID = 103,
+                ID = 103,
                 FirstName = "Cherrith",
                 LastName = "Goodstory",
                 Phone = "303-303-3032",
@@ -43,7 +43,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             },
             new Attendee
             {
-                AttendeeID = 104,
+                ID = 104,
                 FirstName = "Friz",
                 LastName = "Freeling",
                 Phone = "303-303-3033",
@@ -54,7 +54,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             },
             new Attendee
             {
-                AttendeeID = 105,
+                ID = 105,
                 FirstName = "Wile E",
                 LastName = "Coyote",
                 Phone = "303-303-3034",
@@ -65,7 +65,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             },
             new Attendee
             {
-                AttendeeID = 106,
+                ID = 106,
                 FirstName = "Bill",
                 LastName = "Smith",
                 Phone = "303-303-3035",

@@ -8,7 +8,7 @@
     <h1>Confirm Deletion</h1>
     <p>Are you sure you want to remove @Model.Name from the database?</p>
     <form asp-action="DeleteConference" method="post">
-        <input type="hidden" asp-for="ConferenceID" />
+        <input type="hidden" asp-for="ID" />
 
         <button type="submit" class="btn btn-primary">Delete</button>
         <a asp-action="ListConferences" class="btn btn-primary">Cancel</a>

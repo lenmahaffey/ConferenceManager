@@ -62,7 +62,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             {
                 new Conference
                 {
-                    ConferenceID = 1001,
+                    ID = 1001,
                     Name = "International Association of National Associations",
                     Description = "The largest gathering of national association directors and managers in the world.",
                     StartDate = DateTime.Today,
@@ -70,7 +70,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Conference
                 {
-                    ConferenceID = 1002,
+                    ID = 1002,
                     Name = "Acme Corp",
                     Description = "An exposition of the latest in roadrunner hunting equipment",
                     StartDate = DateTime.Today.AddDays(5),
@@ -85,7 +85,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             {
                 new Attendee
                 {
-                    AttendeeID = 101,
+                    ID = 101,
                     FirstName = "Steve",
                     LastName = "Johnson",
                     Phone = "303-303-3030",
@@ -96,7 +96,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Attendee
                 {
-                    AttendeeID = 102,
+                    ID = 102,
                     FirstName = "Dave",
                     LastName = "Jackson",
                     Phone = "303-303-3031",
@@ -107,7 +107,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Attendee
                 {
-                    AttendeeID = 103,
+                    ID = 103,
                     FirstName = "Cherrith",
                     LastName = "Goodstory",
                     Phone = "303-303-3032",
@@ -118,7 +118,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Attendee
                 {
-                    AttendeeID = 104,
+                    ID = 104,
                     FirstName = "Friz",
                     LastName = "Freeling",
                     Phone = "303-303-3033",
@@ -129,7 +129,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Attendee
                 {
-                    AttendeeID = 105,
+                    ID = 105,
                     FirstName = "Wile E",
                     LastName = "Coyote",
                     Phone = "303-303-3034",
@@ -140,7 +140,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Attendee
                 {
-                    AttendeeID = 106,
+                    ID = 106,
                     FirstName = "Bill",
                     LastName = "Smith",
                     Phone = "303-303-3035",
@@ -158,7 +158,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             {
                 new Venue
                 {
-                    VenueID = 10,
+                    ID = 10,
                     Name = "Colorado Convention Center",
                     Address1 = "700 14th St",
                     City = "Denver",
@@ -168,7 +168,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Venue
                 {
-                    VenueID = 11,
+                    ID = 11,
                     Name = "The Curtis Hotel",
                     Address1 = "1405 Curtis St",
                     City = "Denver",
@@ -237,7 +237,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             {
                 new Presentation
                 {
-                    PresentationID = 101,
+                    ID = 101,
                     ConferenceID = 1001,
                     AttendeeID = 102,
                     RoomID = 1010,
@@ -248,7 +248,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Presentation
                 {
-                    PresentationID = 102,
+                    ID = 102,
                     ConferenceID = 1001,
                     AttendeeID = 101,
                     RoomID = 1011,
@@ -259,7 +259,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Presentation
                 {
-                    PresentationID = 103,
+                    ID = 103,
                     ConferenceID = 1002,
                     AttendeeID = 104,
                     RoomID = 1011,
@@ -270,7 +270,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
                 },
                 new Presentation
                 {
-                    PresentationID = 104,
+                    ID = 104,
                     ConferenceID = 1002,
                     AttendeeID = 105,
                     RoomID = 1013,
@@ -395,11 +395,11 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         {
             foreach (Attendee a in attendees)
             {
-                if (a.AttendeeID == id)
+                if (a.ID == id)
                 {
                     foreach (var pair in conferenceAttendees)
                     {
-                        if(pair.Value == a.AttendeeID)
+                        if(pair.Value == a.ID)
                         {
                             if (a.ConferenceAttendees == null)
                             {
@@ -408,7 +408,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
                             a.ConferenceAttendees.Add(new ConferenceAttendees
                             {
-                                AttendeeID = a.AttendeeID,
+                                AttendeeID = a.ID,
                                 Attendee = a,
                                 ConferenceID = pair.Key,
                                 Conference = GetConference(pair.Key)
@@ -437,7 +437,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         public Conference GetConference(int id)
         {
-            return conferences.FirstOrDefault(c => c.ConferenceID == id);
+            return conferences.FirstOrDefault(c => c.ID == id);
         }
 
         public IEnumerable<Conference> GetConferences()
@@ -487,7 +487,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         {
             foreach (Room room in rooms)
             {
-                room.Venue = venues.FirstOrDefault(v => room.VenueID == v.VenueID);
+                room.Venue = venues.FirstOrDefault(v => room.VenueID == v.ID);
             }
             return from r in rooms
                    orderby r.Name
@@ -496,7 +496,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         public Presentation GetPresentation(int id)
         {
-            return presentations.FirstOrDefault(p => p.PresentationID == id);
+            return presentations.FirstOrDefault(p => p.ID == id);
         }
 
         public IEnumerable<Presentation> GetPresentations()
@@ -516,7 +516,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         public Venue GetVenue(int id)
         {
-            return venues.FirstOrDefault(v => v.VenueID == id);
+            return venues.FirstOrDefault(v => v.ID == id);
         }
 
         public IEnumerable<Venue> GetVenues()
@@ -566,11 +566,11 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         public void DeleteAttendee(Attendee attendee)
         {
-            attendee = GetAttendee(attendee.AttendeeID);
+            attendee = GetAttendee(attendee.ID);
             int index = 0;
             foreach (Attendee a in attendees)
             {
-                if (a.AttendeeID == attendee.AttendeeID)
+                if (a.ID == attendee.ID)
                 {
                     attendees.RemoveAt(index);
                     break;
@@ -584,7 +584,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             int index = 0;
             foreach (Conference c in conferences)
             {
-                if (c.ConferenceID == conference.ConferenceID)
+                if (c.ID == conference.ID)
                 {
                     conferences.RemoveAt(index);
                     break;
@@ -598,7 +598,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             int index = 0;
             foreach (Presentation p in presentations)
             {
-                if (p.PresentationID == presentation.PresentationID)
+                if (p.ID == presentation.ID)
                 {
                     presentations.RemoveAt(index);
                     break;
@@ -612,7 +612,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             int index = 0;
             foreach (Venue v in venues)
             {
-                if (v.VenueID == venue.VenueID)
+                if (v.ID == venue.ID)
                 {
                     venues.RemoveAt(index);
                     break;
@@ -637,17 +637,17 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
 
         public void EditAttendee(Attendee attendee)
         {
-            attendees[attendees.FindIndex(i => i.AttendeeID == attendee.AttendeeID)] = attendee;
+            attendees[attendees.FindIndex(i => i.ID == attendee.ID)] = attendee;
         }
 
         public void EditConference(Conference conference)
         {
-            conferences[conferences.FindIndex(i => i.ConferenceID == conference.ConferenceID)] = conference;
+            conferences[conferences.FindIndex(i => i.ID == conference.ID)] = conference;
         }
 
         public void EditVenue(Venue venue)
         {
-            venues[venues.FindIndex(i => i.VenueID == venue.VenueID)] = venue;
+            venues[venues.FindIndex(i => i.ID == venue.ID)] = venue;
         }
 
         public void EditRoom(Room Room)
@@ -656,7 +656,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         }
         public void EditPresentation(Presentation presentation)
         {
-            presentations[presentations.FindIndex(i => i.PresentationID == presentation.PresentationID)] = presentation;
+            presentations[presentations.FindIndex(i => i.ID == presentation.ID)] = presentation;
         }
     }
 }

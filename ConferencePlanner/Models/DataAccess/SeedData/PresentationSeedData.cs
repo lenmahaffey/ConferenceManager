@@ -11,7 +11,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             builder.HasData(
                 new Presentation
                 {
-                    PresentationID = 101,
+                    ID = 101,
                     ConferenceID = 1001,
                     AttendeeID = 102,
                     RoomID = 1010,
@@ -22,7 +22,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Presentation
                 {
-                    PresentationID = 102,
+                    ID = 102,
                     ConferenceID = 1001,
                     AttendeeID = 101,
                     RoomID = 1011,
@@ -33,7 +33,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Presentation
                 {
-                    PresentationID = 103,
+                    ID = 103,
                     ConferenceID = 1002,
                     AttendeeID = 104,
                     RoomID = 1011,
@@ -44,7 +44,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Presentation
                 {
-                    PresentationID = 104,
+                    ID = 104,
                     ConferenceID = 1002,
                     AttendeeID = 105,
                     RoomID = 1013,

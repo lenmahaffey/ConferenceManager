@@ -49,7 +49,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveVenue(Venue Venue)
         {
-            if (Venue.VenueID == 0)
+            if (Venue.ID == 0)
             {
                 context.AddVenue(Venue);
             }

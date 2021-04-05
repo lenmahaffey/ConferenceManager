@@ -23,7 +23,7 @@ namespace ConferenceManager.Migrations
 
             modelBuilder.Entity("ConferenceManager.Models.Attendee", b =>
                 {
-                    b.Property<int>("AttendeeID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -56,7 +56,7 @@ namespace ConferenceManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AttendeeID");
+                    b.HasKey("ID");
 
                     b.ToTable("Attendees");
                 });
@@ -93,12 +93,12 @@ namespace ConferenceManager.Migrations
                     b.Property<int>("ConferenceID")
                         .HasColumnType("int");
 
-                    b.Property<int>("AttendeeID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.HasKey("ConferenceID", "AttendeeID");
+                    b.HasKey("ConferenceID", "ID");
 
-                    b.HasIndex("AttendeeID");
+                    b.HasIndex("ID");
 
                     b.ToTable("ConferenceAttendees");
                 });
@@ -120,12 +120,12 @@ namespace ConferenceManager.Migrations
 
             modelBuilder.Entity("ConferenceManager.Models.Presentation", b =>
                 {
-                    b.Property<int>("PresentationID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AttendeeID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
                     b.Property<int>("ConferenceID")
@@ -149,9 +149,9 @@ namespace ConferenceManager.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PresentationID");
+                    b.HasKey("ID");
 
-                    b.HasIndex("AttendeeID");
+                    b.HasIndex("ID");
 
                     b.HasIndex("ConferenceID");
 
@@ -162,15 +162,15 @@ namespace ConferenceManager.Migrations
 
             modelBuilder.Entity("ConferenceManager.Models.PresentationAttendees", b =>
                 {
-                    b.Property<int>("PresentationID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("AttendeeID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.HasKey("PresentationID", "AttendeeID");
+                    b.HasKey("ID", "ID");
 
-                    b.HasIndex("AttendeeID");
+                    b.HasIndex("ID");
 
                     b.ToTable("PresentationAttendees");
                 });
@@ -255,7 +255,7 @@ namespace ConferenceManager.Migrations
                 {
                     b.HasOne("ConferenceManager.Models.Attendee", "Attendee")
                         .WithMany("ConferenceAttendees")
-                        .HasForeignKey("AttendeeID")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -285,7 +285,7 @@ namespace ConferenceManager.Migrations
                 {
                     b.HasOne("ConferenceManager.Models.Attendee", "Attendee")
                         .WithMany()
-                        .HasForeignKey("AttendeeID")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -306,13 +306,13 @@ namespace ConferenceManager.Migrations
                 {
                     b.HasOne("ConferenceManager.Models.Attendee", "Attendee")
                         .WithMany("PresentationAttendees")
-                        .HasForeignKey("AttendeeID")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ConferenceManager.Models.Presentation", "Presentation")
                         .WithMany("PresentationAttendees")
-                        .HasForeignKey("PresentationID")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

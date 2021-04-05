@@ -41,7 +41,7 @@ namespace ConferenceManager.Controllers
             var model = new PresentationViewModel
             {
                 Presentation = p,
-                Attendee = context.GetAttendee(p.AttendeeID),
+                Attendee = context.GetAttendee(p.ID),
                 Conference = context.GetConference(p.ConferenceID),
                 Room = context.GetRoom(p.RoomID),
                 Attendees = context.GetAttendees(),
@@ -70,7 +70,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SavePresentation(Presentation presentation)
         {
-            if (presentation.PresentationID == 0)
+            if (presentation.ID == 0)
             {
                 context.AddPresentation(presentation);
             }

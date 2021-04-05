@@ -7,7 +7,7 @@ namespace ConferenceManager.Models
     public class Conference
     {
         [Required]
-        public int ConferenceID { get; set; }
+        public int ID { get; set; }
 
         public IEnumerable<ConferenceAttendees> ConferenceAttendees { get; set; }
         public IEnumerable<ConferenceVenues> ConferenceVenues { get; set; }

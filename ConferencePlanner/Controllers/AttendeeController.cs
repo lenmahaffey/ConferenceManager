@@ -50,7 +50,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveAttendee(Attendee attendee)
         {
-            if (attendee.AttendeeID == 0)
+            if (attendee.ID == 0)
             {
                 context.AddAttendee(attendee);
             }

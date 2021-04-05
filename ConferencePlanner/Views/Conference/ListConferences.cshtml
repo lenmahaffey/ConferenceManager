@@ -24,12 +24,12 @@
                 <td>@c.EndDate.ToShortDateString()</td>
                 <td>
                     <a asp-action="EditConference"
-                       asp-route-id="@c.ConferenceID"
+                       asp-route-id="@c.ID"
                        class="btn btn-secondary">Edit</a>
                 </td>
                 <td>
                     <a asp-action="DeleteConference"
-                       asp-route-id="@c.ConferenceID"
+                       asp-route-id="@c.ID"
                        class="btn btn-danger">Delete</a>
                 </td>
             </tr>

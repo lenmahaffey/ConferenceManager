@@ -48,7 +48,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveConference(Conference conference)
         {
-            if (conference.ConferenceID == 0)
+            if (conference.ID == 0)
             {
                 context.AddConference(conference);
             }

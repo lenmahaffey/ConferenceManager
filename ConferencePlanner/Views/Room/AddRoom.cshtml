@@ -28,7 +28,7 @@
             <label asp-for="Room.VenueID">Venue</label>
             <select asp-for="Room.VenueID"
                     asp-items="@(new SelectList(Model.Venues,
-                    "VenueID", "Name", Model.Venue.VenueID))"
+                    "VenueID", "Name", Model.Venue.ID))"
                     class="form-control">
                 <option value="@Model.Venue">@Model.Venue.Name</option>
             </select>

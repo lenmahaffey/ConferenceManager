@@ -45,12 +45,12 @@
 
     <div class="row form-group">
         <div class="col-sm-6">
-            <label asp-for="Presentation.AttendeeID">Presenter</label>
-            <select asp-for="Presentation.AttendeeID"
+            <label asp-for="Presentation.ID">Presenter</label>
+            <select asp-for="Presentation.ID"
                     asp-items="@(new SelectList(Model.Attendees,
-                    "AttendeeID", "FullName", Model.Attendee.AttendeeID))"
+                    "ID", "FullName", Model.Attendee.ID))"
                     class="form-control">
-                <option value="@Model.Attendee.AttendeeID">@Model.Attendee.FullName</option>
+                <option value="@Model.Attendee.ID">@Model.Attendee.FullName</option>
             </select>
         </div>
     </div>
@@ -60,9 +60,9 @@
             <label asp-for="Presentation.ConferenceID">Conference</label>
             <select asp-for="Presentation.ConferenceID"
                     asp-items="@(new SelectList(Model.Conferences,
-                    "ConferenceID", "Name", Model.Conference.ConferenceID))"
+                    "ConferenceID", "Name", Model.Conference.ID))"
                     class="form-control">
-                <option value="@Model.Conference.ConferenceID">@Model.Conference.Name</option>
+                <option value="@Model.Conference.ID">@Model.Conference.Name</option>
             </select>
         </div>
     </div>
@@ -79,7 +79,7 @@
             </div>
         </div>
 
-    <input type="hidden" asp-for="Presentation.PresentationID" />
+    <input type="hidden" asp-for="Presentation.ID" />
     <button type="submit" class="btn btn-secondary">Save</button>
     <a asp-action="ListPresentations" class="btn btn-danger">Cancel</a>
 </form>

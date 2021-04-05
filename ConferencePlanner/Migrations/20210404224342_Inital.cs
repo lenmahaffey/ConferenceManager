@@ -11,7 +11,7 @@ namespace ConferenceManager.Migrations
                 name: "Attendees",
                 columns: table => new
                 {
-                    AttendeeID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(maxLength: 20, nullable: false),
                     LastName = table.Column<string>(maxLength: 20, nullable: false),
@@ -23,7 +23,7 @@ namespace ConferenceManager.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Attendees", x => x.AttendeeID);
+                    table.PrimaryKey("PK_Attendees", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,16 +66,16 @@ namespace ConferenceManager.Migrations
                 columns: table => new
                 {
                     ConferenceID = table.Column<int>(nullable: false),
-                    AttendeeID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ConferenceAttendees", x => new { x.ConferenceID, x.AttendeeID });
+                    table.PrimaryKey("PK_ConferenceAttendees", x => new { x.ConferenceID, x.ID });
                     table.ForeignKey(
-                        name: "FK_ConferenceAttendees_Attendees_AttendeeID",
-                        column: x => x.AttendeeID,
+                        name: "FK_ConferenceAttendees_Attendees_ID",
+                        column: x => x.ID,
                         principalTable: "Attendees",
-                        principalColumn: "AttendeeID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ConferenceAttendees_Conferences_ConferenceID",
@@ -136,10 +136,10 @@ namespace ConferenceManager.Migrations
                 name: "Presentations",
                 columns: table => new
                 {
-                    PresentationID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ConferenceID = table.Column<int>(nullable: false),
-                    AttendeeID = table.Column<int>(nullable: false),
+                    //ID = table.Column<int>(nullable: false),
                     RoomID = table.Column<int>(nullable: false),
                     StartTime = table.Column<DateTime>(nullable: false),
                     EndTime = table.Column<DateTime>(nullable: false),
@@ -148,12 +148,12 @@ namespace ConferenceManager.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Presentations", x => x.PresentationID);
+                    table.PrimaryKey("PK_Presentations", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Presentations_Attendees_AttendeeID",
-                        column: x => x.AttendeeID,
+                        name: "FK_Presentations_Attendees_ID",
+                        column: x => x.ID,
                         principalTable: "Attendees",
-                        principalColumn: "AttendeeID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Presentations_Conferences_ConferenceID",
@@ -173,30 +173,30 @@ namespace ConferenceManager.Migrations
                 name: "PresentationAttendees",
                 columns: table => new
                 {
-                    PresentationID = table.Column<int>(nullable: false),
-                    AttendeeID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false),
+                    //ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PresentationAttendees", x => new { x.PresentationID, x.AttendeeID });
+                    table.PrimaryKey("PK_PresentationAttendees", x => new { x.ID, });
                     table.ForeignKey(
-                        name: "FK_PresentationAttendees_Attendees_AttendeeID",
-                        column: x => x.AttendeeID,
+                        name: "FK_PresentationAttendees_Attendees_ID",
+                        column: x => x.ID,
                         principalTable: "Attendees",
-                        principalColumn: "AttendeeID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PresentationAttendees_Presentations_PresentationID",
-                        column: x => x.PresentationID,
+                        name: "FK_PresentationAttendees_Presentations_ID",
+                        column: x => x.ID,
                         principalTable: "Presentations",
-                        principalColumn: "PresentationID",
+                        principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ConferenceAttendees_AttendeeID",
+                name: "IX_ConferenceAttendees_ID",
                 table: "ConferenceAttendees",
-                column: "AttendeeID");
+                column: "ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ConferenceVenues_VenueID",
@@ -204,14 +204,14 @@ namespace ConferenceManager.Migrations
                 column: "VenueID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PresentationAttendees_AttendeeID",
+                name: "IX_PresentationAttendees_ID",
                 table: "PresentationAttendees",
-                column: "AttendeeID");
+                column: "ID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Presentations_AttendeeID",
+                name: "IX_Presentations_ID",
                 table: "Presentations",
-                column: "AttendeeID");
+                column: "ID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Presentations_ConferenceID",

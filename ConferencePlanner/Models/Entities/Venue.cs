@@ -5,7 +5,7 @@ namespace ConferenceManager.Models
 {
     public class Venue
     {
-        public int VenueID { get; set; }
+        public int ID { get; set; }
         public IEnumerable<Room> Rooms { get; set; }
         public IEnumerable<ConferenceVenues> ConferenceVenues { get; set; }
 
