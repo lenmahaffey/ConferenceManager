@@ -33,6 +33,7 @@ namespace ConferenceManager.Migrations
                     ConferenceID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: true),
                     StartDate = table.Column<DateTime>(nullable: false),
                     EndDate = table.Column<DateTime>(nullable: false)
                 },
@@ -52,7 +53,7 @@ namespace ConferenceManager.Migrations
                     Address2 = table.Column<string>(maxLength: 20, nullable: true),
                     City = table.Column<string>(maxLength: 20, nullable: false),
                     State = table.Column<string>(maxLength: 2, nullable: false),
-                    PostalCode = table.Column<int>(maxLength: 20, nullable: false),
+                    PostalCode = table.Column<string>(maxLength: 20, nullable: false),
                     Phone = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -118,7 +119,7 @@ namespace ConferenceManager.Migrations
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     TheatreCapacity = table.Column<int>(nullable: true),
                     SchoolRoomCapacity = table.Column<int>(nullable: true),
-                    CrescentRoundCpacity = table.Column<int>(nullable: true)
+                    CrescentRoundCapacity = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -138,14 +139,22 @@ namespace ConferenceManager.Migrations
                     PresentationID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ConferenceID = table.Column<int>(nullable: false),
+                    AttendeeID = table.Column<int>(nullable: false),
                     RoomID = table.Column<int>(nullable: false),
                     StartTime = table.Column<DateTime>(nullable: false),
                     EndTime = table.Column<DateTime>(nullable: false),
-                    Name = table.Column<int>(maxLength: 50, nullable: false)
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
+                    Description = table.Column<string>(maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Presentations", x => x.PresentationID);
+                    table.ForeignKey(
+                        name: "FK_Presentations_Attendees_AttendeeID",
+                        column: x => x.AttendeeID,
+                        principalTable: "Attendees",
+                        principalColumn: "AttendeeID",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Presentations_Conferences_ConferenceID",
                         column: x => x.ConferenceID,
@@ -181,7 +190,7 @@ namespace ConferenceManager.Migrations
                         column: x => x.PresentationID,
                         principalTable: "Presentations",
                         principalColumn: "PresentationID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -197,6 +206,11 @@ namespace ConferenceManager.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_PresentationAttendees_AttendeeID",
                 table: "PresentationAttendees",
+                column: "AttendeeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Presentations_AttendeeID",
+                table: "Presentations",
                 column: "AttendeeID");
 
             migrationBuilder.CreateIndex(
@@ -227,10 +241,10 @@ namespace ConferenceManager.Migrations
                 name: "PresentationAttendees");
 
             migrationBuilder.DropTable(
-                name: "Attendees");
+                name: "Presentations");
 
             migrationBuilder.DropTable(
-                name: "Presentations");
+                name: "Attendees");
 
             migrationBuilder.DropTable(
                 name: "Conferences");

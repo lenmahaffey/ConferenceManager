@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConferenceManager.Migrations
 {
     [DbContext(typeof(ConferenceManagerContext))]
-    [Migration("20210320052725_Inital")]
+    [Migration("20210404224342_Inital")]
     partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -68,6 +68,10 @@ namespace ConferenceManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
+
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
@@ -121,14 +125,22 @@ namespace ConferenceManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AttendeeID")
+                        .HasColumnType("int");
+
                     b.Property<int>("ConferenceID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
                     b.Property<int>("RoomID")
@@ -138,6 +150,8 @@ namespace ConferenceManager.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("PresentationID");
+
+                    b.HasIndex("AttendeeID");
 
                     b.HasIndex("ConferenceID");
 
@@ -168,7 +182,7 @@ namespace ConferenceManager.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CrescentRoundCpacity")
+                    b.Property<int?>("CrescentRoundCapacity")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -222,8 +236,9 @@ namespace ConferenceManager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("int")
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
                         .HasMaxLength(20);
 
                     b.Property<string>("State")
@@ -268,6 +283,12 @@ namespace ConferenceManager.Migrations
 
             modelBuilder.Entity("ConferenceManager.Models.Presentation", b =>
                 {
+                    b.HasOne("ConferenceManager.Models.Attendee", "Attendee")
+                        .WithMany()
+                        .HasForeignKey("AttendeeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ConferenceManager.Models.Conference", "Conference")
                         .WithMany()
                         .HasForeignKey("ConferenceID")
@@ -275,7 +296,7 @@ namespace ConferenceManager.Migrations
                         .IsRequired();
 
                     b.HasOne("ConferenceManager.Models.Room", "Room")
-                        .WithMany()
+                        .WithMany("Presentations")
                         .HasForeignKey("RoomID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -292,13 +313,13 @@ namespace ConferenceManager.Migrations
                     b.HasOne("ConferenceManager.Models.Presentation", "Presentation")
                         .WithMany("PresentationAttendees")
                         .HasForeignKey("PresentationID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("ConferenceManager.Models.Room", b =>
                 {
-                    b.HasOne("ConferenceManager.Models.Venue", null)
+                    b.HasOne("ConferenceManager.Models.Venue", "Venue")
                         .WithMany("Rooms")
                         .HasForeignKey("VenueID")
                         .OnDelete(DeleteBehavior.Cascade)

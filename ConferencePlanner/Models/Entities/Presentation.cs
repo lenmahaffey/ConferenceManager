@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,13 +10,13 @@ namespace ConferenceManager.Models
         public int PresentationID { get; set; }
 
         public ICollection<PresentationAttendees> PresentationAttendees { get; set; }
+
         [Required]
         public int ConferenceID { get; set; }
         public Conference Conference { get; set; }
-
-        [Required]
         public int AttendeeID { get; set; }
         public Attendee Attendee { get; set; } // for presenter
+
         [Required]
         public int RoomID { get; set; }
         public Room Room { get; set; }

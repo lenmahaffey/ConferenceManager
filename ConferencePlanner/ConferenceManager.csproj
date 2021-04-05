@@ -13,6 +13,14 @@
     <Compile Remove="Migrations\20210320044757_Inital.Designer.cs" />
     <Compile Remove="Migrations\20210320052445_Inital.cs" />
     <Compile Remove="Migrations\20210320052445_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210320052725_Inital.cs" />
+    <Compile Remove="Migrations\20210320052725_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210403193950_Inital.cs" />
+    <Compile Remove="Migrations\20210403193950_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210404223952_Links.cs" />
+    <Compile Remove="Migrations\20210404223952_Links.Designer.cs" />
+    <Compile Remove="Migrations\20210404224035_Inital.cs" />
+    <Compile Remove="Migrations\20210404224035_Inital.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Services\Services\" />
   </ItemGroup>
 

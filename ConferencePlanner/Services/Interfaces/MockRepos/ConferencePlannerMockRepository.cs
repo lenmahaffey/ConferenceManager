@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ConferenceManager.Services.Interfaces.MockRepos
 {
@@ -14,7 +13,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
         private List<Presentation> presentations;
         private List<Room> rooms;
         private List<Venue> venues;
-        private List<KeyValuePair<int,int>> conferenceAttendees;
+        private List<KeyValuePair<int, int>> conferenceAttendees;
         private List<KeyValuePair<int, int>> conferenceVenues;
         private List<KeyValuePair<int, int>> presentationAttendees;
 
