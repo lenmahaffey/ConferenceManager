@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConferenceManager.Models.Entities
 {
     public class Conference
     {
-        [Required]
-        public int ID { get; set; }
+        public int ConferenceID { get; set; }
 
-        public IEnumerable<ConferenceAttendees> ConferenceAttendees { get; set; }
-        public IEnumerable<ConferenceVenues> ConferenceVenues { get; set; }
+        //public virtual ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
+        //public virtual ICollection<ConferenceVenues> ConferenceVenues { get; set; }
+
+        public virtual ICollection<Presentation> Presentations { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the conference")]
         [StringLength(50)]

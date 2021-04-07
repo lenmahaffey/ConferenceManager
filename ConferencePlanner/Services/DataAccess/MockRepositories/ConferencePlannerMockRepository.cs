@@ -1,4 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using ConferenceManager.Services.Interfaces;
 using System;
 using System.Collections;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace ConferenceManager.Services.DataAccess.MockRepositories
 {
-    public class ConferenceManagerMockRepository : IConferenceManagerData
+    public class ConferenceManagerMockRepository : IConferenceManagerRepository
     {
         private List<Attendee> attendees;
         private List<Conference> conferences;
@@ -658,6 +659,41 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
         public void EditPresentation(Presentation presentation)
         {
             presentations[presentations.FindIndex(i => i.ID == presentation.ID)] = presentation;
+        }
+
+        public IEnumerable<T> List(QueryOptions<T> options)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public T Get(QueryOptions<T> options = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(T entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
         }
     }
 }

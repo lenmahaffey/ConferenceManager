@@ -19,24 +19,24 @@
     <tbody>
         @foreach (Presentation p in Model)
         {
-            <tr>
-                <td>@p.Conference.Name</td>
-                <td>@p.Name</td>
-                <td>@p.Description</td>
-                <td>@p.Attendee.FirstName @p.Attendee.LastName</td>
-                <td>@p.StartTime.ToShortDateString() <br /> @p.StartTime.ToShortTimeString()</td>
-                <td>@p.EndTime.ToShortDateString() <br /> @p.EndTime.ToShortTimeString()</td>
-                <td>
-                    <a asp-action="EditPresentation"
-                        asp-route-id="@p.ID"
-                        class="btn btn-secondary">Edit</a>
-                </td>
-                <td>
-                    <a asp-action="DeletePresentation"
-                        asp-route-id="@p.ID"
-                        class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <!--<td>p.Conference.Name</td>-->
+            <td>@p.Name</td>
+            <td>@p.Description</td>
+            <td>@p.Attendee.FirstName @p.Attendee.LastName</td>
+            <td>@p.StartTime.ToShortDateString() <br /> @p.StartTime.ToShortTimeString()</td>
+            <td>@p.EndTime.ToShortDateString() <br /> @p.EndTime.ToShortTimeString()</td>
+            <td>
+                <a asp-action="EditPresentation"
+                   asp-route-id="@p.PresentationID"
+                   class="btn btn-secondary">Edit</a>
+            </td>
+            <td>
+                <a asp-action="DeletePresentation"
+                   asp-route-id="@p.PresentationID"
+                   class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

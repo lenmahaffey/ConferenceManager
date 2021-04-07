@@ -5,6 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\DataAccess\Interfaces\Data\**" />
+    <Compile Remove="Services\DataAccess\MockRepositories\**" />
+    <Compile Remove="Services\DataAccess\Repositories\**" />
+    <Content Remove="Services\DataAccess\Interfaces\Data\**" />
+    <Content Remove="Services\DataAccess\MockRepositories\**" />
+    <Content Remove="Services\DataAccess\Repositories\**" />
+    <EmbeddedResource Remove="Services\DataAccess\Interfaces\Data\**" />
+    <EmbeddedResource Remove="Services\DataAccess\MockRepositories\**" />
+    <EmbeddedResource Remove="Services\DataAccess\Repositories\**" />
+    <None Remove="Services\DataAccess\Interfaces\Data\**" />
+    <None Remove="Services\DataAccess\MockRepositories\**" />
+    <None Remove="Services\DataAccess\Repositories\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Migrations\20210320042144_Inital.cs" />
     <Compile Remove="Migrations\20210320042144_Inital.Designer.cs" />
     <Compile Remove="Migrations\20210320044546_Inital.cs" />
@@ -21,9 +36,46 @@
     <Compile Remove="Migrations\20210404223952_Links.Designer.cs" />
     <Compile Remove="Migrations\20210404224035_Inital.cs" />
     <Compile Remove="Migrations\20210404224035_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210405203858_Inital.cs" />
+    <Compile Remove="Migrations\20210405203858_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210405204425_Inital.cs" />
+    <Compile Remove="Migrations\20210405204425_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210405205604_Inital.cs" />
+    <Compile Remove="Migrations\20210405205604_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210405213032_Inital.cs" />
+    <Compile Remove="Migrations\20210405213032_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406040142_Inital.cs" />
+    <Compile Remove="Migrations\20210406040142_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406041023_Inital.cs" />
+    <Compile Remove="Migrations\20210406041023_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406041929_Inital.cs" />
+    <Compile Remove="Migrations\20210406041929_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406042423_Inital.cs" />
+    <Compile Remove="Migrations\20210406042423_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406043127_Inital.cs" />
+    <Compile Remove="Migrations\20210406043127_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406044327_Inital.cs" />
+    <Compile Remove="Migrations\20210406044327_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406044540_Inital.cs" />
+    <Compile Remove="Migrations\20210406044540_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406194411_Inital.cs" />
+    <Compile Remove="Migrations\20210406194411_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406200413_Inital.cs" />
+    <Compile Remove="Migrations\20210406200413_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210406225342_Inital.cs" />
+    <Compile Remove="Migrations\20210406225342_Inital.Designer.cs" />
+    <Compile Remove="Models\Entities\ConferenceAttendees.cs" />
+    <Compile Remove="Models\Entities\ConferenceVenues.cs" />
+    <Compile Remove="Models\Entities\Contact.cs" />
+    <Compile Remove="Models\Entities\Event.cs" />
+    <Compile Remove="Models\Entities\PresentationAttendees.cs" />
+    <Compile Remove="Services\DataAccess\Configuration\ConferenceAttendeesConfig.cs" />
+    <Compile Remove="Services\DataAccess\Configuration\ConferenceVenuesConfig.cs" />
+    <Compile Remove="Services\DataAccess\Configuration\EventAttendeesConfig.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
       <PrivateAssets>all</PrivateAssets>
@@ -35,6 +87,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Services\DataAccess\Configuration\" />
   </ItemGroup>
 
 </Project>

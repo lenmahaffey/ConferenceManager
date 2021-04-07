@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ConferenceManager.Models.DataAccess.SeedData
+namespace ConferenceManager.Services.DataAccess.SeedData
 {
     public class RoomSeedData : IEntityTypeConfiguration<Room>
     {

@@ -6,10 +6,9 @@ namespace ConferenceManager.Models.Entities
 {
     public class Attendee
     {
-        [Required]
-        public int ID { get; set; }
-        public ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
-        public ICollection<PresentationAttendees> EventAttendees { get; set; }
+        public int AttendeeID { get; set; }
+        //public virtual ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
+        //public ICollection<EventAttendees> EventAttendees { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name")]
         [StringLength(20)]

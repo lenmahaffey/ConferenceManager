@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace ConferenceManager.Models.DataAccess.SeedData
+namespace ConferenceManager.Services.DataAccess.SeedData
 {
     public class PresentationSeedData : IEntityTypeConfiguration<Presentation>
     {
@@ -12,7 +12,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             builder.HasData(
                 new Presentation
                 {
-                    ID = 101,
+                    PresentationID = 101,
                     ConferenceID = 1001,
                     AttendeeID = 102,
                     RoomID = 1010,
@@ -23,7 +23,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Presentation
                 {
-                    ID = 102,
+                    PresentationID = 102,
                     ConferenceID = 1001,
                     AttendeeID = 101,
                     RoomID = 1011,
@@ -34,7 +34,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Presentation
                 {
-                    ID = 103,
+                    PresentationID = 103,
                     ConferenceID = 1002,
                     AttendeeID = 104,
                     RoomID = 1011,
@@ -45,7 +45,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Presentation
                 {
-                    ID = 104,
+                    PresentationID = 104,
                     ConferenceID = 1002,
                     AttendeeID = 105,
                     RoomID = 1013,

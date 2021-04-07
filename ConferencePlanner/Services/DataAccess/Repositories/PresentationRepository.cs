@@ -1,11 +1,12 @@
 ﻿using ConferenceManager.DataLayer;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
 namespace ConferenceManager.Services.DataAccess.Repositories
 {
-    public class PresentationRepository<T> : IConferenceManagerRepository<T> where T : class
+    public class PresentationRepository<T> : ConferenceManagerUnitOfWork<T> where T : class
     {
         protected ConferenceManagerContext context { get; set; }
         private DbSet<T> dbSet { get; set; }

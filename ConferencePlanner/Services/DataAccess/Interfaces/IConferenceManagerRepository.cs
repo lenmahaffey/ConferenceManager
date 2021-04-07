@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-namespace ConferenceManager.Services.DataAccess
+namespace ConferenceManager.Services.DataAccess.Interfaces
 {
-    public interface IConferenceManagerRepository<T>
+    interface IConferenceManagerRepository<T>
     {
         IEnumerable<T> List(QueryOptions<T> options);
 
         T Get(int id);
-        T Get(QueryOptions<T> options);
+        T Get(QueryOptions<T> options = null);
 
         void Insert(T entity);
         void Update(T entity);

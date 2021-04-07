@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ConferenceManager.Services.DataAccess.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace ConferenceManager.Services.DataAccess.Repositories
 {
-    public class ConferenceRepository<T> : IConferenceManagerRepository<T> where T : class
+    public class ConferenceRepository<T> : ConferenceManagerUnitOfWork<T> where T : class
     {
         public void Delete(T entity)
         {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
-namespace ConferenceManager.Models.DataAccess.SeedData
+namespace ConferenceManager.Services.DataAccess.SeedData
 {
     public class ConferenceSeedData : IEntityTypeConfiguration<Conference>
     {
@@ -12,7 +12,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             builder.HasData(
                 new Conference
                 {
-                    ID = 1001,
+                    ConferenceID = 1001,
                     Name = "International Association of National Associations",
                     Description = "The largest gathering of national association directors and managers in the world.",
                     StartDate = DateTime.Today,
@@ -20,7 +20,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Conference
                 {
-                    ID = 1002,
+                    ConferenceID = 1002,
                     Name = "Acme Corp",
                     Description = "An exposition of the latest in roadrunner hunting equipment",
                     StartDate = DateTime.Today.AddDays(5),

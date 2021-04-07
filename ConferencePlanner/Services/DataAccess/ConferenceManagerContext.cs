@@ -1,8 +1,9 @@
-﻿using ConferenceManager.DataLayer.Configurations;
-using ConferenceManager.Models.Entities;
+﻿using ConferenceManager.Models.Entities;
+//using ConferenceManager.Services.DataAccess.Configurations;
+using ConferenceManager.Services.DataAccess.SeedData;
 using Microsoft.EntityFrameworkCore;
 
-namespace ConferenceManager.DataLayer
+namespace ConferenceManager.Services.DataAccess
 {
     public class ConferenceManagerContext : DbContext
     {
@@ -14,17 +15,26 @@ namespace ConferenceManager.DataLayer
         public DbSet<Presentation> Presentations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Venue> Venue { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Room>()
+                .HasOne(r => r.Venue)
+                .WithMany(v => v.Rooms);
+
+            modelBuilder.ApplyConfiguration(new AttendeeSeedData());
+            modelBuilder.ApplyConfiguration(new ConferenceSeedData());
+            modelBuilder.ApplyConfiguration(new VenueSeedData());
+            modelBuilder.ApplyConfiguration(new RoomSeedData());
+            modelBuilder.ApplyConfiguration(new PresentationSeedData());
+
             //ConferenceAttendee linking table
-            modelBuilder.ApplyConfiguration(new ConferenceAttendeesConfig());
+            //modelBuilder.ApplyConfiguration(new ConferenceAttendeesConfig());
 
             //ConferenceVenue linking table
-            modelBuilder.ApplyConfiguration(new ConferenceVenuesConfig());
+            //modelBuilder.ApplyConfiguration(new ConferenceVenuesConfig());
 
             // PresentationAttendee linking table
-            modelBuilder.ApplyConfiguration(new PresentationAttendeesConfig());
+            //modelBuilder.ApplyConfiguration(new EventAttendeesConfig());
         }
     }
 }

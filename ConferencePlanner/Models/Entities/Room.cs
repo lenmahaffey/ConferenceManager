@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConferenceManager.Models.Entities
 {
     public class Room
     {
-        [Required]
         public int RoomID { get; set; }
 
         [Required]
         public int VenueID { get; set; }
-        public Venue Venue { get; set; }
+        public virtual Venue Venue { get; set; }
 
-        public ICollection<Presentation> Presentations { get; set; }
+        public virtual ICollection<Presentation> Presentations { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the room")]
         [StringLength(50)]

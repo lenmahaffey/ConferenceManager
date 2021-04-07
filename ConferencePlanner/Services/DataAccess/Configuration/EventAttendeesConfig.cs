@@ -2,17 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ConferenceManager.DataLayer.Configurations
+namespace ConferenceManager.Services.DataAccess.Configurations
 {
-    public class PresentationAttendeesConfig : IEntityTypeConfiguration<PresentationAttendees>
+    public class EventAttendeesConfig : IEntityTypeConfiguration<EventAttendees>
     {
-        public void Configure(EntityTypeBuilder<PresentationAttendees> builder)
+        public void Configure(EntityTypeBuilder<EventAttendees> builder)
         {
-            builder.HasKey(pa => new { pa.PresentationID, pa.AttendeeID });
+            builder.HasKey(ea => new { ea.EventID, ea.AttendeeID });
 
-            builder.HasOne(pa => pa.Presentation)
+            builder.HasOne(ea => ea.Event)
                 .WithMany(a => a.EventAttendees)
-                .HasForeignKey(pa => pa.PresentationID)
+                .HasForeignKey(ea => ea.EventID)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(pa => pa.Attendee)

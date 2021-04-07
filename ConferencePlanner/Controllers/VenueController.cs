@@ -1,42 +1,43 @@
-﻿using ConferenceManager.Models;
-using ConferenceManager.Services.Interfaces;
+﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceManager.Controllers
 {
     public class VenueController : Controller
     {
-        private readonly IConferenceManagerData context;
+        private readonly ConferenceManagerUnit context;
 
-        public VenueController(IConferenceManagerData ctx)
+        public VenueController(ConferenceManagerContext ctx)
         {
-            context = ctx;
+            context = new ConferenceManagerUnit(ctx);
         }
 
         public ViewResult ListVenues()
         {
-            var v = context.GetVenues();
+            var v = context.Venues.List();
             return View(v);
         }
 
         [HttpGet]
         public ViewResult DeleteVenue(int id)
         {
-            var v = context.GetVenue(id);
+            var v = context.Venues.Get(id);
             return View(v);
         }
 
         [HttpPost]
         public RedirectToActionResult DeleteVenue(Venue venue)
         {
-            context.DeleteVenue(venue);
+            context.Venues.Delete(venue);
+            context.SaveChanges();
             return RedirectToAction("ListVenues");
         }
 
         [HttpGet]
         public ViewResult EditVenue(int id)
         {
-            var a = context.GetVenue(id);
+            var a = context.Venues.Get(id);
             return View(a);
         }
 
@@ -49,13 +50,15 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveVenue(Venue Venue)
         {
-            if (Venue.ID == 0)
+            if (Venue.VenueID == 0)
             {
-                context.AddVenue(Venue);
+                context.Venues.Insert(Venue);
+                context.SaveChanges();
             }
             else
             {
-                context.EditVenue(Venue);
+                context.Venues.Update(Venue);
+                context.SaveChanges();
             }
             return RedirectToAction("ListVenues");
         }

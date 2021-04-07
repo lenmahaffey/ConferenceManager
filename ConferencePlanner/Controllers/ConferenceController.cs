@@ -1,41 +1,44 @@
-﻿using ConferenceManager.Models;
-using ConferenceManager.Services.Interfaces;
+﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ConferenceManager.Controllers
 {
     public class ConferenceController : Controller
     {
-        private readonly IConferenceManagerData context;
+        private readonly IConferenceManagerUnit context;
 
-        public ConferenceController(IConferenceManagerData ctx)
+        public ConferenceController(ConferenceManagerContext ctx)
         {
-            context = ctx;
+            context = new ConferenceManagerUnit(ctx);
         }
         public ViewResult ListConferences()
         {
-            var c = context.GetConferences();
+            IEnumerable<Conference> c = context.Conferences.List();
             return View(c);
         }
 
         [HttpGet]
         public ViewResult DeleteConference(int id)
         {
-            var c = context.GetConference(id);
+            var c = context.Conferences.Get(id);
             return View(c);
         }
 
         [HttpPost]
         public RedirectToActionResult DeleteConference(Conference conference)
         {
-            context.DeleteConference(conference);
+            context.Conferences.Delete(conference);
+            context.SaveChanges();
             return RedirectToAction("ListConferences");
         }
 
         [HttpGet]
         public ViewResult EditConference(int id)
         {
-            var a = context.GetConference(id);
+            var a = context.Conferences.Get(id);
             return View(a);
         }
 
@@ -48,13 +51,15 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveConference(Conference conference)
         {
-            if (conference.ID == 0)
+            if (conference.ConferenceID == 0)
             {
-                context.AddConference(conference);
+                context.Conferences.Insert(conference);
+                context.SaveChanges();
             }
             else
             {
-                context.EditConference(conference);
+                context.Conferences.Update(conference);
+                context.SaveChanges();
             }
             return RedirectToAction("ListConferences");
         }

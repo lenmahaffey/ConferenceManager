@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ConferenceManager.DataLayer.Configurations
+namespace ConferenceManager.Services.DataAccess.Configurations
 {
     public class ConferenceAttendeesConfig : IEntityTypeConfiguration<ConferenceAttendees>
     {

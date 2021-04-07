@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ConferenceManager.Models.DataAccess.SeedData
+namespace ConferenceManager.Services.DataAccess.SeedData
 {
     public class VenueSeedData : IEntityTypeConfiguration<Venue>
     {
@@ -11,7 +11,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
             builder.HasData(
                 new Venue
                 {
-                    ID = 10,
+                    VenueID = 10,
                     Name = "Colorado Convention Center",
                     Address1 = "700 14th St",
                     City = "Denver",
@@ -21,7 +21,7 @@ namespace ConferenceManager.Models.DataAccess.SeedData
                 },
                 new Venue
                 {
-                    ID = 11,
+                    VenueID = 11,
                     Name = "The Curtis Hotel",
                     Address1 = "1405 Curtis St",
                     City = "Denver",

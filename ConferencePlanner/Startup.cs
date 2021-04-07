@@ -1,12 +1,11 @@
-using ConferenceManager.DataLayer;
-using ConferenceManager.Services.Interfaces;
-using ConferenceManager.Services.Interfaces.MockRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ConferenceManager.Services.DataAccess;
+using ConferenceManager.Services.DataAccess.Interfaces;
 
 namespace ConferenceManager
 {
@@ -27,10 +26,11 @@ namespace ConferenceManager
 
             services.AddControllersWithViews();
 
-            services.AddSingleton<IConferenceManagerData, ConferenceManagerMockRepository>();
+            //services.AddSingleton<IConferenceManagerRepository, ConferenceManagerMockRepository>();
 
-            services.AddDbContext<ConferenceManagerContext>(options =>
-                options.UseSqlServer(
+            services.AddDbContext<ConferenceManagerContext>(
+                b => b.UseLazyLoadingProxies()
+                .UseSqlServer(
                     Configuration.GetConnectionString("ConferenceManager")));
             services.AddRouting(options =>
             {

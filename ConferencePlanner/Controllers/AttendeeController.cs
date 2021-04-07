@@ -1,5 +1,5 @@
-﻿using ConferenceManager.Models;
-using ConferenceManager.Services.Interfaces;
+﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,37 +7,38 @@ namespace ConferenceManager.Controllers
 {
     public class AttendeeController : Controller
     {
-        private readonly IConferenceManagerData context;
+        private readonly ConferenceManagerUnit context;
 
-        public AttendeeController(IConferenceManagerData ctx)
+        public AttendeeController(ConferenceManagerContext ctx)
         {
-            context = ctx;
+            context = new ConferenceManagerUnit(ctx);
         }
 
         public ViewResult ListAttendees()
         {
-            IEnumerable<Attendee> a = context.GetAttendees();
+            IEnumerable<Attendee> a = context.Attendees.List();
             return View(a);
         }
 
         [HttpGet]
         public IActionResult DeleteAttendee(int id)
         {
-            var attendee = context.GetAttendee(id);
+            var attendee = context.Attendees.Get(id);
             return View(attendee);
         }
 
         [HttpPost]
         public IActionResult DeleteAttendee(Attendee attendee)
         {
-            context.DeleteAttendee(attendee);
+            context.Attendees.Delete(attendee);
+            context.SaveChanges();
             return RedirectToAction("ListAttendees");
         }
 
         [HttpGet]
         public ViewResult EditAttendee(int id)
         {
-            var a = context.GetAttendee(id);
+            var a = context.Attendees.Get(id);
             return View(a);
         }
 
@@ -50,13 +51,15 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveAttendee(Attendee attendee)
         {
-            if (attendee.ID == 0)
+            if (attendee.AttendeeID == 0)
             {
-                context.AddAttendee(attendee);
+                context.Attendees.Insert(attendee);
+                context.SaveChanges();
             }
             else
             {
-                context.EditAttendee(attendee);
+                context.Attendees.Update(attendee);
+                context.SaveChanges();
             }
             return RedirectToAction("ListAttendees");
         }
