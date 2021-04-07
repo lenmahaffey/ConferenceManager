@@ -13,12 +13,12 @@ namespace ConferenceManager.Services.DataAccess.Configurations
             builder.HasOne(ea => ea.Event)
                 .WithMany(a => a.EventAttendees)
                 .HasForeignKey(ea => ea.EventID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(pa => pa.Attendee)
                 .WithMany(a => a.EventAttendees)
                 .HasForeignKey(pa => pa.AttendeeID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

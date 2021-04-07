@@ -30,12 +30,12 @@
             <td>@(a.IsStaff == true ? "yes" : "no") </td>
             <td>
                 <a asp-action="EditAttendee"
-                   asp-route-id="@a.AttendeeID"
+                   asp-route-id="@a.ID"
                    class="btn btn-secondary">Edit</a>
             </td>
             <td>
                 <a asp-action="DeleteAttendee"
-                   asp-route-id="@a.AttendeeID"
+                   asp-route-id="@a.ID"
                    class="btn btn-danger">Delete</a>
             </td>
         </tr>

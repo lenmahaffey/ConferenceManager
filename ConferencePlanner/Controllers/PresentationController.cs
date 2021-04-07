@@ -71,7 +71,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SavePresentation(Presentation presentation)
         {
-            if (presentation.PresentationID == 0)
+            if (presentation.ID == 0)
             {
                 context.Presentations.Insert(presentation);
                 context.SaveChanges();

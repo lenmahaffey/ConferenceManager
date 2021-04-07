@@ -1,4 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess.Configurations;
 //using ConferenceManager.Services.DataAccess.Configurations;
 using ConferenceManager.Services.DataAccess.SeedData;
 using Microsoft.EntityFrameworkCore;
@@ -14,7 +15,8 @@ namespace ConferenceManager.Services.DataAccess
         public DbSet<Conference> Conferences { get; set; }
         public DbSet<Presentation> Presentations { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<Venue> Venue { get; set; }
+        public DbSet<Venue> Venues { get; set; }
+        public DbSet<Event> Events { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Room>()
@@ -28,13 +30,13 @@ namespace ConferenceManager.Services.DataAccess
             modelBuilder.ApplyConfiguration(new PresentationSeedData());
 
             //ConferenceAttendee linking table
-            //modelBuilder.ApplyConfiguration(new ConferenceAttendeesConfig());
+            modelBuilder.ApplyConfiguration(new ConferenceAttendeesConfig());
 
             //ConferenceVenue linking table
-            //modelBuilder.ApplyConfiguration(new ConferenceVenuesConfig());
+            modelBuilder.ApplyConfiguration(new ConferenceVenuesConfig());
 
             // PresentationAttendee linking table
-            //modelBuilder.ApplyConfiguration(new EventAttendeesConfig());
+            modelBuilder.ApplyConfiguration(new EventAttendeesConfig());
         }
     }
 }

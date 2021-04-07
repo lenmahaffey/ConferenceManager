@@ -64,14 +64,13 @@
     <Compile Remove="Migrations\20210406200413_Inital.Designer.cs" />
     <Compile Remove="Migrations\20210406225342_Inital.cs" />
     <Compile Remove="Migrations\20210406225342_Inital.Designer.cs" />
-    <Compile Remove="Models\Entities\ConferenceAttendees.cs" />
-    <Compile Remove="Models\Entities\ConferenceVenues.cs" />
+    <Compile Remove="Migrations\20210406230040_Inital.cs" />
+    <Compile Remove="Migrations\20210406230040_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210407033931_Inital.cs" />
+    <Compile Remove="Migrations\20210407033931_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210407035050_Inital.cs" />
+    <Compile Remove="Migrations\20210407035050_Inital.Designer.cs" />
     <Compile Remove="Models\Entities\Contact.cs" />
-    <Compile Remove="Models\Entities\Event.cs" />
-    <Compile Remove="Models\Entities\PresentationAttendees.cs" />
-    <Compile Remove="Services\DataAccess\Configuration\ConferenceAttendeesConfig.cs" />
-    <Compile Remove="Services\DataAccess\Configuration\ConferenceVenuesConfig.cs" />
-    <Compile Remove="Services\DataAccess\Configuration\EventAttendeesConfig.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -87,7 +86,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Services\DataAccess\Configuration\" />
   </ItemGroup>
 
 </Project>
