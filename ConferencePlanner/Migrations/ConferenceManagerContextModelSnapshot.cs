@@ -19,114 +19,6 @@ namespace ConferenceManager.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ConferenceManager.Models.Entities.Attendee", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DateRegistered")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<bool>("IsPresenter")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsStaff")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Attendees");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 101,
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            Email = "steve@juno.com",
-                            FirstName = "Steve",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Johnson",
-                            Phone = "303-303-3030"
-                        },
-                        new
-                        {
-                            ID = 102,
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            Email = "dave@juno.com",
-                            FirstName = "Dave",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Jackson",
-                            Phone = "303-303-3031"
-                        },
-                        new
-                        {
-                            ID = 103,
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            Email = "cherrith@marritimelaw.com",
-                            FirstName = "Cherrith",
-                            IsPresenter = false,
-                            IsStaff = false,
-                            LastName = "Goodstory",
-                            Phone = "303-303-3032"
-                        },
-                        new
-                        {
-                            ID = 104,
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            Email = "friz@wb.com",
-                            FirstName = "Friz",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Freeling",
-                            Phone = "303-303-3033"
-                        },
-                        new
-                        {
-                            ID = 105,
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            Email = "wil@varoom.com",
-                            FirstName = "Wile E",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Coyote",
-                            Phone = "303-303-3034"
-                        },
-                        new
-                        {
-                            ID = 106,
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            Email = "bill@compuserve.com",
-                            FirstName = "Bill",
-                            IsPresenter = false,
-                            IsStaff = false,
-                            LastName = "Smith",
-                            Phone = "303-303-3035"
-                        });
-                });
-
             modelBuilder.Entity("ConferenceManager.Models.Entities.Conference", b =>
                 {
                     b.Property<int>("ID")
@@ -200,6 +92,33 @@ namespace ConferenceManager.Migrations
                     b.HasIndex("VenueID");
 
                     b.ToTable("ConferenceVenues");
+                });
+
+            modelBuilder.Entity("ConferenceManager.Models.Entities.Contact", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Contacts");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Contact");
                 });
 
             modelBuilder.Entity("ConferenceManager.Models.Entities.Event", b =>
@@ -401,6 +320,100 @@ namespace ConferenceManager.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ConferenceManager.Models.Entities.Attendee", b =>
+                {
+                    b.HasBaseType("ConferenceManager.Models.Entities.Contact");
+
+                    b.Property<DateTime>("DateRegistered")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<bool>("IsPresenter")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsStaff")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
+
+                    b.HasDiscriminator().HasValue("Attendee");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 101,
+                            Email = "steve@juno.com",
+                            Phone = "303-303-3030",
+                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Steve",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Johnson"
+                        },
+                        new
+                        {
+                            ID = 102,
+                            Email = "dave@juno.com",
+                            Phone = "303-303-3031",
+                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Dave",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Jackson"
+                        },
+                        new
+                        {
+                            ID = 103,
+                            Email = "cherrith@marritimelaw.com",
+                            Phone = "303-303-3032",
+                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Cherrith",
+                            IsPresenter = false,
+                            IsStaff = false,
+                            LastName = "Goodstory"
+                        },
+                        new
+                        {
+                            ID = 104,
+                            Email = "friz@wb.com",
+                            Phone = "303-303-3033",
+                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Friz",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Freeling"
+                        },
+                        new
+                        {
+                            ID = 105,
+                            Email = "wil@varoom.com",
+                            Phone = "303-303-3034",
+                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Wile E",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Coyote"
+                        },
+                        new
+                        {
+                            ID = 106,
+                            Email = "bill@compuserve.com",
+                            Phone = "303-303-3035",
+                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Bill",
+                            IsPresenter = false,
+                            IsStaff = false,
+                            LastName = "Smith"
+                        });
+                });
+
             modelBuilder.Entity("ConferenceManager.Models.Entities.Presentation", b =>
                 {
                     b.HasBaseType("ConferenceManager.Models.Entities.Event");
@@ -422,10 +435,10 @@ namespace ConferenceManager.Migrations
                             ID = 101,
                             ConferenceID = 1001,
                             Description = "Hear our president discuss the role of professional organizations in the 21st century",
-                            EndTime = new DateTime(2021, 4, 9, 18, 58, 24, 603, DateTimeKind.Local).AddTicks(6532),
+                            EndTime = new DateTime(2021, 4, 9, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(4813),
                             Name = "Professional Associations in the 21st century",
                             RoomID = 1010,
-                            StartTime = new DateTime(2021, 4, 9, 16, 58, 24, 603, DateTimeKind.Local).AddTicks(6132),
+                            StartTime = new DateTime(2021, 4, 9, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(4412),
                             AttendeeID = 102
                         },
                         new
@@ -433,10 +446,10 @@ namespace ConferenceManager.Migrations
                             ID = 102,
                             ConferenceID = 1001,
                             Description = "Join a discussion about the various services a professional organization can offer it's members",
-                            EndTime = new DateTime(2021, 4, 10, 18, 58, 24, 603, DateTimeKind.Local).AddTicks(7010),
+                            EndTime = new DateTime(2021, 4, 10, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(5297),
                             Name = "Member Services",
                             RoomID = 1011,
-                            StartTime = new DateTime(2021, 4, 10, 16, 58, 24, 603, DateTimeKind.Local).AddTicks(6994),
+                            StartTime = new DateTime(2021, 4, 10, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(5281),
                             AttendeeID = 101
                         },
                         new
@@ -444,10 +457,10 @@ namespace ConferenceManager.Migrations
                             ID = 103,
                             ConferenceID = 1002,
                             Description = "Learn about the proper application of our tunnel paint in dry arid climates.",
-                            EndTime = new DateTime(2021, 4, 10, 18, 58, 24, 603, DateTimeKind.Local).AddTicks(7021),
+                            EndTime = new DateTime(2021, 4, 10, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(5307),
                             Name = "Paint Application in Aird Climates",
                             RoomID = 1011,
-                            StartTime = new DateTime(2021, 4, 10, 16, 58, 24, 603, DateTimeKind.Local).AddTicks(7019),
+                            StartTime = new DateTime(2021, 4, 10, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(5305),
                             AttendeeID = 104
                         },
                         new
@@ -455,10 +468,10 @@ namespace ConferenceManager.Migrations
                             ID = 104,
                             ConferenceID = 1002,
                             Description = "Our rockets aren't just for hunting! Come hear about Acme's plans to land the first coyote on the moon",
-                            EndTime = new DateTime(2021, 4, 10, 18, 58, 24, 603, DateTimeKind.Local).AddTicks(7026),
+                            EndTime = new DateTime(2021, 4, 10, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(5313),
                             Name = "Acme Orbital",
                             RoomID = 1013,
-                            StartTime = new DateTime(2021, 4, 10, 16, 58, 24, 603, DateTimeKind.Local).AddTicks(7024),
+                            StartTime = new DateTime(2021, 4, 10, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(5311),
                             AttendeeID = 105
                         });
                 });

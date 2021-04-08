@@ -70,6 +70,30 @@ namespace ConferenceManager.Services.DataAccess
                 return presentations;
             }
         }
+        private ConferenceManagerRepository<Event> events;
+        public ConferenceManagerRepository<Event> Events
+        {
+            get
+            {
+                if (events == null)
+                {
+                    events = new ConferenceManagerRepository<Event>(context);
+                }
+                return events;
+            }
+        }
+        private ConferenceManagerRepository<Contact> contacts;
+        public ConferenceManagerRepository<Contact> Contacts
+        {
+            get
+            {
+                if (contacts == null)
+                {
+                    contacts = new ConferenceManagerRepository<Contact>(context);
+                }
+                return contacts;
+            }
+        }
         public void SaveChanges()
         {
             context.SaveChanges();

@@ -17,7 +17,7 @@ namespace ConferenceManager.Services.DataAccess
         }
         public void Delete(T entity)
         {
-            context.Remove(entity);
+            data.Remove(entity);
         }
 
         public T Get(int id)

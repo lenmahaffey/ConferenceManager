@@ -78,7 +78,8 @@
     <Compile Remove="Migrations\20210407035401_Inital.Designer.cs" />
     <Compile Remove="Migrations\20210408214021_Inital.cs" />
     <Compile Remove="Migrations\20210408214021_Inital.Designer.cs" />
-    <Compile Remove="Models\Entities\Contact.cs" />
+    <Compile Remove="Migrations\20210408225825_Inital.cs" />
+    <Compile Remove="Migrations\20210408225825_Inital.Designer.cs" />
     <Compile Remove="Services\DataAccess\Interfaces\MockEventsRepository.cs" />
   </ItemGroup>
 
