@@ -15,7 +15,7 @@ namespace ConferenceManager.Services.DataAccess
         public DbSet<Presentation> Presentations { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Venue> Venues { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<Presentation> Events { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Room>()

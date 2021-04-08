@@ -14,7 +14,6 @@ namespace ConferenceManager.Models.Entities
         public virtual Conference Conference { get; set; }
 
         public int RoomID { get; set; }
-        [ForeignKey("RoomID")]
         public virtual Room Room { get; set; }
 
         [Required(ErrorMessage = "Please enter an start date")]

@@ -14,11 +14,6 @@ namespace ConferenceManager.Services.DataAccess.Configurations
                 .WithMany(a => a.EventAttendees)
                 .HasForeignKey(ea => ea.EventID)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(pa => pa.Attendee)
-                .WithMany(a => a.EventAttendees)
-                .HasForeignKey(pa => pa.AttendeeID)
-                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
