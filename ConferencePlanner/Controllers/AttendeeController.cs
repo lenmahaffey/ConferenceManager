@@ -1,5 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
-using ConferenceManager.Services.DataAccess;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,11 +7,11 @@ namespace ConferenceManager.Controllers
 {
     public class AttendeeController : Controller
     {
-        private readonly ConferenceManagerUnit context;
+        private IConferenceManagerUnit context;
 
-        public AttendeeController(ConferenceManagerContext ctx)
+        public AttendeeController(IConferenceManagerUnit ctx)
         {
-            context = new ConferenceManagerUnit(ctx);
+            context = ctx;
         }
 
         public ViewResult ListAttendees()

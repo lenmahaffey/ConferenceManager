@@ -26,7 +26,8 @@ namespace ConferenceManager
 
             services.AddControllersWithViews();
 
-            //services.AddSingleton<IConferenceManagerRepository, ConferenceManagerMockRepository>();
+            services.AddTransient<IConferenceManagerUnit, ConferenceManagerUnit>();
+            services.AddTransient(typeof(IConferenceManagerRepository<>), typeof(ConferenceManagerRepository<>));
 
             services.AddDbContext<ConferenceManagerContext>(
                 b => b.UseLazyLoadingProxies()

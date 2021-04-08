@@ -6,7 +6,7 @@ namespace ConferenceManager.Models.Entities
 {
     public class Room
     {
-        public int RoomID { get; set; }
+        public int ID { get; set; }
 
         [Required]
         public int VenueID { get; set; }

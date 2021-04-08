@@ -12,7 +12,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
             builder.HasData(
                 new Conference
                 {
-                    ConferenceID = 1001,
+                    ID = 1001,
                     Name = "International Association of National Associations",
                     Description = "The largest gathering of national association directors and managers in the world.",
                     StartDate = DateTime.Today,
@@ -20,7 +20,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 },
                 new Conference
                 {
-                    ConferenceID = 1002,
+                    ID = 1002,
                     Name = "Acme Corp",
                     Description = "An exposition of the latest in roadrunner hunting equipment",
                     StartDate = DateTime.Today.AddDays(5),

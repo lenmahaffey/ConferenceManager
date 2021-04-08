@@ -1,15 +1,15 @@
-﻿using ConferenceManager.Services.DataAccess;
+﻿using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceManager.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ConferenceManagerUnit context;
+        private IConferenceManagerUnit context;
 
-        public HomeController(ConferenceManagerContext ctx)
+        public HomeController(IConferenceManagerUnit ctx)
         {
-            context = new ConferenceManagerUnit(ctx);
+            context = ctx;
         }
         public IActionResult Index()
         {

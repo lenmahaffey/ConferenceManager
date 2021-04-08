@@ -8,10 +8,10 @@ using System.Linq;
 
 namespace ConferenceManager.Services.DataAccess.MockRepositories
 {
-    public class ConferenceManagerMockRepository : IConferenceManagerRepository
+    public class ConferenceManagerMockRepository
     {
         private List<Attendee> attendees;
-        private List<Conference> conferences;
+
         private List<Presentation> presentations;
         private List<Room> rooms;
         private List<Venue> venues;
@@ -26,10 +26,6 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                 InitializeAttendees();
             }
 
-            if(conferences == null)
-            {
-                InitalizeConferences();
-            }
             if (presentations == null)
             {
                 InitalizePresentations();
@@ -56,29 +52,6 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                 InitalizePresentationAttendees();
             }
 
-        }
-
-        private void InitalizeConferences()
-        {
-            conferences = new List<Conference>()
-            {
-                new Conference
-                {
-                    ID = 1001,
-                    Name = "International Association of National Associations",
-                    Description = "The largest gathering of national association directors and managers in the world.",
-                    StartDate = DateTime.Today,
-                    EndDate = DateTime.Today.AddDays(4)
-                },
-                new Conference
-                {
-                    ID = 1002,
-                    Name = "Acme Corp",
-                    Description = "An exposition of the latest in roadrunner hunting equipment",
-                    StartDate = DateTime.Today.AddDays(5),
-                    EndDate = DateTime.Today.AddDays(9)
-                }
-            };
         }
 
         private void InitializeAttendees()
@@ -187,7 +160,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
             {
                 new Room
                 {
-                    RoomID = 1010,
+                    ID = 1010,
                     VenueID = 10,
                     Name = "101",
                     TheatreCapacity = 100,
@@ -196,7 +169,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                 },
                 new Room
                 {
-                    RoomID = 1011,
+                    ID = 1011,
                     VenueID = 10,
                     Name = "201",
                     TheatreCapacity = 100,
@@ -205,7 +178,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                 },
                 new Room
                 {
-                    RoomID = 1012,
+                    ID = 1012,
                     VenueID = 10,
                     Name = "Mile High Ballroom",
                     TheatreCapacity = 1000,
@@ -214,7 +187,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                 },
                 new Room
                 {
-                    RoomID = 1013,
+                    ID = 1013,
                     VenueID = 11,
                     Name = "Marco Polo Ballroom",
                     TheatreCapacity = 500,
@@ -223,7 +196,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                 },
                 new Room
                 {
-                    RoomID = 1014,
+                    ID = 1014,
                     VenueID = 11,
                     Name = "Red Rover",
                     TheatreCapacity = 100,
@@ -437,10 +410,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
                    select a;
         }
 
-        public Conference GetConference(int id)
-        {
-            return conferences.FirstOrDefault(c => c.ID == id);
-        }
+
 
         public IEnumerable<Conference> GetConferences()
         {
@@ -468,16 +438,13 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
             //        }
             //    }
             //}
-            return from c in conferences
-                   orderby c.Name
-                   select c;
         }
 
         public Room GetRoom(int id)
         {
             foreach (Room r in rooms)
             {
-                if (r.RoomID == id)
+                if (r.ID == id)
                 {
                     return r;
                 }
@@ -628,7 +595,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
             int index = 0;
             foreach (Room r in rooms)
             {
-                if (r.RoomID == room.RoomID)
+                if (r.ID == room.ID)
                 {
                     rooms.RemoveAt(index);
                     break;
@@ -654,7 +621,7 @@ namespace ConferenceManager.Services.DataAccess.MockRepositories
 
         public void EditRoom(Room Room)
         {
-            rooms[rooms.FindIndex(i => i.RoomID == Room.RoomID)] = Room;
+            rooms[rooms.FindIndex(i => i.ID == Room.ID)] = Room;
         }
         public void EditPresentation(Presentation presentation)
         {

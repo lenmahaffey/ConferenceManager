@@ -1,5 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
-using ConferenceManager.Services.DataAccess;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using ConferenceManager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,11 +7,11 @@ namespace ConferenceManager.Controllers
 {
     public class PresentationController : Controller
     {
-        private readonly ConferenceManagerUnit context;
+        private IConferenceManagerUnit context;
 
-        public PresentationController(ConferenceManagerContext ctx)
+        public PresentationController(IConferenceManagerUnit ctx)
         {
-            context = new ConferenceManagerUnit(ctx);
+            context = ctx;
         }
 
         public ViewResult ListPresentations()

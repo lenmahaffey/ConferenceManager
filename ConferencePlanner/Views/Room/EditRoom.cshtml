@@ -28,7 +28,7 @@
             <label asp-for="Room.VenueID">Venue</label>
             <select asp-for="Room.VenueID"
                     asp-items="@(new SelectList(Model.Venues,
-                    "VenueID", "Name", Model.Venue.VenueID))"
+                    "VenueID", "Name", Model.Venue.ID))"
                     class="form-control">
                 <option value="@Model.Venue">@Model.Venue.Name</option>
             </select>
@@ -67,7 +67,7 @@
             <span asp-validation-for="Room.CrescentRoundCapacity" class="text-danger"></span>
         </div>
     </div>
-    <input type="hidden" asp-for="Room.RoomID" />
+    <input type="hidden" asp-for="Room.ID" />
     <button type="submit" class="btn btn-secondary">Save</button>
     <a asp-action="ListRooms" class="btn btn-danger">Cancel</a>
 </form>

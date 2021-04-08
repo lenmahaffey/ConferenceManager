@@ -7,7 +7,7 @@ namespace ConferenceManager.Services.DataAccess.Interfaces
         IEnumerable<T> List(QueryOptions<T> options);
 
         T Get(int id);
-        T Get(QueryOptions<T> options = null);
+        T Get(QueryOptions<T> options);
 
         void Insert(T entity);
         void Update(T entity);

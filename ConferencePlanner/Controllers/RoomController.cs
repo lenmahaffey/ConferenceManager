@@ -1,5 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
-using ConferenceManager.Services.DataAccess;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using ConferenceManager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -8,11 +8,11 @@ namespace ConferenceManager.Controllers
 {
     public class RoomController : Controller
     {
-        private readonly ConferenceManagerUnit context;
+        private readonly IConferenceManagerUnit context;
 
-        public RoomController(ConferenceManagerContext ctx)
+        public RoomController(IConferenceManagerUnit ctx)
         {
-            context = new ConferenceManagerUnit(ctx);
+            context = ctx;
         }
 
         public ViewResult ListRooms()
@@ -64,7 +64,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveRoom(Room Room)
         {
-            if (Room.RoomID == 0)
+            if (Room.ID == 0)
             {
                 context.Rooms.Insert(Room);
                 context.SaveChanges();

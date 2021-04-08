@@ -1,6 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
 using ConferenceManager.Services.DataAccess.Configurations;
-//using ConferenceManager.Services.DataAccess.Configurations;
 using ConferenceManager.Services.DataAccess.SeedData;
 using Microsoft.EntityFrameworkCore;
 

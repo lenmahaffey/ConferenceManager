@@ -2,7 +2,7 @@
 
 namespace ConferenceManager.Services.DataAccess.Interfaces
 {
-    interface IConferenceManagerUnit
+    public interface IConferenceManagerUnit
     {
         ConferenceManagerRepository<Conference> Conferences { get; }
         ConferenceManagerRepository<Attendee> Attendees { get; }

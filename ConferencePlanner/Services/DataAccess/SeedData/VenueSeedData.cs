@@ -11,7 +11,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
             builder.HasData(
                 new Venue
                 {
-                    VenueID = 10,
+                    ID = 10,
                     Name = "Colorado Convention Center",
                     Address1 = "700 14th St",
                     City = "Denver",
@@ -21,7 +21,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 },
                 new Venue
                 {
-                    VenueID = 11,
+                    ID = 11,
                     Name = "The Curtis Hotel",
                     Address1 = "1405 Curtis St",
                     City = "Denver",

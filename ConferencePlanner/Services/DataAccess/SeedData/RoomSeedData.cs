@@ -11,7 +11,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
             builder.HasData(
                 new Room
                 {
-                    RoomID = 1010,
+                    ID = 1010,
                     VenueID = 10,
                     Name = "101",
                     TheatreCapacity = 100,
@@ -20,7 +20,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 },
                 new Room
                 {
-                    RoomID = 1011,
+                    ID = 1011,
                     VenueID = 10,
                     Name = "201",
                     TheatreCapacity = 100,
@@ -29,7 +29,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 },
                 new Room
                 {
-                    RoomID = 1012,
+                    ID = 1012,
                     VenueID = 10,
                     Name = "Mile High Ballroom",
                     TheatreCapacity = 1000,
@@ -38,7 +38,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 },
                 new Room
                 {
-                    RoomID = 1013,
+                    ID = 1013,
                     VenueID = 11,
                     Name = "Marco Polo Ballroom",
                     TheatreCapacity = 500,
@@ -47,7 +47,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 },
                 new Room
                 {
-                    RoomID = 1014,
+                    ID = 1014,
                     VenueID = 11,
                     Name = "Red Rover",
                     TheatreCapacity = 100,

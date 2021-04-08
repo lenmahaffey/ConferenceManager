@@ -1,37 +1,35 @@
-﻿using ConferenceManager.Models;
-using ConferenceManager.Models.Entities;
-using ConferenceManager.Services.DataAccess;
+﻿using ConferenceManager.Models.Entities;
 using ConferenceManager.Services.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ConferenceManager.Services.Interfaces.MockRepos
+namespace ConferenceManager.Services.DataAccess.MockRepositories
 {
-    public class MockAttendeesRepository : IConferenceManagerRepository<Attendee>
+    public class MockVenuesRepository : IConferenceManagerRepository<Venue>
     {
-        public void Delete(Attendee entity)
+        public void Delete(Venue entity)
         {
             throw new NotImplementedException();
         }
 
-        public Attendee Get(int id)
+        public Venue Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Attendee Get(QueryOptions<Attendee> options = null)
+        public Venue Get(QueryOptions<Venue> options = null)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Attendee entity)
+        public void Insert(Venue entity)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Attendee> List(QueryOptions<Attendee> options)
+        public IEnumerable<Venue> List(QueryOptions<Venue> options)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +39,7 @@ namespace ConferenceManager.Services.Interfaces.MockRepos
             throw new NotImplementedException();
         }
 
-        public void Update(Attendee entity)
+        public void Update(Venue entity)
         {
             throw new NotImplementedException();
         }

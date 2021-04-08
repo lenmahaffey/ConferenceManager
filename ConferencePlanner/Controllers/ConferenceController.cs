@@ -1,5 +1,4 @@
 ﻿using ConferenceManager.Models.Entities;
-using ConferenceManager.Services.DataAccess;
 using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -8,11 +7,11 @@ namespace ConferenceManager.Controllers
 {
     public class ConferenceController : Controller
     {
-        private readonly IConferenceManagerUnit context;
+        private IConferenceManagerUnit context;
 
-        public ConferenceController(ConferenceManagerContext ctx)
+        public ConferenceController(IConferenceManagerUnit ctx)
         {
-            context = new ConferenceManagerUnit(ctx);
+            context = ctx;
         }
         public ViewResult ListConferences()
         {
@@ -51,7 +50,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveConference(Conference conference)
         {
-            if (conference.ConferenceID == 0)
+            if (conference.ID == 0)
             {
                 context.Conferences.Insert(conference);
                 context.SaveChanges();

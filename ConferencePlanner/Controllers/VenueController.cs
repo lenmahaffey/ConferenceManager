@@ -1,16 +1,16 @@
 ﻿using ConferenceManager.Models.Entities;
-using ConferenceManager.Services.DataAccess;
+using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceManager.Controllers
 {
     public class VenueController : Controller
     {
-        private readonly ConferenceManagerUnit context;
+        private IConferenceManagerUnit context;
 
-        public VenueController(ConferenceManagerContext ctx)
+        public VenueController(IConferenceManagerUnit ctx)
         {
-            context = new ConferenceManagerUnit(ctx);
+            context = ctx;
         }
 
         public ViewResult ListVenues()
@@ -50,7 +50,7 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveVenue(Venue Venue)
         {
-            if (Venue.VenueID == 0)
+            if (Venue.ID == 0)
             {
                 context.Venues.Insert(Venue);
                 context.SaveChanges();

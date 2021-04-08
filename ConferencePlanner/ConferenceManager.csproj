@@ -7,15 +7,19 @@
   <ItemGroup>
     <Compile Remove="Services\DataAccess\Interfaces\Data\**" />
     <Compile Remove="Services\DataAccess\MockRepositories\**" />
+    <Compile Remove="Services\DataAccess\Mock\**" />
     <Compile Remove="Services\DataAccess\Repositories\**" />
     <Content Remove="Services\DataAccess\Interfaces\Data\**" />
     <Content Remove="Services\DataAccess\MockRepositories\**" />
+    <Content Remove="Services\DataAccess\Mock\**" />
     <Content Remove="Services\DataAccess\Repositories\**" />
     <EmbeddedResource Remove="Services\DataAccess\Interfaces\Data\**" />
     <EmbeddedResource Remove="Services\DataAccess\MockRepositories\**" />
+    <EmbeddedResource Remove="Services\DataAccess\Mock\**" />
     <EmbeddedResource Remove="Services\DataAccess\Repositories\**" />
     <None Remove="Services\DataAccess\Interfaces\Data\**" />
     <None Remove="Services\DataAccess\MockRepositories\**" />
+    <None Remove="Services\DataAccess\Mock\**" />
     <None Remove="Services\DataAccess\Repositories\**" />
   </ItemGroup>
 
@@ -71,6 +75,7 @@
     <Compile Remove="Migrations\20210407035050_Inital.cs" />
     <Compile Remove="Migrations\20210407035050_Inital.Designer.cs" />
     <Compile Remove="Models\Entities\Contact.cs" />
+    <Compile Remove="Services\DataAccess\Interfaces\MockEventsRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>

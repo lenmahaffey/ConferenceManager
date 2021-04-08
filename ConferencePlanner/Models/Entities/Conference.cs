@@ -7,7 +7,7 @@ namespace ConferenceManager.Models.Entities
 {
     public class Conference
     {
-        public int ConferenceID { get; set; }
+        public int ID { get; set; }
 
         public virtual ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
         public virtual ICollection<ConferenceVenues> ConferenceVenues { get; set; }

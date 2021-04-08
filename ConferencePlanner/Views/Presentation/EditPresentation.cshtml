@@ -60,9 +60,9 @@
             <label asp-for="Presentation.ConferenceID">Conference</label>
             <select asp-for="Presentation.ConferenceID"
                     asp-items="@(new SelectList(Model.Conferences,
-                    "ConferenceID", "Name", Model.Conference.ConferenceID))"
+                    "ConferenceID", "Name", Model.Conference.ID))"
                     class="form-control">
-                <option value="@Model.Conference.ConferenceID">@Model.Conference.Name</option>
+                <option value="@Model.Conference.ID">@Model.Conference.Name</option>
             </select>
         </div>
     </div>
@@ -72,7 +72,7 @@
                 <label asp-for="Presentation.Room"></label>
                 <select asp-for="Presentation.Room"
                         asp-items="@(new SelectList(Model.Rooms,
-                        "RoomID", "Name", Model.Room.RoomID))"
+                        "RoomID", "Name", Model.Room.ID))"
                         class="form-control">
                     <option value="@Model.Room">@Model.Room.Name</option>
                 </select>
