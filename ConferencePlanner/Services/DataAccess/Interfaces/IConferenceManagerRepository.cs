@@ -2,7 +2,7 @@
 
 namespace ConferenceManager.Services.DataAccess.Interfaces
 {
-    interface IConferenceManagerRepository<T>
+    public interface IConferenceManagerRepository<T>
     {
         IEnumerable<T> List(QueryOptions<T> options);
 
