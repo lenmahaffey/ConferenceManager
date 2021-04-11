@@ -1,6 +1,6 @@
 ﻿namespace ConferenceManager.Models.Entities
 {
-    public class ConferenceVenues
+    public class ConferenceVenue
     {
         public int ConferenceID { get; set; }
         public int VenueID { get; set; }

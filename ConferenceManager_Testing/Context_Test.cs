@@ -22,7 +22,7 @@ namespace ConferenceManager.Testing.Services.DataAccess
             string expectedEmail = "steve@juno.com";
 
             //Act
-            Attendee queryResult = context.Attendees.Find(101);
+            Attendee queryResult = unit.Attendees.Get(101);
 
             //Assert
             Assert.Equal(expectedID, queryResult.ID);

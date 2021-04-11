@@ -77,13 +77,13 @@ namespace ConferenceManager.Migrations
                         column: x => x.AttendeeID,
                         principalTable: "Contacts",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ConferenceAttendees_Conferences_ConferenceID",
                         column: x => x.ConferenceID,
                         principalTable: "Conferences",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,13 +101,13 @@ namespace ConferenceManager.Migrations
                         column: x => x.ConferenceID,
                         principalTable: "Conferences",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ConferenceVenues_Venues_VenueID",
                         column: x => x.VenueID,
                         principalTable: "Venues",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -185,12 +185,14 @@ namespace ConferenceManager.Migrations
                         name: "FK_EventAttendees_Contacts_AttendeeID",
                         column: x => x.AttendeeID,
                         principalTable: "Contacts",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_EventAttendees_Events_EventID",
                         column: x => x.EventID,
                         principalTable: "Events",
-                        principalColumn: "ID");
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
@@ -198,8 +200,8 @@ namespace ConferenceManager.Migrations
                 columns: new[] { "ID", "Description", "EndDate", "Name", "StartDate" },
                 values: new object[,]
                 {
-                    { 1001, "The largest gathering of national association directors and managers in the world.", new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Local), "International Association of National Associations", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local) },
-                    { 1002, "An exposition of the latest in roadrunner hunting equipment", new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Local), "Acme Corp", new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Local) }
+                    { 1001, "The largest gathering of national association directors and managers in the world.", new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Local), "International Association of National Associations", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local) },
+                    { 1002, "An exposition of the latest in roadrunner hunting equipment", new DateTime(2021, 4, 20, 0, 0, 0, 0, DateTimeKind.Local), "Acme Corp", new DateTime(2021, 4, 16, 0, 0, 0, 0, DateTimeKind.Local) }
                 });
 
             migrationBuilder.InsertData(
@@ -207,12 +209,12 @@ namespace ConferenceManager.Migrations
                 columns: new[] { "ID", "Discriminator", "Email", "Phone", "DateRegistered", "FirstName", "IsPresenter", "IsStaff", "LastName" },
                 values: new object[,]
                 {
-                    { 103, "Attendee", "cherrith@marritimelaw.com", "303-303-3032", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), "Cherrith", false, false, "Goodstory" },
-                    { 106, "Attendee", "bill@compuserve.com", "303-303-3035", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), "Bill", false, false, "Smith" },
-                    { 101, "Presenter", "steve@juno.com", "303-303-3030", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), "Steve", true, false, "Johnson" },
-                    { 102, "Presenter", "dave@juno.com", "303-303-3031", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), "Dave", true, false, "Jackson" },
-                    { 104, "Presenter", "friz@wb.com", "303-303-3033", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), "Friz", true, false, "Freeling" },
-                    { 105, "Presenter", "wil@varoom.com", "303-303-3034", new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local), "Wile E", true, false, "Coyote" }
+                    { 103, "Attendee", "cherrith@marritimelaw.com", "303-303-3032", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local), "Cherrith", false, false, "Goodstory" },
+                    { 106, "Attendee", "bill@compuserve.com", "303-303-3035", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local), "Bill", false, false, "Smith" },
+                    { 101, "Presenter", "steve@juno.com", "303-303-3030", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local), "Steve", true, false, "Johnson" },
+                    { 102, "Presenter", "dave@juno.com", "303-303-3031", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local), "Dave", true, false, "Jackson" },
+                    { 104, "Presenter", "friz@wb.com", "303-303-3033", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local), "Friz", true, false, "Freeling" },
+                    { 105, "Presenter", "wil@varoom.com", "303-303-3034", new DateTime(2021, 4, 11, 0, 0, 0, 0, DateTimeKind.Local), "Wile E", true, false, "Coyote" }
                 });
 
             migrationBuilder.InsertData(
@@ -222,6 +224,28 @@ namespace ConferenceManager.Migrations
                 {
                     { 10, "700 14th St", null, "Denver", "Colorado Convention Center", "303-303-0000", "80202", "CO" },
                     { 11, "1405 Curtis St", null, "Denver", "The Curtis Hotel", "720-303-0000", "80202", "CO" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ConferenceAttendees",
+                columns: new[] { "ConferenceID", "AttendeeID" },
+                values: new object[,]
+                {
+                    { 1001, 106 },
+                    { 1002, 103 },
+                    { 1001, 101 },
+                    { 1001, 102 },
+                    { 1002, 104 },
+                    { 1002, 105 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ConferenceVenues",
+                columns: new[] { "ConferenceID", "VenueID" },
+                values: new object[,]
+                {
+                    { 1001, 10 },
+                    { 1002, 11 }
                 });
 
             migrationBuilder.InsertData(
@@ -241,10 +265,22 @@ namespace ConferenceManager.Migrations
                 columns: new[] { "ID", "ConferenceID", "Description", "Discriminator", "EndTime", "Name", "RoomID", "StartTime", "PresenterID" },
                 values: new object[,]
                 {
-                    { 101, 1001, "Hear our president discuss the role of professional organizations in the 21st century", "Presentation", new DateTime(2021, 4, 12, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4279), "Professional Associations in the 21st century", 1010, new DateTime(2021, 4, 11, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(3888), 102 },
-                    { 102, 1001, "Join a discussion about the various services a professional organization can offer it's members", "Presentation", new DateTime(2021, 4, 13, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4742), "Member Services", 1011, new DateTime(2021, 4, 12, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(4726), 101 },
-                    { 103, 1002, "Learn about the proper application of our tunnel paint in dry arid climates.", "Presentation", new DateTime(2021, 4, 13, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4753), "Paint Application in Aird Climates", 1011, new DateTime(2021, 4, 12, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(4751), 104 },
-                    { 104, 1002, "Our rockets aren't just for hunting! Come hear about Acme's plans to land the first coyote on the moon", "Presentation", new DateTime(2021, 4, 13, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4759), "Acme Orbital", 1013, new DateTime(2021, 4, 12, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(4756), 105 }
+                    { 101, 1001, "Hear our president discuss the role of professional organizations in the 21st century", "Presentation", new DateTime(2021, 4, 12, 19, 31, 42, 237, DateTimeKind.Local).AddTicks(954), "Professional Associations in the 21st century", 1010, new DateTime(2021, 4, 12, 17, 31, 42, 237, DateTimeKind.Local).AddTicks(484), 102 },
+                    { 102, 1001, "Join a discussion about the various services a professional organization can offer it's members", "Presentation", new DateTime(2021, 4, 13, 19, 31, 42, 237, DateTimeKind.Local).AddTicks(1441), "Member Services", 1011, new DateTime(2021, 4, 13, 17, 31, 42, 237, DateTimeKind.Local).AddTicks(1425), 101 },
+                    { 103, 1002, "Learn about the proper application of our tunnel paint in dry arid climates.", "Presentation", new DateTime(2021, 4, 13, 19, 31, 42, 237, DateTimeKind.Local).AddTicks(1453), "Paint Application in Aird Climates", 1011, new DateTime(2021, 4, 13, 17, 31, 42, 237, DateTimeKind.Local).AddTicks(1451), 104 },
+                    { 104, 1002, "Our rockets aren't just for hunting! Come hear about Acme's plans to land the first coyote on the moon", "Presentation", new DateTime(2021, 4, 13, 19, 31, 42, 237, DateTimeKind.Local).AddTicks(1459), "Acme Orbital", 1013, new DateTime(2021, 4, 13, 17, 31, 42, 237, DateTimeKind.Local).AddTicks(1456), 105 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "EventAttendees",
+                columns: new[] { "EventID", "AttendeeID" },
+                values: new object[,]
+                {
+                    { 101, 101 },
+                    { 101, 104 },
+                    { 102, 102 },
+                    { 102, 104 },
+                    { 103, 103 }
                 });
 
             migrationBuilder.CreateIndex(

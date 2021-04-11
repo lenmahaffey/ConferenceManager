@@ -1,5 +1,7 @@
 ﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess;
 using ConferenceManager.Services.DataAccess.Interfaces;
+using ConferenceManager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -18,6 +20,23 @@ namespace ConferenceManager.Controllers
         {
             IEnumerable<Conference> c = context.Conferences.List();
             return View(c);
+        }
+
+        public ViewResult ViewConference(int id)
+        {
+            ConferenceViewModel model = new ConferenceViewModel()
+            {
+                Conference = context.Conferences.Get(id),
+                Venues = context.ConferenceVenues.List(new QueryOptions<ConferenceVenue>
+                {
+                    Where = cv => cv.ConferenceID == id
+                }),
+                Attendees = context.ConferenceAttendees.List(new QueryOptions<ConferenceAttendee>
+                {
+                    Where = ca => ca.ConferenceID == id
+                })
+            };
+            return View(model);
         }
 
         public ViewResult ListConferences()

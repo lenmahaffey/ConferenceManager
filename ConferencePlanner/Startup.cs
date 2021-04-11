@@ -32,7 +32,8 @@ namespace ConferenceManager
             services.AddDbContext<ConferenceManagerContext>(
                 b => b.UseLazyLoadingProxies()
                 .UseSqlServer(
-                    Configuration.GetConnectionString("ConferenceManager")));
+                    Configuration.GetConnectionString("ConferenceManager"))
+                .EnableSensitiveDataLogging());
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;

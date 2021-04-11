@@ -94,6 +94,42 @@ namespace ConferenceManager.Services.DataAccess
                 return contacts;
             }
         }
+        private ConferenceManagerRepository<ConferenceAttendee> conferenceAttendees;
+        public ConferenceManagerRepository<ConferenceAttendee> ConferenceAttendees
+        {
+            get
+            {
+                if (conferenceAttendees == null)
+                {
+                    conferenceAttendees = new ConferenceManagerRepository<ConferenceAttendee>(context);
+                }
+                return conferenceAttendees;
+            }
+        }
+        private ConferenceManagerRepository<ConferenceVenue> conferenceVenues;
+        public ConferenceManagerRepository<ConferenceVenue> ConferenceVenues
+        {
+            get
+            {
+                if (conferenceVenues == null)
+                {
+                    conferenceVenues = new ConferenceManagerRepository<ConferenceVenue>(context);
+                }
+                return conferenceVenues;
+            }
+        }
+        private ConferenceManagerRepository<EventAttendee> eventAttendees;
+        public ConferenceManagerRepository<EventAttendee> EventAttendees
+        {
+            get
+            {
+                if (eventAttendees == null)
+                {
+                    eventAttendees = new ConferenceManagerRepository<EventAttendee>(context);
+                }
+                return eventAttendees;
+            }
+        }
         public void SaveChanges()
         {
             context.SaveChanges();

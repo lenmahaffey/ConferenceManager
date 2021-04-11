@@ -9,6 +9,10 @@ namespace ConferenceManager.Services.DataAccess.Interfaces
         ConferenceManagerRepository<Venue> Venues { get; }
         ConferenceManagerRepository<Room> Rooms { get; }
         ConferenceManagerRepository<Presentation> Presentations { get; }
+        ConferenceManagerRepository<ConferenceAttendee> ConferenceAttendees { get; }
+        ConferenceManagerRepository<ConferenceVenue> ConferenceVenues { get; }
+        ConferenceManagerRepository<EventAttendee> EventAttendees { get; }
+
         void SaveChanges();
     }
 }

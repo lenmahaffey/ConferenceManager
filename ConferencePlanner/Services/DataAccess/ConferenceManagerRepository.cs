@@ -71,7 +71,8 @@ namespace ConferenceManager.Services.DataAccess
 
         public IEnumerable<T> List(QueryOptions<T> options)
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = BuildQuery(options);
+            return query.ToList();
         }
     }
 }

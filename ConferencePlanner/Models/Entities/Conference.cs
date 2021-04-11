@@ -9,8 +9,8 @@ namespace ConferenceManager.Models.Entities
     {
         public int ID { get; set; }
 
-        public virtual ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
-        public virtual ICollection<ConferenceVenues> ConferenceVenues { get; set; }
+        public virtual ICollection<ConferenceAttendee> ConferenceAttendees { get; set; }
+        public virtual ICollection<ConferenceVenue> ConferenceVenues { get; set; }
         public virtual ICollection<Event> Presentations { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the conference")]

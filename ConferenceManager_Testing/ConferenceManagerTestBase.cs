@@ -26,7 +26,7 @@ namespace ConferenceManager.Testing
                 .UseLazyLoadingProxies();
             context = new ConferenceManagerContext(optionsBuilder.Options);
             unit = new ConferenceManagerUnit(context);
-            GetUnitOfWork();
+            //GetUnitOfWork();
         }
 
         private void GetUnitOfWork()

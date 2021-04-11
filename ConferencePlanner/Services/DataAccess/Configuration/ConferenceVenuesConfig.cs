@@ -4,21 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ConferenceManager.Services.DataAccess.Configuration
 {
-    public class ConferenceVenuesConfig : IEntityTypeConfiguration<ConferenceVenues>
+    public class ConferenceVenuesConfig : IEntityTypeConfiguration<ConferenceVenue>
     {
-        public void Configure(EntityTypeBuilder<ConferenceVenues> builder)
+        public void Configure(EntityTypeBuilder<ConferenceVenue> builder)
         {
             builder.HasKey(cv => new { cv.ConferenceID, cv.VenueID });
 
             builder.HasOne(cv => cv.Conference)
                 .WithMany(c => c.ConferenceVenues)
-                .HasForeignKey(cv => cv.ConferenceID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(cv => cv.Venue)
                 .WithMany(v => v.ConferenceVenues)
-                .HasForeignKey(cv => cv.VenueID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

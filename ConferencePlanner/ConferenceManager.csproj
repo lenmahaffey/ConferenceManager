@@ -116,6 +116,16 @@
     <Compile Remove="Migrations\20210411035122_Inital.Designer.cs" />
     <Compile Remove="Migrations\20210411035946_Inital.cs" />
     <Compile Remove="Migrations\20210411035946_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210411040419_Inital.cs" />
+    <Compile Remove="Migrations\20210411040419_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210411231243_Inital.cs" />
+    <Compile Remove="Migrations\20210411231243_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210411231528_Inital.cs" />
+    <Compile Remove="Migrations\20210411231528_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210411231947_Inital.cs" />
+    <Compile Remove="Migrations\20210411231947_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210411232537_Inital.cs" />
+    <Compile Remove="Migrations\20210411232537_Inital.Designer.cs" />
     <Compile Remove="Services\DataAccess\Interfaces\MockEventsRepository.cs" />
   </ItemGroup>
 
@@ -131,15 +141,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\assets\img\close-icon.svg" />
     <None Include="wwwroot\assets\img\navbar-logo.svg" />
     <None Include="wwwroot\assets\mail\contact_me.js" />
     <None Include="wwwroot\assets\mail\contact_me.php" />
     <None Include="wwwroot\assets\mail\jqBootstrapValidation.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

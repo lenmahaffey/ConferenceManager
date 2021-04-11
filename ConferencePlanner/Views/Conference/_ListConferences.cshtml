@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Conference>
 @{
-    ViewBag.Title = "Manage Conferences";
+    ViewBag.Title = "List Conferences";
 }
 <h1>@ViewBag.Title</h1>
 <table class="table table-bordered table-striped">
@@ -23,14 +23,14 @@
                 <td>@c.StartDate.ToShortDateString()</td>
                 <td>@c.EndDate.ToShortDateString()</td>
                 <td>
-                    <a asp-action="EditConference"
+                    <a asp-action="ViewConference"
                        asp-route-id="@c.ID"
-                       class="btn btn-secondary">Edit</a>
+                       class="btn btn-secondary">View</a>
                 </td>
                 <td>
-                    <a asp-action="DeleteConference"
+                    <a asp-action="EditConference"
                        asp-route-id="@c.ID"
-                       class="btn btn-danger">Delete</a>
+                       class="btn btn-danger">Edit</a>
                 </td>
             </tr>
         }
