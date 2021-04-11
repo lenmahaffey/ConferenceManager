@@ -134,4 +134,12 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\assets\img\close-icon.svg" />
+    <None Include="wwwroot\assets\img\navbar-logo.svg" />
+    <None Include="wwwroot\assets\mail\contact_me.js" />
+    <None Include="wwwroot\assets\mail\contact_me.php" />
+    <None Include="wwwroot\assets\mail\jqBootstrapValidation.js" />
+  </ItemGroup>
+
 </Project>

@@ -1,13 +1,15 @@
 ﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Testing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Xunit;
 
-namespace ConferenceManager_Test
+namespace ConferenceManager.Testing.Services.DataAccess
 {
-    public class ConferenceManagerContext_Test : ConferenceManagerTestBase
+    //This class is intended to verify that the seed data has loaded correctly into the database
+    public class Context_Test : ConferenceManagerTestBase
     {
         [Fact]
         public void TestAttendees()
@@ -28,7 +30,7 @@ namespace ConferenceManager_Test
             Assert.Equal(expectedLastName, queryResult.LastName);
             Assert.Equal(expectedEmail, queryResult.Email);
 
-            Assert.True(queryResult.ConferenceAttendees == null);
+            Assert.True(queryResult.ConferenceAttendees != null);
         }
     }
 }

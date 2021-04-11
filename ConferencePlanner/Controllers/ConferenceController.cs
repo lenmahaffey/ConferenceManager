@@ -13,6 +13,13 @@ namespace ConferenceManager.Controllers
         {
             context = ctx;
         }
+
+        public ViewResult Dashboard()
+        {
+            IEnumerable<Conference> c = context.Conferences.List();
+            return View(c);
+        }
+
         public ViewResult ListConferences()
         {
             IEnumerable<Conference> c = context.Conferences.List();
