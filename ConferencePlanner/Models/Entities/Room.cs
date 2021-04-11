@@ -12,7 +12,7 @@ namespace ConferenceManager.Models.Entities
         public int VenueID { get; set; }
         public virtual Venue Venue { get; set; }
 
-        public virtual ICollection<Presentation> Events { get; set; }
+        public virtual ICollection<Event> Events { get; set; }
 
         [Required(ErrorMessage = "Please enter the name of the room")]
         [StringLength(50)]

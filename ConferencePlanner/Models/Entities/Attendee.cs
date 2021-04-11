@@ -7,7 +7,7 @@ namespace ConferenceManager.Models.Entities
     public class Attendee : Contact
     {
         public virtual ICollection<ConferenceAttendees> ConferenceAttendees { get; set; }
-        public virtual ICollection<Presentation> EventAttendees { get; set; }
+        public virtual ICollection<EventAttendees> EventAttendees { get; set; }
 
         [Required(ErrorMessage = "Please enter a first name")]
         [StringLength(20)]

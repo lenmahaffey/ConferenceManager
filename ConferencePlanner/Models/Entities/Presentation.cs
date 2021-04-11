@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,8 @@ namespace ConferenceManager.Models.Entities
 {
     public class Presentation : Event
     {
-        public int AttendeeID { get; set; }
-        public virtual Attendee Attendee { get; set; } // for presenter
+        public int PresenterID { get; set; }
+        public virtual Presenter Presenter { get; set; }
+
     }
 }

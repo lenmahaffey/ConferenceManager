@@ -14,7 +14,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 {
                     ID = 101,
                     ConferenceID = 1001,
-                    AttendeeID = 102,
+                    PresenterID = 102,
                     RoomID = 1010,
                     Name = "Professional Associations in the 21st century",
                     Description = "Hear our president discuss the role of professional organizations in the 21st century",
@@ -25,7 +25,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 {
                     ID = 102,
                     ConferenceID = 1001,
-                    AttendeeID = 101,
+                    PresenterID = 101,
                     RoomID = 1011,
                     Name = "Member Services",
                     Description = "Join a discussion about the various services a professional organization can offer it's members",
@@ -36,7 +36,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 {
                     ID = 103,
                     ConferenceID = 1002,
-                    AttendeeID = 104,
+                    PresenterID = 104,
                     RoomID = 1011,
                     Name = "Paint Application in Aird Climates",
                     Description = "Learn about the proper application of our tunnel paint in dry arid climates.",
@@ -47,7 +47,7 @@ namespace ConferenceManager.Services.DataAccess.SeedData
                 {
                     ID = 104,
                     ConferenceID = 1002,
-                    AttendeeID = 105,
+                    PresenterID = 105,
                     RoomID = 1013,
                     Name = "Acme Orbital",
                     Description = "Our rockets aren't just for hunting! Come hear about Acme's plans to land the first coyote on the moon",

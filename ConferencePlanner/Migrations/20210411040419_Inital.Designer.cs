@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConferenceManager.Migrations
 {
     [DbContext(typeof(ConferenceManagerContext))]
-    [Migration("20210408231114_Inital")]
+    [Migration("20210411040419_Inital")]
     partial class Inital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,17 +52,17 @@ namespace ConferenceManager.Migrations
                         {
                             ID = 1001,
                             Description = "The largest gathering of national association directors and managers in the world.",
-                            EndDate = new DateTime(2021, 4, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            EndDate = new DateTime(2021, 4, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             Name = "International Association of National Associations",
-                            StartDate = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local)
+                            StartDate = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
                             ID = 1002,
                             Description = "An exposition of the latest in roadrunner hunting equipment",
-                            EndDate = new DateTime(2021, 4, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            EndDate = new DateTime(2021, 4, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             Name = "Acme Corp",
-                            StartDate = new DateTime(2021, 4, 13, 0, 0, 0, 0, DateTimeKind.Local)
+                            StartDate = new DateTime(2021, 4, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 
@@ -157,7 +157,11 @@ namespace ConferenceManager.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Event");
+                    b.HasIndex("ConferenceID");
+
+                    b.HasIndex("RoomID");
+
+                    b.ToTable("Events");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Event");
                 });
@@ -350,32 +354,10 @@ namespace ConferenceManager.Migrations
                     b.HasData(
                         new
                         {
-                            ID = 101,
-                            Email = "steve@juno.com",
-                            Phone = "303-303-3030",
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            FirstName = "Steve",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Johnson"
-                        },
-                        new
-                        {
-                            ID = 102,
-                            Email = "dave@juno.com",
-                            Phone = "303-303-3031",
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            FirstName = "Dave",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Jackson"
-                        },
-                        new
-                        {
                             ID = 103,
                             Email = "cherrith@marritimelaw.com",
                             Phone = "303-303-3032",
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateRegistered = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             FirstName = "Cherrith",
                             IsPresenter = false,
                             IsStaff = false,
@@ -383,32 +365,10 @@ namespace ConferenceManager.Migrations
                         },
                         new
                         {
-                            ID = 104,
-                            Email = "friz@wb.com",
-                            Phone = "303-303-3033",
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            FirstName = "Friz",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Freeling"
-                        },
-                        new
-                        {
-                            ID = 105,
-                            Email = "wil@varoom.com",
-                            Phone = "303-303-3034",
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
-                            FirstName = "Wile E",
-                            IsPresenter = true,
-                            IsStaff = false,
-                            LastName = "Coyote"
-                        },
-                        new
-                        {
                             ID = 106,
                             Email = "bill@compuserve.com",
                             Phone = "303-303-3035",
-                            DateRegistered = new DateTime(2021, 4, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            DateRegistered = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             FirstName = "Bill",
                             IsPresenter = false,
                             IsStaff = false,
@@ -420,14 +380,10 @@ namespace ConferenceManager.Migrations
                 {
                     b.HasBaseType("ConferenceManager.Models.Entities.Event");
 
-                    b.Property<int>("AttendeeID")
+                    b.Property<int>("PresenterID")
                         .HasColumnType("int");
 
-                    b.HasIndex("AttendeeID");
-
-                    b.HasIndex("ConferenceID");
-
-                    b.HasIndex("RoomID");
+                    b.HasIndex("PresenterID");
 
                     b.HasDiscriminator().HasValue("Presentation");
 
@@ -437,44 +393,97 @@ namespace ConferenceManager.Migrations
                             ID = 101,
                             ConferenceID = 1001,
                             Description = "Hear our president discuss the role of professional organizations in the 21st century",
-                            EndTime = new DateTime(2021, 4, 9, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(4813),
+                            EndTime = new DateTime(2021, 4, 12, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4279),
                             Name = "Professional Associations in the 21st century",
                             RoomID = 1010,
-                            StartTime = new DateTime(2021, 4, 9, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(4412),
-                            AttendeeID = 102
+                            StartTime = new DateTime(2021, 4, 11, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(3888),
+                            PresenterID = 102
                         },
                         new
                         {
                             ID = 102,
                             ConferenceID = 1001,
                             Description = "Join a discussion about the various services a professional organization can offer it's members",
-                            EndTime = new DateTime(2021, 4, 10, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(5297),
+                            EndTime = new DateTime(2021, 4, 13, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4742),
                             Name = "Member Services",
                             RoomID = 1011,
-                            StartTime = new DateTime(2021, 4, 10, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(5281),
-                            AttendeeID = 101
+                            StartTime = new DateTime(2021, 4, 12, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(4726),
+                            PresenterID = 101
                         },
                         new
                         {
                             ID = 103,
                             ConferenceID = 1002,
                             Description = "Learn about the proper application of our tunnel paint in dry arid climates.",
-                            EndTime = new DateTime(2021, 4, 10, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(5307),
+                            EndTime = new DateTime(2021, 4, 13, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4753),
                             Name = "Paint Application in Aird Climates",
                             RoomID = 1011,
-                            StartTime = new DateTime(2021, 4, 10, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(5305),
-                            AttendeeID = 104
+                            StartTime = new DateTime(2021, 4, 12, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(4751),
+                            PresenterID = 104
                         },
                         new
                         {
                             ID = 104,
                             ConferenceID = 1002,
                             Description = "Our rockets aren't just for hunting! Come hear about Acme's plans to land the first coyote on the moon",
-                            EndTime = new DateTime(2021, 4, 10, 19, 11, 14, 284, DateTimeKind.Local).AddTicks(5313),
+                            EndTime = new DateTime(2021, 4, 13, 0, 4, 19, 139, DateTimeKind.Local).AddTicks(4759),
                             Name = "Acme Orbital",
                             RoomID = 1013,
-                            StartTime = new DateTime(2021, 4, 10, 17, 11, 14, 284, DateTimeKind.Local).AddTicks(5311),
-                            AttendeeID = 105
+                            StartTime = new DateTime(2021, 4, 12, 22, 4, 19, 139, DateTimeKind.Local).AddTicks(4756),
+                            PresenterID = 105
+                        });
+                });
+
+            modelBuilder.Entity("ConferenceManager.Models.Entities.Presenter", b =>
+                {
+                    b.HasBaseType("ConferenceManager.Models.Entities.Attendee");
+
+                    b.HasDiscriminator().HasValue("Presenter");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 101,
+                            Email = "steve@juno.com",
+                            Phone = "303-303-3030",
+                            DateRegistered = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Steve",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Johnson"
+                        },
+                        new
+                        {
+                            ID = 102,
+                            Email = "dave@juno.com",
+                            Phone = "303-303-3031",
+                            DateRegistered = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Dave",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Jackson"
+                        },
+                        new
+                        {
+                            ID = 104,
+                            Email = "friz@wb.com",
+                            Phone = "303-303-3033",
+                            DateRegistered = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Friz",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Freeling"
+                        },
+                        new
+                        {
+                            ID = 105,
+                            Email = "wil@varoom.com",
+                            Phone = "303-303-3034",
+                            DateRegistered = new DateTime(2021, 4, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            FirstName = "Wile E",
+                            IsPresenter = true,
+                            IsStaff = false,
+                            LastName = "Coyote"
                         });
                 });
 
@@ -508,18 +517,33 @@ namespace ConferenceManager.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ConferenceManager.Models.Entities.Event", b =>
+                {
+                    b.HasOne("ConferenceManager.Models.Entities.Conference", "Conference")
+                        .WithMany("Presentations")
+                        .HasForeignKey("ConferenceID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConferenceManager.Models.Entities.Room", "Room")
+                        .WithMany("Events")
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("ConferenceManager.Models.Entities.EventAttendees", b =>
                 {
                     b.HasOne("ConferenceManager.Models.Entities.Attendee", "Attendee")
-                        .WithMany()
+                        .WithMany("EventAttendees")
                         .HasForeignKey("AttendeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ConferenceManager.Models.Entities.Event", "Event")
                         .WithMany("EventAttendees")
                         .HasForeignKey("EventID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -534,21 +558,9 @@ namespace ConferenceManager.Migrations
 
             modelBuilder.Entity("ConferenceManager.Models.Entities.Presentation", b =>
                 {
-                    b.HasOne("ConferenceManager.Models.Entities.Attendee", "Attendee")
-                        .WithMany("EventAttendees")
-                        .HasForeignKey("AttendeeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConferenceManager.Models.Entities.Conference", "Conference")
+                    b.HasOne("ConferenceManager.Models.Entities.Presenter", "Presenter")
                         .WithMany("Presentations")
-                        .HasForeignKey("ConferenceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConferenceManager.Models.Entities.Room", "Room")
-                        .WithMany("Events")
-                        .HasForeignKey("RoomID")
+                        .HasForeignKey("PresenterID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

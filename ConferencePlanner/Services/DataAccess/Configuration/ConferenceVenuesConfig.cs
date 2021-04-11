@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace ConferenceManager.Services.DataAccess.Configurations
+namespace ConferenceManager.Services.DataAccess.Configuration
 {
     public class ConferenceVenuesConfig : IEntityTypeConfiguration<ConferenceVenues>
     {
@@ -11,12 +11,12 @@ namespace ConferenceManager.Services.DataAccess.Configurations
             builder.HasKey(cv => new { cv.ConferenceID, cv.VenueID });
 
             builder.HasOne(cv => cv.Conference)
-                .WithMany(a => a.ConferenceVenues)
+                .WithMany(c => c.ConferenceVenues)
                 .HasForeignKey(cv => cv.ConferenceID)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(cv => cv.Venue)
-                .WithMany(a => a.ConferenceVenues)
+                .WithMany(v => v.ConferenceVenues)
                 .HasForeignKey(cv => cv.VenueID)
                 .OnDelete(DeleteBehavior.Cascade);
         }

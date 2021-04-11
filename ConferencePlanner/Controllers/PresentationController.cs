@@ -42,7 +42,7 @@ namespace ConferenceManager.Controllers
             var model = new PresentationViewModel
             {
                 Presentation = p,
-                Attendee = context.Attendees.Get(p.AttendeeID),
+                Attendee = context.Attendees.Get(p.PresenterID),
                 Conference = context.Conferences.Get(p.ConferenceID),
                 Room = context.Rooms.Get(p.RoomID),
                 Attendees = context.Attendees.List(),

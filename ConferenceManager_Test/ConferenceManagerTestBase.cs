@@ -6,23 +6,25 @@ using Moq;
 
 namespace ConferenceManager_Test
 {
-    public class ConferenceManagerBase_Test
+    public class ConferenceManagerTestBase
     {
         protected ConferenceManagerContext context { get; }
-        protected Mock<IConferenceManagerUnit> unit {get; set;}
-        protected Mock<IConferenceManagerRepository<Attendee>> attendees { get; set; }
-        protected Mock<IConferenceManagerRepository<Conference>> conferences { get; set; }
-        protected Mock<IConferenceManagerRepository<Presentation>> presentations { get; set; }
-        protected Mock<IConferenceManagerRepository<Venue>> venues { get; set; }
-        protected Mock<IConferenceManagerRepository<Room>> rooms { get; set; }
+        protected ConferenceManagerUnit  unit { get; }
+        protected Mock<IConferenceManagerUnit> mockUnit {get; set;}
+        private Mock<IConferenceManagerRepository<Attendee>> attendees { get; set; }
+        private Mock<IConferenceManagerRepository<Conference>> conferences { get; set; }
+        private Mock<IConferenceManagerRepository<Presentation>> presentations { get; set; }
+        private Mock<IConferenceManagerRepository<Venue>> venues { get; set; }
+        private Mock<IConferenceManagerRepository<Room>> rooms { get; set; }
 
-        public ConferenceManagerBase_Test()
+        public ConferenceManagerTestBase()
         {
             string connectionString =
                 "Server=(localdb)\\mssqllocaldb;Database=ConferenceManager_Test;Trusted_Connection=True;MultipleActiveResultSets=true";
             var options = new DbContextOptionsBuilder<ConferenceManagerContext>()
                 .UseSqlServer(connectionString);
             context = new ConferenceManagerContext(options.Options);
+            unit = new ConferenceManagerUnit(context);
             //GetUnitOfWork();
         }
 
@@ -44,12 +46,12 @@ namespace ConferenceManager_Test
             venues = new Mock<IConferenceManagerRepository<Venue>>();
             venues.Setup(m => m.Get(It.IsAny<QueryOptions<Venue>>())).Returns(new Venue());
 
-            unit = new Mock<IConferenceManagerUnit>();
-            unit.Setup(m => m.Attendees).Returns((ConferenceManagerRepository<Attendee>)attendees.Object);
-            unit.Setup(m => m.Conferences).Returns((ConferenceManagerRepository<Conference>)conferences.Object);
-            unit.Setup(m => m.Presentations).Returns((ConferenceManagerRepository<Presentation>)presentations.Object);
-            unit.Setup(m => m.Rooms).Returns((ConferenceManagerRepository<Room>)conferences.Object);
-            unit.Setup(m => m.Venues).Returns((ConferenceManagerRepository<Venue>)conferences.Object);
+            mockUnit = new Mock<IConferenceManagerUnit>();
+            mockUnit.Setup(m => m.Attendees).Returns((ConferenceManagerRepository<Attendee>)attendees.Object);
+            mockUnit.Setup(m => m.Conferences).Returns((ConferenceManagerRepository<Conference>)conferences.Object);
+            mockUnit.Setup(m => m.Presentations).Returns((ConferenceManagerRepository<Presentation>)presentations.Object);
+            mockUnit.Setup(m => m.Rooms).Returns((ConferenceManagerRepository<Room>)conferences.Object);
+            mockUnit.Setup(m => m.Venues).Returns((ConferenceManagerRepository<Venue>)conferences.Object);
         }
     }
 }
