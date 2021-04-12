@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ConferenceVenue>
+@{
+    ViewBag.Title = "Manage Venues";
+}
+<h1>@ViewBag.Title</h1>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postal Code</th>
+            <th>Phone</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.Venue.Name</td>
+                <td>@v.Venue.Address1 @(v.Venue.Address2 != null ? v.Venue.Address2 : "" )</td>
+                <td>@v.Venue.City</td>
+                <td>@v.Venue.State</td>
+                <td>@v.Venue.PostalCode</td>
+                <td>@v.Venue.Phone</td>
+                <td>
+                    <a asp-controller="Venue"
+                       asp-action="EditVenue"
+                       asp-route-id="@v.Venue.ID"
+                       class="btn btn-secondary">Edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Venue"
+                       asp-action="ViewVenue"
+                       asp-route-id="@v.Venue.ID"
+                       class="btn btn-danger">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Venue" asp-action="AddVenue" class="btn btn-secondary mb-3">Add Venue</a>

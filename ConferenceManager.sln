@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceManager", "ConferencePlanner\ConferenceManager.csproj", "{4C8B740F-11F7-4964-9983-7507D4A86514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceManager_Testing", "ConferenceManager_Testing\ConferenceManager_Testing.csproj", "{32D5C146-8ABB-4686-A130-B18942D09257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConferenceManager_Testing", "ConferenceManager_Testing\ConferenceManager_Testing.csproj", "{32D5C146-8ABB-4686-A130-B18942D09257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConferenceManager", "ConferenceManager\ConferenceManager.csproj", "{C35CA2A8-2BC5-4910-A5CC-6F280AD2AA9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4C8B740F-11F7-4964-9983-7507D4A86514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4C8B740F-11F7-4964-9983-7507D4A86514}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4C8B740F-11F7-4964-9983-7507D4A86514}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4C8B740F-11F7-4964-9983-7507D4A86514}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32D5C146-8ABB-4686-A130-B18942D09257}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{32D5C146-8ABB-4686-A130-B18942D09257}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32D5C146-8ABB-4686-A130-B18942D09257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32D5C146-8ABB-4686-A130-B18942D09257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C35CA2A8-2BC5-4910-A5CC-6F280AD2AA9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C35CA2A8-2BC5-4910-A5CC-6F280AD2AA9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C35CA2A8-2BC5-4910-A5CC-6F280AD2AA9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C35CA2A8-2BC5-4910-A5CC-6F280AD2AA9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,9 @@
+﻿@model ConferenceViewModel
+@{
+    ViewBag.Title = "View Details";
+}
+
+<h1 class="text-center">@Model.Conference.Name</h1>
+<partial name="../Venue/_ListVenues" model="Model.Venues"/>
+<partial name="../Attendee/_ListAttendees" model="Model.Attendees"/>
+
