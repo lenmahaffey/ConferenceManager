@@ -5,8 +5,7 @@
 }
 
 @section scripts{
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
 }
 
 <h1>@ViewBag.Title</h1>
@@ -68,16 +67,16 @@
     </div>
 
     <div class="row form-group">
-            <div class="col-sm-6">
-                <label asp-for="Presentation.Room"></label>
-                <select asp-for="Presentation.Room"
-                        asp-items="@(new SelectList(Model.Rooms,
+        <div class="col-sm-6">
+            <label asp-for="Presentation.Room"></label>
+            <select asp-for="Presentation.Room"
+                    asp-items="@(new SelectList(Model.Rooms,
                         "ID", "Name", Model.Room.ID))"
-                        class="form-control">
-                    <option value="@Model.Room">@Model.Room.Name</option>
-                </select>
-            </div>
+                    class="form-control">
+                <option value="@Model.Room">@Model.Room.Name</option>
+            </select>
         </div>
+    </div>
 
     <input type="hidden" asp-for="Presentation.ID" />
     <button type="submit" class="btn btn-secondary">Save</button>
