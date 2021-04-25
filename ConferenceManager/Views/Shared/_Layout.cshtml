@@ -47,6 +47,10 @@
                     <a class="nav-item nav-link @(controller == "Rooms" ? "active" : "")"
                        asp-controller="Room" asp-action="ListRooms">Rooms</a>
                 </div>
+                <div class="navbar-nav navbar-right">
+                    <vc:login-logout user="@User"/>
+                </div>
+
             </nav>
         </nav>
     </header>

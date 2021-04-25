@@ -1,11 +1,17 @@
 ﻿using ConferenceManager.Models.Entities;
 using ConferenceManager.Services.DataAccess.Configuration;
 using ConferenceManager.Services.DataAccess.SeedData;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ConferenceManager.Services.DataAccess
 {
-    public class ConferenceManagerContext : DbContext
+    public class ConferenceManagerContext : IdentityDbContext<User>
     {
         public ConferenceManagerContext(DbContextOptions<ConferenceManagerContext> options)
             : base(options)
@@ -24,6 +30,8 @@ namespace ConferenceManager.Services.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new ConferenceSeedData());
             modelBuilder.ApplyConfiguration(new AttendeeSeedData());
             modelBuilder.ApplyConfiguration(new PresenterSeedData());
@@ -48,6 +56,34 @@ namespace ConferenceManager.Services.DataAccess
             modelBuilder.ApplyConfiguration(new EventConfig());
 
             modelBuilder.ApplyConfiguration(new RoomConfig());
+        }
+        public static async Task CreateAdminUser(IServiceProvider serviceProvider)
+        {
+            UserManager<User> userManager =
+                serviceProvider.GetRequiredService<UserManager<User>>();
+            RoleManager<IdentityRole> roleManager =
+                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            string username = "admin";
+            string password = "P@ssw0rd";
+
+            List<string> roles  = new List<string>{ "admin", "attendee", "staff", "manager" };
+            foreach (var role in roles)
+            {
+                if (await roleManager.FindByNameAsync(role) == null)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(role));
+                }
+            }
+            if (await userManager.FindByNameAsync(username) == null)
+            {
+                User user = new User { UserName = username };
+                var result = await userManager.CreateAsync(user, password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "admin");
+                }
+            }
         }
     }
 }

@@ -17,4 +17,8 @@ namespace ConferenceManager.Components
     {
         public const string Path = "~/Views/Shared/Components/Venue/Table.cshtml";
     }
+    public class LoginLogOutOptions
+    {
+        public const string Path = "~/Views/Shared/Components/LoginLogout/NavbarLinks.cshtml";
+    }
 }

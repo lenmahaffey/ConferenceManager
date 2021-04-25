@@ -126,6 +126,8 @@
     <Compile Remove="Migrations\20210411231947_Inital.Designer.cs" />
     <Compile Remove="Migrations\20210411232537_Inital.cs" />
     <Compile Remove="Migrations\20210411232537_Inital.Designer.cs" />
+    <Compile Remove="Migrations\20210425035209_Identity.cs" />
+    <Compile Remove="Migrations\20210425035209_Identity.Designer.cs" />
     <Compile Remove="Services\DataAccess\Interfaces\MockEventsRepository.cs" />
   </ItemGroup>
 
@@ -134,6 +136,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13">
