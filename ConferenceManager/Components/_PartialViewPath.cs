@@ -9,4 +9,12 @@ namespace ConferenceManager.Components
     {
         public const string Path = "~/Views/Shared/Components/Copyright/Copyright.cshtml";
     }
+    public class ConferenceOptions
+    {
+        public const string Path = "~/Views/Shared/Components/Conference/Table.cshtml";
+    }
+    public class VenueOptions
+    {
+        public const string Path = "~/Views/Shared/Components/Venue/Table.cshtml";
+    }
 }

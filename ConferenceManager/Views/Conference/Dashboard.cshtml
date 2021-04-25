@@ -2,5 +2,6 @@
 @{
     ViewBag.Title = "Manage Conferences";
 }
-<partial name="_ListConferences" />
+<vc:conference-table/>
+<vc:venue-table/>
 <p>There are @Model.Count() conferences in the database</p>
