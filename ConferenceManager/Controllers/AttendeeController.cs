@@ -1,4 +1,5 @@
 ﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess;
 using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -7,38 +8,41 @@ namespace ConferenceManager.Controllers
 {
     public class AttendeeController : Controller
     {
-        private IConferenceManagerUnit context;
+        private IConferenceManagerRepository<Attendee> context;
 
-        public AttendeeController(IConferenceManagerUnit ctx)
+        public AttendeeController(IConferenceManagerRepository<Attendee> ctx)
         {
             context = ctx;
         }
 
         public ViewResult ListAttendees()
         {
-            IEnumerable<Attendee> a = context.Attendees.List();
-            return View(a);
+            var attendees = context.List(new QueryOptions<Attendee>
+            {
+                OrderBy = a => a.LastName
+            });
+            return View(attendees);
         }
 
         [HttpGet]
         public IActionResult DeleteAttendee(int id)
         {
-            var attendee = context.Attendees.Get(id);
+            var attendee = context.Get(id);
             return View(attendee);
         }
 
         [HttpPost]
         public IActionResult DeleteAttendee(Attendee attendee)
         {
-            context.Attendees.Delete(attendee);
-            context.SaveChanges();
+            context.Delete(attendee);
+            context.Save();
             return RedirectToAction("ListAttendees");
         }
 
         [HttpGet]
         public ViewResult EditAttendee(int id)
         {
-            var a = context.Attendees.Get(id);
+            var a = context.Get(id);
             return View(a);
         }
 
@@ -51,22 +55,32 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveAttendee(Attendee attendee)
         {
-            if (attendee.ID == 0)
+            string message;
+            if (ModelState.IsValid)
             {
-                context.Attendees.Insert(attendee);
-                context.SaveChanges();
+                if (attendee.ID == 0)
+                {
+                    context.Insert(attendee);
+                    message = attendee.FullName + " was added.";
+                }
+                else
+                {
+                    context.Update(attendee);
+                    message = attendee.FullName + " was updated.";
+                }
+                context.Save();
+                TempData["message"] = message;
+                return RedirectToAction("ListAttendees");
             }
             else
             {
-                context.Attendees.Update(attendee);
-                context.SaveChanges();
+                return View(attendee);
             }
-            return RedirectToAction("ListAttendees");
         }
 
         public ViewResult ViewAttendee(int id)
         {
-            var a = context.Attendees.Get(id);
+            var a = context.Get(id);
             return View(a);
         }
     }

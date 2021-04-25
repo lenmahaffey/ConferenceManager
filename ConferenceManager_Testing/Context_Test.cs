@@ -1,5 +1,7 @@
 ﻿using ConferenceManager.Models.Entities;
+using ConferenceManager.Services.DataAccess;
 using ConferenceManager.Testing;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +11,21 @@ using Xunit;
 namespace ConferenceManager.Testing.Services.DataAccess
 {
     //This class is intended to verify that the seed data has loaded correctly into the database
-    public class Context_Test : ConferenceManagerTestBase
+    public class Context_Test
     {
+        protected ConferenceManagerContext context { get; }
+        protected ConferenceManagerUnit unit { get; }
+        public Context_Test()
+        {
+            string connectionString =
+                "Server=(localdb)\\mssqllocaldb;Database=ConferenceManager_Test;Trusted_Connection=True;MultipleActiveResultSets=true";
+            var optionsBuilder = new DbContextOptionsBuilder<ConferenceManagerContext>()
+                .UseSqlServer(connectionString)
+                .UseLazyLoadingProxies();
+            context = new ConferenceManagerContext(optionsBuilder.Options);
+            unit = new ConferenceManagerUnit(context);
+        }
+
         [Fact]
         public void TestAttendees()
         {

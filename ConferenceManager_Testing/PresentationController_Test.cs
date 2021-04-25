@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ConferenceManager.Testing;
 
 namespace ConferenceManager_Testing
 {
-    class PresentationController_Test
+    class PresentationController_Test : ConferenceManagerTestBase
     {
     }
 }
