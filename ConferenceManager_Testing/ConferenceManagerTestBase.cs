@@ -3,6 +3,7 @@ using ConferenceManager.Services.DataAccess;
 using ConferenceManager.Services.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using System.Collections.Generic;
 
 namespace ConferenceManager.Testing
 {
@@ -10,12 +11,12 @@ namespace ConferenceManager.Testing
     {
         protected ConferenceManagerContext context { get; }
         protected ConferenceManagerUnit  unit { get; }
-        protected Mock<IConferenceManagerUnit> mockUnit {get; set;}
-        private Mock<ConferenceManagerRepository<Attendee>> attendees { get; set; }
-        private Mock<ConferenceManagerRepository<Conference>> conferences { get; set; }
-        private Mock<ConferenceManagerRepository<Presentation>> presentations { get; set; }
-        private Mock<ConferenceManagerRepository<Venue>> venues { get; set; }
-        private Mock<ConferenceManagerRepository<Room>> rooms { get; set; }
+        protected Mock<IConferenceManagerUnit> mockUnit {get; }
+        private Mock<IConferenceManagerRepository<Attendee>> attendees { get; }
+        private Mock<IConferenceManagerRepository<Conference>> conferences { get; }
+        private Mock<IConferenceManagerRepository<Presentation>> presentations { get; }
+        private Mock<IConferenceManagerRepository<Venue>> venues { get; }
+        private Mock<IConferenceManagerRepository<Room>> rooms { get; }
 
         public ConferenceManagerTestBase()
         {
@@ -26,26 +27,26 @@ namespace ConferenceManager.Testing
                 .UseLazyLoadingProxies();
             context = new ConferenceManagerContext(optionsBuilder.Options);
             unit = new ConferenceManagerUnit(context);
-            //GetUnitOfWork();
-        }
 
-        private void GetUnitOfWork()
-        {
-            //Not Working
-            attendees = new Mock<ConferenceManagerRepository<Attendee>>();
+            attendees = new Mock<IConferenceManagerRepository<Attendee>>();
             attendees.Setup(m => m.Get(It.IsAny<QueryOptions<Attendee>>())).Returns(new Attendee());
+            attendees.Setup(m => m.List(It.IsAny<QueryOptions<Attendee>>())).Returns(new List<Attendee>());
 
-            conferences = new Mock<ConferenceManagerRepository<Conference>>();
+            conferences = new Mock<IConferenceManagerRepository<Conference>>();
             conferences.Setup(m => m.Get(It.IsAny<QueryOptions<Conference>>())).Returns(new Conference());
+            conferences.Setup(m => m.List(It.IsAny<QueryOptions<Conference>>())).Returns(new List<Conference>());
 
-            presentations = new Mock<ConferenceManagerRepository<Presentation>>();
+            presentations = new Mock<IConferenceManagerRepository<Presentation>>();
             presentations.Setup(m => m.Get(It.IsAny<QueryOptions<Presentation>>())).Returns(new Presentation());
+            presentations.Setup(m => m.List(It.IsAny<QueryOptions<Presentation>>())).Returns(new List<Presentation>());
 
-            rooms = new Mock<ConferenceManagerRepository<Room>>();
+            rooms = new Mock<IConferenceManagerRepository<Room>>();
             rooms.Setup(m => m.Get(It.IsAny<QueryOptions<Room>>())).Returns(new Room());
+            rooms.Setup(m => m.List(It.IsAny<QueryOptions<Room>>())).Returns(new List<Room>());
 
-            venues = new Mock<ConferenceManagerRepository<Venue>>();
+            venues = new Mock<IConferenceManagerRepository<Venue>>();
             venues.Setup(m => m.Get(It.IsAny<QueryOptions<Venue>>())).Returns(new Venue());
+            venues.Setup(m => m.List(It.IsAny<QueryOptions<Venue>>())).Returns(new List<Venue>());
 
             mockUnit = new Mock<IConferenceManagerUnit>();
             mockUnit.Setup(m => m.Attendees).Returns(attendees.Object);

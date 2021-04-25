@@ -41,6 +41,12 @@ namespace ConferenceManager.Services.DataAccess
             return data.ToList();
         }
 
+        public IEnumerable<T> List(QueryOptions<T> options)
+        {
+            IQueryable<T> query = BuildQuery(options);
+            return query.ToList();
+        }
+
         public void Save()
         {
             context.SaveChanges();
@@ -67,12 +73,6 @@ namespace ConferenceManager.Services.DataAccess
                 query = query.OrderBy(options.OrderBy);
             }
             return query;
-        }
-
-        public IEnumerable<T> List(QueryOptions<T> options)
-        {
-            IQueryable<T> query = BuildQuery(options);
-            return query.ToList();
         }
     }
 }

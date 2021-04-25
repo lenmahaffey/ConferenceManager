@@ -5,6 +5,7 @@ namespace ConferenceManager.Services.DataAccess.Interfaces
     public interface IConferenceManagerRepository<T>
     {
         IEnumerable<T> List(QueryOptions<T> options);
+        IEnumerable<T> List();
 
         T Get(int id);
         T Get(QueryOptions<T> options);

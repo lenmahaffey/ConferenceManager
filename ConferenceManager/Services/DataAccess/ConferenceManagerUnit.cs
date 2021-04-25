@@ -10,8 +10,8 @@ namespace ConferenceManager.Services.DataAccess
         {
             context = ctx;
         }
-        private ConferenceManagerRepository<Conference> conferences;
-        public ConferenceManagerRepository<Conference> Conferences
+        private IConferenceManagerRepository<Conference> conferences;
+        public IConferenceManagerRepository<Conference> Conferences
         {
             get
             {
@@ -22,8 +22,8 @@ namespace ConferenceManager.Services.DataAccess
                 return conferences;
             }
         }
-        private ConferenceManagerRepository<Attendee> attendees;
-        public ConferenceManagerRepository<Attendee> Attendees
+        private IConferenceManagerRepository<Attendee> attendees;
+        public IConferenceManagerRepository<Attendee> Attendees
         {
             get
             {
@@ -34,8 +34,8 @@ namespace ConferenceManager.Services.DataAccess
                 return attendees;
             }
         }
-        private ConferenceManagerRepository<Venue> venues;
-        public ConferenceManagerRepository<Venue> Venues
+        private IConferenceManagerRepository<Venue> venues;
+        public IConferenceManagerRepository<Venue> Venues
         {
             get
             {
@@ -46,8 +46,8 @@ namespace ConferenceManager.Services.DataAccess
                 return venues;
             }
         }
-        private ConferenceManagerRepository<Room> rooms;
-        public ConferenceManagerRepository<Room> Rooms
+        private IConferenceManagerRepository<Room> rooms;
+        public IConferenceManagerRepository<Room> Rooms
         {
             get
             {
@@ -58,8 +58,8 @@ namespace ConferenceManager.Services.DataAccess
                 return rooms;
             }
         }
-        private ConferenceManagerRepository<Presentation> presentations;
-        public ConferenceManagerRepository<Presentation> Presentations
+        private IConferenceManagerRepository<Presentation> presentations;
+        public IConferenceManagerRepository<Presentation> Presentations
         {
             get
             {
@@ -70,8 +70,8 @@ namespace ConferenceManager.Services.DataAccess
                 return presentations;
             }
         }
-        private ConferenceManagerRepository<Event> events;
-        public ConferenceManagerRepository<Event> Events
+        private IConferenceManagerRepository<Event> events;
+        public IConferenceManagerRepository<Event> Events
         {
             get
             {
@@ -82,8 +82,8 @@ namespace ConferenceManager.Services.DataAccess
                 return events;
             }
         }
-        private ConferenceManagerRepository<Contact> contacts;
-        public ConferenceManagerRepository<Contact> Contacts
+        private IConferenceManagerRepository<Contact> contacts;
+        public IConferenceManagerRepository<Contact> Contacts
         {
             get
             {
@@ -94,8 +94,8 @@ namespace ConferenceManager.Services.DataAccess
                 return contacts;
             }
         }
-        private ConferenceManagerRepository<ConferenceAttendee> conferenceAttendees;
-        public ConferenceManagerRepository<ConferenceAttendee> ConferenceAttendees
+        private IConferenceManagerRepository<ConferenceAttendee> conferenceAttendees;
+        public IConferenceManagerRepository<ConferenceAttendee> ConferenceAttendees
         {
             get
             {
@@ -106,8 +106,8 @@ namespace ConferenceManager.Services.DataAccess
                 return conferenceAttendees;
             }
         }
-        private ConferenceManagerRepository<ConferenceVenue> conferenceVenues;
-        public ConferenceManagerRepository<ConferenceVenue> ConferenceVenues
+        private IConferenceManagerRepository<ConferenceVenue> conferenceVenues;
+        public IConferenceManagerRepository<ConferenceVenue> ConferenceVenues
         {
             get
             {
@@ -118,8 +118,8 @@ namespace ConferenceManager.Services.DataAccess
                 return conferenceVenues;
             }
         }
-        private ConferenceManagerRepository<EventAttendee> eventAttendees;
-        public ConferenceManagerRepository<EventAttendee> EventAttendees
+        private IConferenceManagerRepository<EventAttendee> eventAttendees;
+        public IConferenceManagerRepository<EventAttendee> EventAttendees
         {
             get
             {
@@ -130,6 +130,7 @@ namespace ConferenceManager.Services.DataAccess
                 return eventAttendees;
             }
         }
+
         public void SaveChanges()
         {
             context.SaveChanges();

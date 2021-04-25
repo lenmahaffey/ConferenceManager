@@ -4,14 +4,14 @@ namespace ConferenceManager.Services.DataAccess.Interfaces
 {
     public interface IConferenceManagerUnit
     {
-        ConferenceManagerRepository<Conference> Conferences { get; }
-        ConferenceManagerRepository<Attendee> Attendees { get; }
-        ConferenceManagerRepository<Venue> Venues { get; }
-        ConferenceManagerRepository<Room> Rooms { get; }
-        ConferenceManagerRepository<Presentation> Presentations { get; }
-        ConferenceManagerRepository<ConferenceAttendee> ConferenceAttendees { get; }
-        ConferenceManagerRepository<ConferenceVenue> ConferenceVenues { get; }
-        ConferenceManagerRepository<EventAttendee> EventAttendees { get; }
+        IConferenceManagerRepository<Conference> Conferences { get; }
+        IConferenceManagerRepository<Attendee> Attendees { get; }
+        IConferenceManagerRepository<Venue> Venues { get; }
+        IConferenceManagerRepository<Room> Rooms { get; }
+        IConferenceManagerRepository<Presentation> Presentations { get; }
+        IConferenceManagerRepository<ConferenceAttendee> ConferenceAttendees { get; }
+        IConferenceManagerRepository<ConferenceVenue> ConferenceVenues { get; }
+        IConferenceManagerRepository<EventAttendee> EventAttendees { get; }
 
         void SaveChanges();
     }
