@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Manage Conferences";
 }
+<div class="row"><vc:conference-side-nav /></div>
 <h1>@ViewBag.Title</h1>
 <table class="table table-bordered table-striped">
     <thead>
@@ -24,12 +25,12 @@
                 <td>@c.EndDate.ToShortDateString()</td>
                 <td>
                     <a asp-action="ViewConference"
-                       asp-route-id="@c.ID"
+                       asp-route-conferenceID="@c.ID"
                        class="btn btn-secondary">View</a>
                 </td>
                 <td>
                     <a asp-action="EditConference"
-                       asp-route-id="@c.ID"
+                       asp-route-conferenceID="@c.ID"
                        class="btn btn-danger">Edit</a>
                 </td>
             </tr>

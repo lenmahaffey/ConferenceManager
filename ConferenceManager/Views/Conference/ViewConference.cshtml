@@ -2,8 +2,87 @@
 @{
     ViewBag.Title = "View Details";
 }
+<div class="row"><vc:conference-side-nav /></div>
 
 <h1 class="text-center">@Model.Conference.Name</h1>
-<partial name="../Venue/_ListVenues" model="Model.Venues"/>
-<partial name="../Attendee/_ListAttendees" model="Model.Attendees"/>
+<h3 >Manage venues</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postal Code</th>
+            <th>Phone</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model.Venues)
+        {
+            <tr>
+                <td>@v.Venue.Name</td>
+                <td>@v.Venue.Address1 @(v.Venue.Address2 != null ? v.Venue.Address2 : "" )</td>
+                <td>@v.Venue.City</td>
+                <td>@v.Venue.State</td>
+                <td>@v.Venue.PostalCode</td>
+                <td>@v.Venue.Phone</td>
+                <td>
+                    <a asp-controller="Venue"
+                       asp-action="EditVenue"
+                       asp-route-id="@v.Venue.ID"
+                       class="btn btn-secondary">Edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Venue"
+                       asp-action="ViewVenue"
+                       asp-route-id="@v.Venue.ID"
+                       class="btn btn-danger">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
+<h3>Manage Attendees</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Date Registered</th>
+            <th>Presenter</th>
+            <th>Staff</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model.Attendees)
+        {
+            <tr>
+                <td>@a.Attendee.FirstName</td>
+                <td>@a.Attendee.LastName</td>
+                <td>@a.Attendee.Phone</td>
+                <td>@a.Attendee.Email</td>
+                <td>@a.Attendee.DateRegistered.ToShortDateString()</td>
+                <td>@(a.Attendee.IsPresenter == true ? "yes" : "no") </td>
+                <td>@(a.Attendee.IsStaff == true ? "yes" : "no") </td>
+                <td>
+                    <a asp-action="ViewAttendee"
+                       asp-route-id="@a.Attendee.ID"
+                       class="btn btn-secondary">View</a>
+                </td>
+                <td>
+                    <a asp-action="EditAttendee"
+                       asp-route-id="@a.Attendee.ID"
+                       class="btn btn-danger">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

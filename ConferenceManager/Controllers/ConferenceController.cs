@@ -4,6 +4,7 @@ using ConferenceManager.Services.DataAccess.Interfaces;
 using ConferenceManager.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConferenceManager.Controllers
 {
@@ -16,42 +17,52 @@ namespace ConferenceManager.Controllers
             context = ctx;
         }
 
+        //Dashboard view for all conferences
+        [HttpGet]
         public ViewResult Dashboard()
         {
-            IEnumerable<Conference> c = context.Conferences.List();
+            var c = context.Conferences.List(new QueryOptions<Conference>
+            {
+                OrderBy = c => c.Name
+            });
             return View(c);
         }
 
-        public ViewResult ViewConference(int id)
+        //View details of one conference
+        public ViewResult ViewConference(int conferenceID)
         {
             ConferenceViewModel model = new ConferenceViewModel()
             {
-                Conference = context.Conferences.Get(id),
+                Conference = context.Conferences.Get(conferenceID),
                 Venues = context.ConferenceVenues.List(new QueryOptions<ConferenceVenue>
                 {
-                    Where = cv => cv.ConferenceID == id
+                    Where = cv => cv.ConferenceID == conferenceID
                 }),
                 Attendees = context.ConferenceAttendees.List(new QueryOptions<ConferenceAttendee>
                 {
-                    Where = ca => ca.ConferenceID == id
+                    Where = ca => ca.ConferenceID == conferenceID
                 })
             };
             return View(model);
         }
 
+        //List all conferences in database
         public ViewResult ListConferences()
         {
             IEnumerable<Conference> c = context.Conferences.List();
             return View(c);
         }
 
+
+        //Delete a conference by ID. not implemented in views
         [HttpGet]
-        public ViewResult DeleteConference(int id)
+        public ViewResult DeleteConference(int conferenceID)
         {
-            var c = context.Conferences.Get(id);
+            var c = context.Conferences.Get(conferenceID);
             return View(c);
         }
 
+        //Delete a conference. not implemented in views
         [HttpPost]
         public RedirectToActionResult DeleteConference(Conference conference)
         {
@@ -60,10 +71,11 @@ namespace ConferenceManager.Controllers
             return RedirectToAction("ListConferences");
         }
 
+
         [HttpGet]
-        public ViewResult EditConference(int id)
+        public ViewResult EditConference(int conferenceID)
         {
-            var a = context.Conferences.Get(id);
+            var a = context.Conferences.Get(conferenceID);
             return View(a);
         }
 
@@ -76,17 +88,27 @@ namespace ConferenceManager.Controllers
         [HttpPost]
         public IActionResult SaveConference(Conference conference)
         {
-            if (conference.ID == 0)
+            string message;
+            if (ModelState.IsValid)
             {
-                context.Conferences.Insert(conference);
+                if (conference.ID == 0)
+                {
+                    message = conference.Name + " was added.";
+                    context.Conferences.Insert(conference);
+                }
+                else
+                {
+                    message = conference.Name + " was updated.";
+                    context.Conferences.Update(conference);
+                }
+                TempData["message"] = message;
                 context.SaveChanges();
+                return RedirectToAction("ListConferences");
             }
             else
             {
-                context.Conferences.Update(conference);
-                context.SaveChanges();
+                return View(conference);
             }
-            return RedirectToAction("ListConferences");
         }
     }
 }

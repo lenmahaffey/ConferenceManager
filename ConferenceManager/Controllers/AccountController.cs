@@ -52,7 +52,7 @@ namespace ConferenceManager.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Dashboard", "Conference", new { attendee = new Attendee() });
                     }
                 }
             }

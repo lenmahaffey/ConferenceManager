@@ -148,6 +148,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Components\Attendee\Table.cshtml" />
+    <None Include="Views\Shared\Components\Conference\Table.cshtml" />
+    <None Include="Views\Shared\Components\Venue\Table.cshtml" />
     <None Include="wwwroot\assets\img\close-icon.svg" />
     <None Include="wwwroot\assets\img\navbar-logo.svg" />
     <None Include="wwwroot\assets\mail\contact_me.js" />

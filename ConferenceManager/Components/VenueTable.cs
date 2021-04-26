@@ -19,11 +19,7 @@ namespace ConferenceManager.Components
         }
         public IViewComponentResult Invoke()
         {
-            var conferences = data.List(new QueryOptions<Venue>
-            {
-                OrderBy = ca => ca.Name
-            });
-            return View(VenueOptions.Path, conferences);
+            return View(VenueOptions.Path);
         }
     }
 }
