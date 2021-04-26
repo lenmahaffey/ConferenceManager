@@ -48,20 +48,22 @@
                        asp-controller="Room" asp-action="ListRooms">Rooms</a>
                 </div>
                 <div class="navbar-nav navbar-right">
-                    <vc:login-logout user="@User"/>
+                    <vc:login-logout user="@User" />
                 </div>
             </nav>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="row">
+        <nav class="col-1"><vc:conference-side-nav /></nav>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
-            <vc:copyright/>
+            <vc:copyright />
         </div>
     </footer>
 </body>
