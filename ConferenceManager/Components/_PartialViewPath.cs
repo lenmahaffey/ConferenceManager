@@ -24,7 +24,7 @@ namespace ConferenceManager.Components
     }
     public class ConferenceSideNavOptions
     {
-        public const string Path = "~/Views/Shared/Components/Conference/SideNav.cshtml";
+        public const string Path = "~/Views/Shared/Components/SideNav.cshtml";
     }
     public class VenueOptions
     {
