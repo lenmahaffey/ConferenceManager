@@ -1,8 +1,5 @@
-﻿@model IEnumerable<ConferenceAttendee>
-@{
-    ViewBag.Title = "Manage Attendees";
-}
-<h1>@ViewBag.Title</h1>
+﻿ @model IEnumerable<Attendee>
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -21,26 +18,25 @@
         @foreach (var a in Model)
         {
             <tr>
-                <td>@a.Attendee.FirstName</td>
-                <td>@a.Attendee.LastName</td>
-                <td>@a.Attendee.Phone</td>
-                <td>@a.Attendee.Email</td>
-                <td>@a.Attendee.DateRegistered.ToShortDateString()</td>
-                <td>@(a.Attendee.IsPresenter == true ? "yes" : "no") </td>
-                <td>@(a.Attendee.IsStaff == true ? "yes" : "no") </td>
+                <td>@a.FirstName</td>
+                <td>@a.LastName</td>
+                <td>@a.Phone</td>
+                <td>@a.Email</td>
+                <td>@a.DateRegistered.ToShortDateString()</td>
+                <td>@(a.IsPresenter == true ? "yes" : "no") </td>
+                <td>@(a.IsStaff == true ? "yes" : "no") </td>
                 <td>
                     <a asp-action="ViewAttendee"
-                       asp-route-id="@a.Attendee.ID"
+                       asp-route-id="@a.ID"
                        class="btn btn-secondary">View</a>
                 </td>
                 <td>
                     <a asp-controller="Attendee"
                        asp-action="EditAttendee"
-                       asp-route-id="@a.Attendee.ID"
+                       asp-route-id="@a.ID"
                        class="btn btn-danger">Edit</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-action="AddAttendee" class="btn btn-secondary mb-3">Add Attendee</a>

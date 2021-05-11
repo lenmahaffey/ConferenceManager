@@ -1,6 +1,7 @@
 ﻿using ConferenceManager.Models.Entities;
 using ConferenceManager.Services.DataAccess.Interfaces;
 using ConferenceManager.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConferenceManager.Controllers
@@ -8,18 +9,22 @@ namespace ConferenceManager.Controllers
     public class PresentationController : Controller
     {
         private IConferenceManagerUnit context;
+        private ISession session { get; set; }
 
-        public PresentationController(IConferenceManagerUnit ctx)
+        public PresentationController(IConferenceManagerUnit ctx, IHttpContextAccessor accessor)
         {
             context = ctx;
+            session = accessor.HttpContext.Session;
         }
 
+        [Route("[controller]s")]
         public ViewResult ListPresentations()
         {
             var p = context.Presentations.List();
             return View(p);
         }
 
+        [Route("[controller]/delete")]
         [HttpGet]
         public ViewResult DeletePresentation(int id)
         {
@@ -32,9 +37,11 @@ namespace ConferenceManager.Controllers
         {
             context.Presentations.Delete(presentation);
             context.SaveChanges();
+            TempData["message"] = presentation.Name + "was removed from the database";
             return RedirectToAction("ListPresentations");
         }
 
+        [Route("[controller]/edit")]
         [HttpGet]
         public ViewResult EditPresentation(int id)
         {
@@ -52,6 +59,7 @@ namespace ConferenceManager.Controllers
             return View(model);
         }
 
+        [Route("[controller]/add")]
         [HttpGet]
         public ViewResult AddPresentation()
         {
@@ -68,6 +76,7 @@ namespace ConferenceManager.Controllers
             return View(model);
         }
 
+        [Route("[controller]/save")]
         [HttpPost]
         public IActionResult SavePresentation(Presentation presentation)
         {
@@ -75,11 +84,13 @@ namespace ConferenceManager.Controllers
             {
                 context.Presentations.Insert(presentation);
                 context.SaveChanges();
+                TempData["message"] = presentation.Name + " was added to " + presentation.Conference.Name;
             }
             else
             {
                 context.Presentations.Update(presentation);
                 context.SaveChanges();
+                TempData["message"] = presentation.Name + " was added to updated";
             }
             return RedirectToAction("ListPresentations");
         }

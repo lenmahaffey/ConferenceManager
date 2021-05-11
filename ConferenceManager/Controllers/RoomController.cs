@@ -1,26 +1,33 @@
 ﻿using ConferenceManager.Models.Entities;
 using ConferenceManager.Services.DataAccess.Interfaces;
 using ConferenceManager.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace ConferenceManager.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class RoomController : Controller
     {
-        private readonly IConferenceManagerUnit context;
+        private IConferenceManagerUnit context;
+        private ISession session { get; set; }
 
-        public RoomController(IConferenceManagerUnit ctx)
+        public RoomController(IConferenceManagerUnit ctx, IHttpContextAccessor accessor)
         {
             context = ctx;
+            session = accessor.HttpContext.Session;
         }
 
+        [Route("[controller]s")]
         public ViewResult ListRooms()
         {
             IEnumerable<Room> r = context.Rooms.List();
             return View(r);
         }
 
+        [Route("[controller]/delete")]
         [HttpGet]
         public ViewResult DeleteRoom(int id)
         {
@@ -33,9 +40,11 @@ namespace ConferenceManager.Controllers
         {
             context.Rooms.Delete(room);
             context.SaveChanges();
+            TempData["message"] = room.Name + "was deleted";
             return RedirectToAction("ListRooms");
         }
 
+        [Route("[controller]/edit")]
         [HttpGet]
         public ViewResult EditRoom(int id)
         {
@@ -49,6 +58,7 @@ namespace ConferenceManager.Controllers
             return View(model);
         }
 
+        [Route("[controller]/add")]
         [HttpGet]
         public ViewResult AddRoom()
         {
@@ -61,6 +71,7 @@ namespace ConferenceManager.Controllers
             return View(model);
         }
 
+        [Route("[controller]/save")]
         [HttpPost]
         public IActionResult SaveRoom(Room Room)
         {
@@ -68,14 +79,18 @@ namespace ConferenceManager.Controllers
             {
                 context.Rooms.Insert(Room);
                 context.SaveChanges();
+                TempData["message"] = Room.Name + "was added to " + Room.Venue.Name;
             }
             else
             {
                 context.Rooms.Update(Room);
                 context.SaveChanges();
+                TempData["message"] = Room.Name + "was updated";
             }
             return RedirectToAction("ListRooms");
         }
+
+        [Route("[controller]/view")]
         public ViewResult ViewRoom(int id)
         {
             var r = context.Rooms.Get(id);

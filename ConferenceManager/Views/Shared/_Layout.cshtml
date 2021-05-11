@@ -10,11 +10,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Conference Manager</title>
+
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
     @RenderSection("scripts", false)
 </head>
 <body>
@@ -29,23 +32,12 @@
             </button>
             <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link @(controller == "Home" && action == "Index" ? "active" : "")"
-                       asp-controller="Home" asp-action="Index">Home</a>
-
-                    <a class="nav-item nav-link @(controller == "Conference" ? "active" : "")"
-                       asp-controller="Conference" asp-action="ListConferences">Conferences</a>
-
-                    <a class="nav-item nav-link @(controller == "Attendee" ? "active" : "")"
-                       asp-controller="Attendee" asp-action="ListAttendees">Attendees</a>
-
-                    <a class="nav-item nav-link @(controller == "Presentation" ? "active" : "")"
-                       asp-controller="Presentation" asp-action="ListPresentations">Presentations</a>
-
-                    <a class="nav-item nav-link @(controller == "Venue" ? "active" : "")"
-                       asp-controller="Venue" asp-action="ListVenues">Venues</a>
-
-                    <a class="nav-item nav-link @(controller == "Rooms" ? "active" : "")"
-                       asp-controller="Room" asp-action="ListRooms">Rooms</a>
+                    <a class="nav-item nav-link" asp-controller="Conference" asp-action="Dashboard">Home</a>
+                    <a class="nav-item nav-link" asp-controller="Conference" asp-action="ListConferences">Conferences</a>
+                    <a class="nav-item nav-link" asp-controller="Attendee" asp-action="ListAttendees">Attendees</a>
+                    <a class="nav-item nav-link" asp-controller="Presentation" asp-action="ListPresentations">Presentations</a>
+                    <a class="nav-item nav-link" asp-controller="Venue" asp-action="ListVenues">Venues</a>
+                    <a class="nav-item nav-link" asp-controller="Room" asp-action="ListRooms">Rooms</a>
                 </div>
                 <div class="navbar-nav navbar-right">
                     <vc:login-logout user="@User" />
@@ -55,16 +47,16 @@
     </header>
 
     <div class="row">
-        <nav class="col-1"><vc:conference-side-nav /></nav>
+        <nav class="cols-2"><vc:side-nav /></nav>
+        <div class="container col-8">
+            <temp-message />
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+        <div class="col-2"></div>
     </div>
-
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-
-    </div>
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted row">
         <div class="container">
             <vc:copyright />
         </div>
