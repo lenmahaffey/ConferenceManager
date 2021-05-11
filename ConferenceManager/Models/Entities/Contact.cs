@@ -4,7 +4,6 @@ namespace ConferenceManager.Models.Entities
 {
     abstract public class Contact
     {
-        [Key]
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Please enter a phone number")]

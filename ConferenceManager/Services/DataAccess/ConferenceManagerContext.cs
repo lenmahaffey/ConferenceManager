@@ -67,7 +67,7 @@ namespace ConferenceManager.Services.DataAccess
             string username = "admin";
             string password = "P@ssw0rd";
 
-            List<string> roles  = new List<string>{ "admin", "attendee", "staff", "manager" };
+            List<string> roles  = new List<string>{ "admin", "attendee", };
             foreach (var role in roles)
             {
                 if (await roleManager.FindByNameAsync(role) == null)

@@ -132,10 +132,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Attendee\_ListAttendees.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.13" />
@@ -148,9 +144,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Shared\Components\Attendee\Table.cshtml" />
-    <None Include="Views\Shared\Components\Conference\Table.cshtml" />
-    <None Include="Views\Shared\Components\Venue\Table.cshtml" />
     <None Include="wwwroot\assets\img\close-icon.svg" />
     <None Include="wwwroot\assets\img\navbar-logo.svg" />
     <None Include="wwwroot\assets\mail\contact_me.js" />

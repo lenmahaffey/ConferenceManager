@@ -3,41 +3,5 @@
     ViewBag.Title = "Manage Presentations";
 }
 <h1>@ViewBag.Title</h1>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Conference</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Presenter</th>
-            <th>Start</th>
-            <th>End</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Presentation p in Model)
-        {
-        <tr>
-            <!--<td>p.Conference.Name</td>-->
-            <td>@p.Name</td>
-            <td>@p.Description</td>
-            <td>@p.Presenter.FirstName @p.Presenter.LastName</td>
-            <td>@p.StartTime.ToShortDateString() <br /> @p.StartTime.ToShortTimeString()</td>
-            <td>@p.EndTime.ToShortDateString() <br /> @p.EndTime.ToShortTimeString()</td>
-            <td>
-                <a asp-action="ViewPresentation"
-                   asp-route-id="@p.ID"
-                   class="btn btn-secondary">View</a>
-            </td>
-            <td>
-                <a asp-action="EditPresentation"
-                   asp-route-id="@p.ID"
-                   class="btn btn-danger">Edit</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-<a asp-action="AddPresentation" class="btn btn-secondary mb-3">Add Presentation</a>
+<partial name="/Views/Presentation/_PresentationsTable.cshtml" model="Model" />
+<!--<a asp-action="AddPresentation" class="btn btn-secondary mb-3">Add Presentation</a>-->

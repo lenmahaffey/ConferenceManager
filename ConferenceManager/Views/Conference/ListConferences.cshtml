@@ -3,37 +3,5 @@
     ViewBag.Title = "Manage Conferences";
 }
 <h1>@ViewBag.Title</h1>
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Conference c in Model)
-        {
-            <tr>
-                <td>@c.Name</td>
-                <td>@c.Description</td>
-                <td>@c.StartDate.ToShortDateString()</td>
-                <td>@c.EndDate.ToShortDateString()</td>
-                <td>
-                    <a asp-action="ViewConference"
-                       asp-route-conferenceID="@c.ID"
-                       class="btn btn-secondary">View</a>
-                </td>
-                <td>
-                    <a asp-action="EditConference"
-                       asp-route-conferenceID="@c.ID"
-                       class="btn btn-danger">Edit</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<a asp-action="AddConference" class="btn btn-secondary mb-3">Add Conference</a>
+<partial name="_ConferencesTable" model="Model" />
+<!--<a asp-action="AddConference" class="btn btn-secondary mb-3">Add Conference</a>-->

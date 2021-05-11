@@ -1,6 +1,7 @@
 ﻿using ConferenceManager.Models.Entities;
 using ConferenceManager.Services.DataAccess;
 using ConferenceManager.Services.DataAccess.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -9,12 +10,15 @@ namespace ConferenceManager.Controllers
     public class AttendeeController : Controller
     {
         private IConferenceManagerRepository<Attendee> context;
+        private ISession session { get; set; }
 
-        public AttendeeController(IConferenceManagerRepository<Attendee> ctx)
+        public AttendeeController(IConferenceManagerRepository<Attendee> ctx, IHttpContextAccessor accessor)
         {
             context = ctx;
+            session = accessor.HttpContext.Session;
         }
 
+        [Route("[controller]s")]
         public ViewResult ListAttendees()
         {
             var attendees = context.List(new QueryOptions<Attendee>
@@ -24,6 +28,7 @@ namespace ConferenceManager.Controllers
             return View(attendees);
         }
 
+        [Route("[controller]/delete")]
         [HttpGet]
         public IActionResult DeleteAttendee(int id)
         {
@@ -39,6 +44,7 @@ namespace ConferenceManager.Controllers
             return RedirectToAction("ListAttendees");
         }
 
+        [Route("[controller]/edit")]
         [HttpGet]
         public ViewResult EditAttendee(int id)
         {
@@ -46,6 +52,7 @@ namespace ConferenceManager.Controllers
             return View(a);
         }
 
+        [Route("[controller]/add")]
         [HttpGet]
         public ViewResult AddAttendee()
         {
@@ -78,6 +85,7 @@ namespace ConferenceManager.Controllers
             }
         }
 
+        [Route("[controller]/view")]
         public ViewResult ViewAttendee(int id)
         {
             var a = context.Get(id);
